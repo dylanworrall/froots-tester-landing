@@ -27,16 +27,50 @@ interface StackItem {
   Icon?: IconType | ComponentType<SVGProps<SVGSVGElement>>;
   src?: string;
   color?: string;
+  blurb?: string;
 }
 
 const agents: StackItem[] = [
-  { label: "Claude", Icon: SiAnthropic, color: "#D97706" },
-  { label: "GPT", Icon: SiOpenai, color: "#000" },
-  { label: "Gemini", Icon: SiGooglegemini, color: "#1F6FEB" },
-  { label: "Llama", Icon: SiMeta, color: "#0866FF" },
-  { label: "Mistral", Icon: SiMistralai, color: "#FA520F" },
-  { label: "OpenClaw", src: "/logo-openclaw.svg" },
-  { label: "Hermes", src: "/logo-hermes.png" },
+  {
+    label: "Claude",
+    Icon: SiAnthropic,
+    color: "#D97706",
+    blurb: "Anthropic's flagship for long-context reasoning and tool use — the default brain for agent loops.",
+  },
+  {
+    label: "GPT",
+    Icon: SiOpenai,
+    color: "#000",
+    blurb: "OpenAI's multimodal workhorse — broad ecosystem, vision, and fast function calling.",
+  },
+  {
+    label: "Gemini",
+    Icon: SiGooglegemini,
+    color: "#1F6FEB",
+    blurb: "Google's million-token model — ideal when you need to drop in whole repos or hours of transcripts.",
+  },
+  {
+    label: "Llama",
+    Icon: SiMeta,
+    color: "#0866FF",
+    blurb: "Meta's open weights — run it locally for privacy or fine-tune it for niche domains.",
+  },
+  {
+    label: "Mistral",
+    Icon: SiMistralai,
+    color: "#FA520F",
+    blurb: "Lean European models with strong tool use — cheap, fast, and Apache-licensed.",
+  },
+  {
+    label: "OpenClaw",
+    src: "/logo-openclaw.svg",
+    blurb: "Open-source agent harness built around tool authoring and durable memory.",
+  },
+  {
+    label: "Hermes",
+    src: "/logo-hermes.png",
+    blurb: "Nous Research's fine-tunes — agentic behavior tuned for structured output and persona.",
+  },
 ];
 
 const integrations: StackItem[] = [

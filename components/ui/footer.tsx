@@ -5,7 +5,7 @@ const columns = [
     title: "Product",
     items: [
       { name: "Use cases", href: "#" },
-      { name: "Pricing", href: "#" },
+      { name: "Pricing", href: "/pricing" },
       { name: "Changelog", href: "#" },
     ],
   },
@@ -29,7 +29,7 @@ const columns = [
   {
     title: "Community",
     items: [
-      { name: "Discord", href: "#" },
+      { name: "Discord", href: "https://discord.gg/y7cq9A5bYu" },
       { name: "LinkedIn", href: "#" },
       { name: "X", href: "#" },
     ],

@@ -141,9 +141,9 @@ export default function Home() {
             bgColor: "#D7EFD3",
             textColor: "#0a0a0a",
             links: [
-              { label: "Memory", ariaLabel: "Memory", href: "#" },
-              { label: "Routines", ariaLabel: "Routines", href: "#" },
-              { label: "Skills", ariaLabel: "Skills", href: "#" },
+              { label: "Memory", ariaLabel: "Memory", href: "/memory" },
+              { label: "Routines", ariaLabel: "Routines", href: "/routines" },
+              { label: "Skills", ariaLabel: "Skills", href: "/skills" },
             ],
           },
           {
@@ -151,8 +151,8 @@ export default function Home() {
             bgColor: "#5191F8",
             textColor: "#0a0a0a",
             links: [
-              { label: "Models", ariaLabel: "Models", href: "#" },
-              { label: "Pricing", ariaLabel: "Pricing", href: "#" },
+              { label: "Models", ariaLabel: "Models", href: "/models" },
+              { label: "Pricing", ariaLabel: "Pricing", href: "/pricing" },
             ],
           },
           {
@@ -160,9 +160,10 @@ export default function Home() {
             bgColor: "#FBD9DA",
             textColor: "#0a0a0a",
             links: [
+              { label: "Blog", ariaLabel: "Blog", href: "/blog" },
               { label: "Docs", ariaLabel: "Docs", href: "#" },
               { label: "Changelog", ariaLabel: "Changelog", href: "#" },
-              { label: "Discord", ariaLabel: "Discord", href: "#" },
+              { label: "Discord", ariaLabel: "Discord", href: "https://discord.gg/y7cq9A5bYu" },
             ],
           },
         ]}

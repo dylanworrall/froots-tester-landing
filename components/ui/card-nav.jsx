@@ -156,13 +156,13 @@ const CardNav = ({
             <div className="hamburger-line" />
           </div>
 
-          <div className="logo-container">
+          <a href="/" className="logo-container" aria-label="Home">
             {logo ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={logo} alt={logoAlt} className="logo" />
             ) : null}
             {logoText ? <span className="logo-text" style={menuColor ? { color: menuColor } : undefined}>{logoText}</span> : null}
-          </div>
+          </a>
 
           <button
             type="button"
