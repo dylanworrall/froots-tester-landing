@@ -1,0 +1,194 @@
+[
+  {
+    "slug": "obsidian-alternatives-2026",
+    "title": "Best Obsidian alternatives in 2026: AI-native, local-first, open-source",
+    "excerpt": "Looking for an Obsidian alternative with built-in AI, sync, or open-source guarantees? Here are the seven best options in 2026 — with honest tradeoffs, not affiliate fluff. Includes which ones keep your vault portable and which ones lock you in.",
+    "category": "Comparison",
+    "author": "The Froots team",
+    "date": "2026-05-05T00:00:00.000Z",
+    "dateStr": "May 4, 2026",
+    "tags": [
+      "obsidian-alternative",
+      "comparison",
+      "local-first",
+      "agents",
+      "notes-app"
+    ],
+    "readMin": 7,
+    "coverColor": "#E64B3F",
+    "url": "/blog/obsidian-alternatives-2026"
+  },
+  {
+    "slug": "beta-0-1-froots",
+    "title": "Froots 0.1 Beta — the first public build",
+    "excerpt": "Froots is in public beta. A local-first desktop workspace with a markdown editor, a flexible vault, and an agent layer built into the app — honest about what's shipping today and what's still ahead.",
+    "category": "Release notes",
+    "author": "The Froots team",
+    "date": "2026-04-24T00:00:00.000Z",
+    "dateStr": "Apr 23, 2026",
+    "tags": [
+      "release",
+      "beta",
+      "launch"
+    ],
+    "readMin": 4,
+    "coverColor": "#B4D92E",
+    "url": "/blog/beta-0-1-froots"
+  },
+  {
+    "slug": "replace-notion-obsidian-zapier-with-one-app",
+    "title": "One app instead of six: replacing Notion, Obsidian, n8n, Zapier, OpenClaw, and Hermes with Froots",
+    "excerpt": "Six apps for notes, knowledge, automations, and agents is five too many. Here's the honest case for collapsing all of them into one local-first workspace — and three ways to adopt it that don't require ripping out what you already have.",
+    "category": "Manifesto",
+    "author": "The Froots team",
+    "date": "2026-04-24T00:00:00.000Z",
+    "dateStr": "Apr 23, 2026",
+    "tags": [
+      "notion-alternative",
+      "obsidian-alternative",
+      "zapier-alternative",
+      "agents",
+      "local-first",
+      "all-in-one"
+    ],
+    "readMin": 8,
+    "coverColor": "#E64B3F",
+    "url": "/blog/replace-notion-obsidian-zapier-with-one-app"
+  },
+  {
+    "slug": "automate-git-worktrees-with-an-agent",
+    "title": "Automate git worktrees with an AI agent (full guide)",
+    "excerpt": "Git worktrees are underused because the ergonomics are mediocre. An AI agent fixes that. This is a 15-minute guide to spinning up, managing, and cleaning up worktrees automatically — using Froots routines or any shell-capable agent runtime.",
+    "category": "Tutorial",
+    "author": "Marcus Huang",
+    "date": "2026-04-10T00:00:00.000Z",
+    "dateStr": "Apr 9, 2026",
+    "tags": [
+      "tutorial",
+      "git",
+      "workflow",
+      "agents"
+    ],
+    "readMin": 4,
+    "coverColor": "#E64B3F",
+    "url": "/blog/automate-git-worktrees-with-an-agent"
+  },
+  {
+    "slug": "local-first-ai-workspace-2026",
+    "title": "The local-first AI workspace stack, 2026",
+    "excerpt": "If you're building (or just using) a local-first AI workspace in 2026, these are the ten building blocks — editor, vault, runtime, sync, tools, model routing, memory, inbox, widgets, plugins — and how the serious options stack up across each.",
+    "category": "Deep dive",
+    "author": "Jordan Reed",
+    "date": "2026-04-08T00:00:00.000Z",
+    "dateStr": "Apr 7, 2026",
+    "tags": [
+      "local-first",
+      "stack",
+      "comparison",
+      "agents"
+    ],
+    "readMin": 6,
+    "coverColor": "#8FB339",
+    "url": "/blog/local-first-ai-workspace-2026"
+  },
+  {
+    "slug": "library-where-good-ideas",
+    "title": "On 'Where Good Ideas Come From,' ten years later",
+    "excerpt": "Steven Johnson's 2010 book is one of the quiet spiritual prerequisites for how Froots is designed. Ten years on, the core argument holds — and one part of it hasn't aged quite as well.",
+    "category": "Library",
+    "author": "Jordan Reed",
+    "date": "2026-03-22T00:00:00.000Z",
+    "dateStr": "Mar 21, 2026",
+    "tags": [
+      "library",
+      "book-notes"
+    ],
+    "readMin": 2,
+    "coverColor": "#8FB339",
+    "url": "/blog/library-where-good-ideas"
+  },
+  {
+    "slug": "letter-graph-hairball",
+    "title": "Keeping your graph view from becoming a hairball",
+    "excerpt": "A reader in Lisbon writes in: 'My vault graph used to be beautiful. Now it looks like a dead jellyfish. Help.' Here's our reply — three settings, one habit, one acceptance.",
+    "category": "Letter",
+    "author": "The Froots editors",
+    "date": "2026-03-20T00:00:00.000Z",
+    "dateStr": "Mar 19, 2026",
+    "tags": [
+      "letters",
+      "graph",
+      "vault"
+    ],
+    "readMin": 1,
+    "coverColor": "#B4D92E",
+    "url": "/blog/letter-graph-hairball"
+  },
+  {
+    "slug": "letter-naming-agents",
+    "title": "On naming agents after your pets (don't)",
+    "excerpt": "A reader in Berlin asks whether to rename Froots's built-in agents after his two cats. We have thoughts. Specifically: we have one thought, strongly held.",
+    "category": "Letter",
+    "author": "The Froots editors",
+    "date": "2026-03-12T00:00:00.000Z",
+    "dateStr": "Mar 11, 2026",
+    "tags": [
+      "letters",
+      "agents",
+      "naming"
+    ],
+    "readMin": 1,
+    "coverColor": "#F6C849",
+    "url": "/blog/letter-naming-agents"
+  },
+  {
+    "slug": "library-commonplace-book",
+    "title": "Three essays on keeping a commonplace book",
+    "excerpt": "The commonplace book is the oldest form of what Froots is trying to be. Three essays worth reading this week, if you want to know what you're actually doing when you keep notes.",
+    "category": "Library",
+    "author": "The Froots editors",
+    "date": "2026-03-09T00:00:00.000Z",
+    "dateStr": "Mar 8, 2026",
+    "tags": [
+      "library",
+      "reading-list"
+    ],
+    "readMin": 2,
+    "coverColor": "#E64B3F",
+    "url": "/blog/library-commonplace-book"
+  },
+  {
+    "slug": "letter-what-is-a-vault",
+    "title": "What do you mean by 'vault,' exactly?",
+    "excerpt": "A reader in Oakland asks what the difference is between a vault, a workspace, and a folder. Short answer: a vault is a folder you've told Froots is the folder.",
+    "category": "Letter",
+    "author": "The Froots editors",
+    "date": "2026-02-24T00:00:00.000Z",
+    "dateStr": "Feb 23, 2026",
+    "tags": [
+      "letters",
+      "vault",
+      "glossary"
+    ],
+    "readMin": 2,
+    "coverColor": "#F2873A",
+    "url": "/blog/letter-what-is-a-vault"
+  },
+  {
+    "slug": "library-christopher-alexander",
+    "title": "Why we keep re-reading Christopher Alexander",
+    "excerpt": "Christopher Alexander wrote about buildings, but he built the vocabulary we use to make software. We've re-read 'A Pattern Language' every winter since 2021. Here's what we take from it — and why his last book is the one we come back to.",
+    "category": "Library",
+    "author": "Priya Menon",
+    "date": "2026-02-14T00:00:00.000Z",
+    "dateStr": "Feb 13, 2026",
+    "tags": [
+      "library",
+      "architecture",
+      "design"
+    ],
+    "readMin": 2,
+    "coverColor": "#F6C849",
+    "url": "/blog/library-christopher-alexander"
+  }
+]

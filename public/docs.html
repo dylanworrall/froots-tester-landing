@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Froots — Docs: routines, skills, vault & agent guide</title>
+<meta name="description" content="Official Froots documentation. Learn the vault, routines, skills system, agent harness, BYO keys, and how notes become executable work orders." />
+<meta name="author" content="Froots" />
+<link rel="canonical" href="https://froots.ai/docs.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Froots" />
+<meta property="og:title" content="Froots Docs — routines, skills, vault & agent" />
+<meta property="og:description" content="Learn how Froots turns your markdown notes into running agents. Vault, routines, skills and BYO keys explained." />
+<meta property="og:url" content="https://froots.ai/docs.html" />
+<meta property="og:image" content="https://froots.ai/assets/froots-scene.jpeg" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Froots Docs" />
+<meta name="twitter:description" content="Learn how Froots turns your markdown notes into running agents." />
+<meta name="twitter:image" content="https://froots.ai/assets/froots-scene.jpeg" />
+
+<!-- JSON-LD: TechArticle -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Froots Documentation","description":"Routines, skills, vault, and agent harness — the official Froots reference.","url":"https://froots.ai/docs.html","author":{"@type":"Organization","name":"Froots"},"publisher":{"@type":"Organization","name":"Froots","logo":{"@type":"ImageObject","url":"https://froots.ai/assets/froots-logo.jpeg"}},"inLanguage":"en"}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script src="/assets/track.js" defer></script>
+<link rel="stylesheet" href="shell.css?v=2">
+
+<style>
+  /* ---- Page-specific (docs) ---- */
+  .side-search {
+    display: flex; align-items: center; gap: 9px;
+    background: var(--panel); border: 1px solid var(--rule);
+    border-radius: 10px; padding: 9px 12px;
+    margin-bottom: 22px;
+    transition: border-color .15s ease;
+  }
+  .side-search:focus-within { border-color: var(--accent); }
+  .side-search svg { color: var(--mute-2); flex-shrink: 0; }
+  .side-search input {
+    flex: 1; min-width: 0; border: 0; background: transparent;
+    font-family: var(--sans); font-size: 13.5px; color: var(--ink); outline: none;
+  }
+  .side-search input::placeholder { color: var(--mute-2); }
+  .side-search .hot {
+    color: var(--mute-2); font-family: var(--mono); font-size: 10.5px;
+    padding: 2px 6px; border: 1px solid var(--rule); border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* Layout */
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 200px;
+    gap: 56px;
+    padding: 60px 0 120px;
+    align-items: start;
+  }
+  .docs-side {
+    position: sticky; top: 100px; align-self: start;
+    font-family: var(--sans); font-size: 14px;
+  }
+  .docs-side h5 {
+    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: .14em; color: var(--mute-2);
+    margin: 26px 0 8px; font-weight: 600;
+  }
+  .docs-side h5:first-of-type { margin-top: 0; }
+  .docs-side a {
+    display: block; padding: 6px 10px; border-radius: 8px;
+    color: var(--mute); transition: background .12s ease, color .12s ease;
+  }
+  .docs-side a:hover { background: var(--ink-04); color: var(--ink-85); }
+  .docs-side a.active {
+    color: var(--ink); background: var(--ink-04); font-weight: 600;
+    box-shadow: inset 2px 0 0 var(--accent);
+  }
+
+  article { min-width: 0; }
+  article > .kicker { display: inline-block; margin-bottom: 14px; }
+  article h2 {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(30px, 4vw, 42px);
+    letter-spacing: -0.025em; line-height: 1.06;
+    margin: 0 0 14px; color: var(--ink);
+  }
+  article h2 em { font-style: italic; font-weight: 800; color: var(--accent); }
+  article h3 {
+    font-family: var(--sans); font-weight: 700; font-size: 20px;
+    margin: 40px 0 10px; letter-spacing: -0.02em; color: var(--ink);
+    scroll-margin-top: 100px;
+  }
+  article p {
+    font-size: 16px; line-height: 1.7; color: var(--mute); margin: 0 0 16px;
+  }
+  article a { color: var(--ink-85); border-bottom: 1px dotted var(--mute-2); }
+  article a:hover { color: var(--accent); border-color: var(--accent); }
+  article code {
+    font-family: var(--mono); font-size: 13.5px; padding: 1px 6px;
+    background: var(--card-2); border-radius: 5px; border: 1px solid var(--rule);
+    color: var(--ink-85);
+  }
+  article pre {
+    background: var(--ink); color: var(--shell);
+    border-radius: var(--radius-xl);
+    padding: 18px 22px; font-family: var(--mono); font-size: 13px; line-height: 1.7;
+    overflow-x: auto; margin: 22px 0;
+  }
+  article pre .k { color: var(--mute-2); }
+  article pre .v { color: var(--brand-soft); }
+  article pre .s { color: #F6C849; }
+
+  article .callout {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    margin: 22px 0;
+  }
+  article .callout strong {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  article .callout p {
+    margin: 8px 0 0; font-size: 14.5px; color: var(--ink-85);
+  }
+
+  .grid-2 {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin: 24px 0;
+  }
+  .link-card {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    transition: transform .15s ease, border-color .15s ease;
+    border-bottom: 1px solid var(--rule);
+  }
+  .link-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--brand) 35%, var(--rule));
+  }
+  .link-card .small-caps {
+    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: .14em; color: var(--mute-2);
+  }
+  .link-card h4 {
+    font-family: var(--sans); font-weight: 700; font-size: 17px;
+    margin: 6px 0 4px; color: var(--ink); letter-spacing: -0.015em;
+  }
+  .link-card p {
+    font-size: 13.5px; color: var(--mute); margin: 0; line-height: 1.55;
+  }
+
+  /* TOC */
+  .docs-toc {
+    position: sticky; top: 100px; align-self: start;
+    font-family: var(--sans); font-size: 13px;
+    padding-left: 14px;
+    border-left: 1px solid var(--rule);
+  }
+  .docs-toc h5 {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--mute-2);
+    margin: 0 0 10px; font-weight: 600;
+  }
+  .docs-toc a {
+    display: block; padding: 4px 0; color: var(--mute);
+    transition: color .12s ease;
+  }
+  .docs-toc a:hover { color: var(--ink-85); }
+  .docs-toc a.active { color: var(--accent); font-weight: 600; }
+
+  /* Mobile sidebar toggle */
+  .side-toggle {
+    display: none;
+    width: 100%; padding: 12px 16px;
+    background: var(--panel); border: 1px solid var(--rule);
+    border-radius: 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-85);
+    cursor: pointer;
+    justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .side-toggle::after {
+    content: "+"; font-size: 18px; color: var(--mute);
+  }
+  .side-toggle[aria-expanded="true"]::after { content: "−"; color: var(--accent); }
+
+  @media (max-width: 1100px) {
+    .docs-layout { grid-template-columns: 1fr; gap: 24px; padding-top: 100px !important; padding-bottom: 80px; }
+    .docs-side, .docs-toc { position: static; }
+    .docs-toc { display: none; }
+    .docs-side {
+      border: 1px solid var(--rule); border-radius: 12px;
+      background: var(--panel);
+      max-height: 0; overflow: hidden;
+      transition: max-height .25s ease, padding .25s ease;
+      padding: 0 16px;
+    }
+    .docs-side.open { max-height: 1400px; padding: 14px 16px 18px; }
+    .docs-side.open .side-search { margin-bottom: 14px; }
+    .side-toggle { display: flex; }
+  }
+  @media (max-width: 700px) {
+    article h2 { font-size: clamp(26px, 7vw, 34px); }
+    article h3 { font-size: 18px; margin: 32px 0 8px; }
+    article p { font-size: 15px; }
+    article pre { font-size: 12px; padding: 14px 16px; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== TOP BAR ============== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-dropdown" id="brandDropdown">
+      <button type="button" class="brand brand-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="brandMenu">
+        <span class="brand-mark"><svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M70 8 C 54 -4, 38 16, 56 30 C 58 30, 66 28, 70 30 C 74 28, 82 30, 84 30 C 102 16, 86 -4, 70 8 Z" fill="#6BBF3A" stroke="#1C1A16" stroke-width="3" stroke-linejoin="round"/><path d="M70 30 C 56 42, 44 52, 40 70" stroke="#1C1A16" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M70 30 C 84 42, 96 52, 100 70" stroke="#1C1A16" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="40" cy="100" r="34" fill="#E64B3F" stroke="#1C1A16" stroke-width="3.5"/><circle cx="100" cy="102" r="30" fill="#D43A2E" stroke="#1C1A16" stroke-width="3.5"/><ellipse cx="30" cy="86" rx="6" ry="3" fill="#fff" opacity=".7"/><ellipse cx="92" cy="90" rx="5" ry="2.5" fill="#fff" opacity=".6"/></svg></span>
+        <span>Froots</span>
+        <span class="beta-tag">Beta</span>
+        <svg class="brand-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 L5 6.5 L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="brand-menu" id="brandMenu" role="menu" aria-hidden="true">
+        <div class="bm-section">
+          <div class="bm-label">Landing page</div>
+          <a role="menuitem" href="index.html#editor"><span class="bm-num">01</span> Editor</a>
+          <a role="menuitem" href="index.html#routines"><span class="bm-num">02</span> Routines</a>
+          <a role="menuitem" href="index.html#channels"><span class="bm-num">03</span> Channels</a>
+          <a role="menuitem" href="index.html#memory"><span class="bm-num">04</span> Memory</a>
+          <a role="menuitem" href="index.html#connect"><span class="bm-num">05</span> Connect</a>
+          <a role="menuitem" href="index.html#pricing"><span class="bm-num">06</span> Pricing</a>
+          <a role="menuitem" href="index.html#faq"><span class="bm-num">07</span> FAQ</a>
+        </div>
+        <div class="bm-section bm-section-divider">
+          <div class="bm-label">Elsewhere</div>
+          <a role="menuitem" href="docs.html">Docs</a>
+          <a role="menuitem" href="blog.html">Blog &amp; changelog</a>
+          <a role="menuitem" href="download.html">Download</a>
+        </div>
+      </div>
+    </div>
+    <nav class="nav-secondary">
+      <a href="index.html#routines">Routines</a>
+      <a href="index.html#channels">Channels</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="docs.html" style="color: var(--ink); font-weight: 600;">Docs</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <div class="topbar-right">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">☾</button>
+      <a class="btn btn-accent" href="download.html">↓ Download</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<div class="wrap">
+  <div class="docs-layout" style="padding-top: 110px;">
+
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="docsSideNav" onclick="const s=document.getElementById('docsSideNav'); const o=s.classList.toggle('open'); this.setAttribute('aria-expanded', o);">On this site</button>
+
+    <aside class="docs-side" id="docsSideNav">
+      <div class="side-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="Search docs…" aria-label="Search docs">
+        <span class="hot">⌘K</span>
+      </div>
+      <h5>Getting started</h5>
+      <a href="#install" class="active">Install Froots</a>
+      <a href="#first-launch">First launch</a>
+      <a href="#models">Models &amp; BYOK</a>
+
+      <h5>Memory</h5>
+      <a href="#memory-files">The three files</a>
+      <a href="#memory-search">Indexed memories</a>
+      <a href="#memory-privacy">Privacy &amp; control</a>
+
+      <h5>KB Editor</h5>
+      <a href="#kb-vault">Vault &amp; file tree</a>
+      <a href="#kb-editing">Editing</a>
+      <a href="#kb-wiki">Wiki-links</a>
+      <a href="#kb-slash">Slash commands</a>
+
+      <h5>Conversations</h5>
+      <a href="#chat-sessions">Sessions</a>
+      <a href="#chat-models">Model selection</a>
+      <a href="#chat-tools">Tools &amp; plan mode</a>
+      <a href="#chat-panel">Side-band panel</a>
+
+      <h5>Routines</h5>
+      <a href="#routines-library">Library presets</a>
+      <a href="#routines-schedule">Schedules</a>
+      <a href="#routines-flow">Multi-step flows</a>
+      <a href="#routines-history">Run history</a>
+
+      <h5>Skills</h5>
+      <a href="#skills-overview">What is a skill</a>
+      <a href="#skills-manifest">SKILL.md format</a>
+      <a href="#skills-permissions">Permissions</a>
+      <a href="#skills-catalog">The catalog</a>
+
+      <h5>Heartbeat</h5>
+      <a href="#heartbeat-overview">What it does</a>
+      <a href="#heartbeat-cadence">Cadence &amp; meta-prompt</a>
+      <a href="#heartbeat-notify">Proactive notifications</a>
+
+      <h5>Identity (Persona)</h5>
+      <a href="#persona-files">The four files</a>
+      <a href="#persona-approval">Approval flow</a>
+
+      <h5>Contacts (Guardians)</h5>
+      <a href="#contacts-channels">Channels</a>
+      <a href="#contacts-pairing">Pairing &amp; verification</a>
+      <a href="#contacts-permissions">Permissions</a>
+
+      <h5>Widgets</h5>
+      <a href="#widgets-overview">Native &amp; in-app</a>
+      <a href="#widgets-primitives">Layout primitives</a>
+      <a href="#widgets-create">Agent-generated</a>
+
+      <h5>Settings</h5>
+      <a href="#settings-overview">All nine panels</a>
+    </aside>
+
+    <article>
+      <span class="kicker"><span class="num">01</span>The manual · 12 min read</span>
+      <h2 id="manual">The Froots <em>manual.</em></h2>
+      <p>Froots is a local-first workspace that pairs a markdown editor with an always-on agent. Notes, conversations, scheduled routines, native widgets, and 60+ skills, all running on your machine. This page is the full feature tour — read end to end, or jump to a section in the sidebar.</p>
+
+      <div class="callout">
+        <strong>Local by default</strong>
+        <p>Everything below — your vault, memory, conversations, persona files — is stored on disk in folders you can open in Finder. There is no Froots account; the app talks to your model provider, not to us.</p>
+      </div>
+
+      <h3 id="install">Install</h3>
+      <p>Pick your OS on the <a href="download.html">downloads page</a>. The macOS build is signed and notarized; the Windows build is EV-signed; the Linux AppImage runs on any reasonably modern distro. Or install from your package manager:</p>
+      <pre><span class="k"># macOS</span>
+<span class="v">brew</span> install froots/tap/froots
+<span class="k"># Windows</span>
+<span class="v">winget</span> install Froots.Froots
+<span class="k"># Linux</span>
+<span class="v">curl</span> -fsSL froots.app/install <span class="k">|</span> sh</pre>
+
+      <h3 id="first-launch">First launch</h3>
+      <p>The first time Froots opens it creates a workspace at <code>~/Library/Application Support/com.motivex.desktop/workspace</code> on macOS (and the equivalent on Windows / Linux). Inside that folder you'll find <code>kb/</code> for your knowledge base, <code>memory/</code> for the agent's memory files, and <code>persona/</code> for identity. You can browse and edit these in any editor — Froots watches the disk and refreshes live.</p>
+
+      <h3 id="models">Models &amp; BYOK</h3>
+      <p>Froots speaks Claude (Anthropic), Codex (OpenAI), and Pi (any OpenAI-compatible endpoint, including Ollama on localhost). Open <code>Settings → Models</code> to pick a backend and paste a key. Keys live in your OS keychain; they never touch a Froots server.</p>
+      <pre><span class="k"># From the command palette</span>
+<span class="v">/model</span> set anthropic <span class="s">sk-ant-…</span>
+<span class="v">/model</span> default claude-opus-4-7</pre>
+
+      <hr/>
+
+      <h2 id="memory">Memory</h2>
+      <p>Memory is what makes the agent feel like it knows you. Three plain markdown files capture the running state of your work; a semantic index makes them searchable in milliseconds.</p>
+
+      <h3 id="memory-files">The three files</h3>
+      <p>Open the <strong>Memories</strong> tab in the sidebar to see and edit them inline:</p>
+      <ul>
+        <li><code>context.md</code> — what you're focused on right now, what you're watching, a rolling session log.</li>
+        <li><code>decisions.md</code> — choices you've made and don't want the agent to second-guess (architecture calls, tone preferences, vendor picks).</li>
+        <li><code>learnings.md</code> — things you or the agent figured out the hard way and want to remember next time.</li>
+      </ul>
+      <p>Edits autosave. Each file is just markdown on disk — open it in your favourite editor and Froots picks up the change live.</p>
+
+      <h3 id="memory-search">Indexed memories</h3>
+      <p>Behind the markdown, every section is chunked, embedded with a local <strong>BGE-small</strong> model (384 dimensions), and stored in a libSQL database with a DiskANN index. The agent retrieves relevant chunks on every turn; you can search them by hand from <code>Settings → Memory</code>:</p>
+      <pre><span class="k"># Filter by category</span>
+category: <span class="s">user_profile</span>, <span class="s">decisions</span>, <span class="s">learnings</span>, <span class="s">notes</span>
+<span class="k"># See similarity scores + retrieval frequency</span>
+sort: <span class="s">most-retrieved</span></pre>
+
+      <h3 id="memory-privacy">Privacy &amp; control</h3>
+      <p>Memory never leaves your machine. The embedding model runs locally; the index is a SQLite file. Delete a single chunk from the Memory settings, or wipe the whole memory folder — the next agent turn just won't have those memories. Nothing syncs unless you set up sync explicitly.</p>
+
+      <hr/>
+
+      <h2 id="kb">KB Editor</h2>
+      <p>The KB (knowledge base) is your vault: a tree of markdown files you write, link, and search. The editor is a <strong>Tiptap</strong> WYSIWYG surface — typing feels like Notion, but the file on disk is plain markdown.</p>
+
+      <h3 id="kb-vault">Vault &amp; file tree</h3>
+      <p>Files live under <code>workspace/kb/</code>. Open the file tree from the sidebar, or pop a docked tree panel with <kbd>⌘\</kbd>. Right-click any file or folder to rename, delete, or create a new note inside it. The tree refreshes live when the agent (or any other app) writes to disk — no polling, no stale state.</p>
+
+      <h3 id="kb-editing">Editing</h3>
+      <p>The toolbar covers the basics: bold, italic, underline, strikethrough, inline code; headings, quotes, lists, tasks. Autosave fires 800ms after you stop typing; <kbd>⌘S</kbd> forces an immediate save. A small "Saved" pill in the corner tells you you're caught up.</p>
+      <p>Tables, code blocks, math, drawings (Excalidraw-style), and embedded widgets all render inline. If you edit the file outside Froots while you have unsaved changes, a banner offers <em>reload</em> or <em>discard</em>.</p>
+
+      <h3 id="kb-wiki">Wiki-links</h3>
+      <p>Type <code>[[</code> and Froots autocompletes against the vault. Click any wiki-link to jump to the target page. Broken links don't error — they just sit there until you create the page they point at.</p>
+
+      <h3 id="kb-slash">Slash commands</h3>
+      <p>Type <code>/</code> at the start of a line to open the block menu: heading, list, task list, code block, table, divider, drawing, widget embed. The same menu is keyboard-navigable — type a few letters and hit Enter.</p>
+
+      <hr/>
+
+      <h2 id="chat">Conversations</h2>
+      <p>Conversations are how you actually talk to the agent. Every conversation is a session, persisted to a local SQLite store, with full tool-execution history.</p>
+
+      <h3 id="chat-sessions">Sessions</h3>
+      <p>The Conversations view groups sessions into <strong>Pinned</strong>, <strong>Background</strong> (running async), and <strong>Recents</strong>. Each session shows a status badge — running, idle, completed, error — plus its intent line. Pin to keep around forever; delete from the right-click menu.</p>
+
+      <h3 id="chat-models">Model selection</h3>
+      <p>Pick a model per session from the chip below the composer. Token estimates render live (Claude 200k, GPT-4 128k, Gemini 1M). Streaming responses auto-scroll, but if you scroll up to read something, a <em>jump to latest</em> button appears so you don't get yanked back.</p>
+
+      <h3 id="chat-tools">Tools &amp; plan mode</h3>
+      <p>When the agent calls a tool — search the vault, run a skill, edit a file — the call shows up as a collapsible bubble with the input JSON, the output, and success/error state. <strong>Plan mode</strong> lets the agent propose a multi-step plan and wait for your approval before doing anything destructive.</p>
+
+      <h3 id="chat-panel">Side-band panel</h3>
+      <p>Press <kbd>⌘J</kbd> to open a 380px chat panel docked to the right of any KB page. The panel scopes itself to the current document — switch files and a new conversation begins (the previous one is saved automatically). Useful for "explain this paragraph" without leaving the page.</p>
+
+      <hr/>
+
+      <h2 id="routines">Routines</h2>
+      <p>A routine is a scheduled prompt. Type the prompt once, attach a schedule, and the agent runs it on time without you. Routines can be a single prompt or a multi-step flow with branches.</p>
+
+      <h3 id="routines-library">Library presets</h3>
+      <p>Open <strong>Library → Routines</strong> for 13 categories of presets: morning brief, wake / bedtime, smart home, comms, chores, errands, family, wellbeing, KB, standups, repo, release, research. Each preset is a starting point you can edit before saving.</p>
+
+      <h3 id="routines-schedule">Schedules</h3>
+      <p>Five schedule types:</p>
+      <ul>
+        <li><strong>Daily</strong> — every day at a fixed time (e.g. 08:00).</li>
+        <li><strong>Weekly</strong> — chosen days of the week.</li>
+        <li><strong>Interval</strong> — every <em>N</em> minutes.</li>
+        <li><strong>Cron</strong> — full cron expression for the picky.</li>
+        <li><strong>Once</strong> — fire at a specific timestamp and never again.</li>
+      </ul>
+      <p>You can also hit <em>Run now</em> on any routine to fire it immediately, regardless of schedule.</p>
+
+      <h3 id="routines-flow">Multi-step flows</h3>
+      <p>Routines aren't just single prompts. The flow editor (built on ReactFlow) lets you chain steps: a <strong>prompt</strong>, a <strong>delay</strong>, a <strong>condition branch</strong>. Drag connections between cards; auto-layout keeps the canvas tidy.</p>
+
+      <h3 id="routines-history">Run history</h3>
+      <p>Each routine keeps the last 50 runs: status (completed / submitted / failed), duration, error if any, started-at timestamp. Click a run to inspect what the agent did. If a run goes wrong, errors are kept verbatim — no friendly-but-useless wrapping.</p>
+
+      <hr/>
+
+      <h2 id="skills">Skills</h2>
+      <p>Skills are how the agent does things in the world. There are 60+ shipped today, ranging from <code>github</code> and <code>blender</code> to <code>apple-notes</code>, <code>sonos</code>, <code>bluebubbles</code>, and <code>1password</code>.</p>
+
+      <h3 id="skills-overview">What is a skill</h3>
+      <p>A skill is a folder under <code>skills/</code> with a <code>SKILL.md</code> manifest, optional installer scripts, and reference assets. When you enable a skill, its tools register with the agent's MCP-like tool registry. The agent can then call them — usually with explicit user approval the first time.</p>
+
+      <h3 id="skills-manifest">SKILL.md format</h3>
+      <p>The manifest is YAML frontmatter plus markdown:</p>
+      <pre><span class="k">---</span>
+<span class="v">name</span>: <span class="s">apple-notes</span>
+<span class="v">emoji</span>: <span class="s">"📝"</span>
+<span class="v">description</span>: <span class="s">"Read and write Apple Notes via AppleScript"</span>
+<span class="v">platforms</span>: [<span class="s">macOS</span>]
+<span class="v">requires</span>:
+  <span class="v">bin</span>: [<span class="s">osascript</span>]
+<span class="v">install</span>:
+  <span class="v">brew</span>: <span class="s">apple-notes-cli</span>
+<span class="k">---</span>
+<span class="k"># Apple Notes</span>
+The agent can list, read, and write notes…</pre>
+
+      <h3 id="skills-permissions">Permissions</h3>
+      <p>Permission has two layers:</p>
+      <ul>
+        <li><strong>Eligibility</strong> — does this skill have its dependencies installed? If not, the toggle is greyed out and the badge reads <em>blocked</em>.</li>
+        <li><strong>Approval</strong> — sensitive tools (anything that writes outside the vault, sends a message, or runs shell) prompt with the persona-write confirmation modal before executing. <kbd>Esc</kbd> denies, <kbd>Enter</kbd> approves.</li>
+      </ul>
+      <p>Trust levels in <code>Settings → Permissions</code> let you set a default — <em>Careful</em> (always ask), <em>Balanced</em> (ask for sensitive tools), <em>Yolo</em> (only ask for destructive ones).</p>
+
+      <h3 id="skills-catalog">The catalog</h3>
+      <p>Open <code>Settings → Skills</code> to browse, search, install, and toggle. A handful of system skills are always on; the rest are off by default. Each skill entry shows its dependencies, a description, and tabs for scripts / references / assets.</p>
+
+      <hr/>
+
+      <h2 id="heartbeat">Heartbeat</h2>
+      <p>Heartbeat is the always-on agent that runs in the background even when you're not asking it anything. Every <em>N</em> minutes it wakes up, looks at your context, and decides whether something is worth surfacing.</p>
+
+      <h3 id="heartbeat-overview">What it does</h3>
+      <p>The heartbeat reads <code>memory/context.md</code> (your current focus, what you're watching, the recent session log) and runs a meta-prompt that decides: is there something the user should know about right now? If yes, it calls <code>notify_user</code> and you get a desktop notification. If no, it exits silently. Bias is firmly toward silence.</p>
+
+      <h3 id="heartbeat-cadence">Cadence &amp; meta-prompt</h3>
+      <p>Pick a cadence in <code>Settings → Heartbeat</code> — 15, 30, 60, or 120 minutes. The default meta-prompt is well-tuned: read context, optionally prune session-log entries older than seven days, decide whether anything warrants surfacing. Power users can edit the meta-prompt; most shouldn't need to.</p>
+
+      <h3 id="heartbeat-notify">Proactive notifications</h3>
+      <p>Notifications surface as native OS toasts (and an in-app inbox). Click one to open the relevant note or session. The settings panel also shows the last fired time, the last error if any, and a <em>Fire now</em> button so you can sanity-check the loop end-to-end.</p>
+
+      <hr/>
+
+      <h2 id="persona">Identity (Persona)</h2>
+      <p>The agent's identity lives in four markdown files. Editing them changes how the agent behaves on the next turn — there is no separate "personality" config or model fine-tune.</p>
+
+      <h3 id="persona-files">The four files</h3>
+      <ul>
+        <li><code>SOUL.md</code> — values, behavioural guidelines, hard rules. The agent's character.</li>
+        <li><code>IDENTITY.md</code> — name, creature type, vibe. The agent's <em>face</em>.</li>
+        <li><code>USER.md</code> — your profile: who you are, your role, your preferences, your tools. The agent's mental model of you.</li>
+        <li><code>BOOTSTRAP.md</code> — the setting and current focus. Lightweight context the agent uses to bias its first reply.</li>
+      </ul>
+      <p>Open <code>Settings → Persona</code> for an inline editor. The files are protected — anything outside the persona folder cannot edit them.</p>
+
+      <h3 id="persona-approval">Approval flow</h3>
+      <p>When the agent (or a skill) tries to write to <code>persona/*.md</code>, the approval modal appears: a shield icon, a one-line summary of the proposed change, the file path, and a queue counter if multiple approvals are pending. <kbd>Esc</kbd> denies and the agent keeps going as if the change had never been proposed.</p>
+
+      <hr/>
+
+      <h2 id="contacts">Contacts (Guardians)</h2>
+      <p>Contacts — internally called <em>guardians</em> — are people you grant scoped access to your assistant. A guardian can message the agent through a channel (iMessage, Telegram, Slack, etc.), and the agent treats their messages with whatever permissions you set.</p>
+
+      <h3 id="contacts-channels">Channels</h3>
+      <p>Eight channels are supported today: iMessage, Telegram, Signal, Slack, WhatsApp, Gmail, Email (generic SMTP/IMAP), and X (Twitter DMs). Each requires a backing skill to be installed and enabled — channels you haven't configured stay greyed out.</p>
+
+      <h3 id="contacts-pairing">Pairing &amp; verification</h3>
+      <p>Adding a guardian goes:</p>
+      <ol>
+        <li>Pick the channel and enter their handle (phone, user ID, email — Froots canonicalises automatically).</li>
+        <li>Froots generates a 6-digit pairing code valid for one hour.</li>
+        <li>The guardian sends the code back through the channel; their identity flips to <em>verified</em>.</li>
+      </ol>
+      <p>The flow lives in the <strong>Add Contact</strong> dialog under <code>Assistant → Contacts</code>.</p>
+
+      <h3 id="contacts-permissions">Permissions</h3>
+      <p>Five per-guardian permissions, each independent:</p>
+      <ul>
+        <li><code>send_messages</code> — can write to the agent at all.</li>
+        <li><code>approve_actions</code> — can approve sensitive tool calls on your behalf.</li>
+        <li><code>delegate_tasks</code> — can hand the agent a routine to run.</li>
+        <li><code>read_memories</code> — can ask the agent things that require pulling from <code>memory/</code>.</li>
+        <li><code>relay_to_guardians</code> — can route messages on to other guardians (e.g. a manager triaging requests).</li>
+      </ul>
+
+      <hr/>
+
+      <h2 id="widgets">Widgets</h2>
+      <p>Widgets are glanceable surfaces — focal numbers, gauges, sparklines, action buttons — generated on demand by the agent. They render natively on macOS (WidgetKit) and Windows (Widget Board), and inside Froots itself.</p>
+
+      <h3 id="widgets-overview">Native &amp; in-app</h3>
+      <p>Three surfaces, one source of truth (a JSON layout tree per widget):</p>
+      <ul>
+        <li><strong>macOS WidgetKit</strong> — small, medium, and large families on the home screen and Notification Center. <em>Native rendering shipping; build pipeline integration in progress.</em></li>
+        <li><strong>Windows Widget Board</strong> — Adaptive Card 1.6 rendering. <em>Skeleton in place; full COM provider in progress.</em></li>
+        <li><strong>In-app</strong> — the home page pinned strip and <code>Settings → Widgets</code> gallery. Shipping today, including primitives (<code>ring</code>, <code>chart</code>) that don't render on native OS surfaces.</li>
+      </ul>
+
+      <h3 id="widgets-primitives">Layout primitives</h3>
+      <p>Ten node types compose any widget: <code>vstack</code>, <code>hstack</code>, <code>text</code>, <code>gauge</code>, <code>ring</code>, <code>chart</code>, <code>image</code>, <code>action</code>, <code>spacer</code>, <code>divider</code>. Each widget declares a <em>family</em> (small / medium / large) and a tree of these nodes. The renderer turns that tree into SwiftUI on macOS, Adaptive Cards on Windows, and React components in-app — no per-platform code required.</p>
+
+      <h3 id="widgets-create">Agent-generated</h3>
+      <p>You don't author widgets by hand. You ask the agent for one — "give me a widget for my deploy pipeline" — and it calls the <code>suggest_widget</code> tool with a proposed layout. Approve, and it calls <code>generate_widget</code> to write the JSON to disk; macOS reloads timelines, Windows refreshes its board, the in-app view updates immediately. Edits go through the same loop.</p>
+      <p>Action buttons deep-link via <code>motivex://action/{verb}</code>, so a "Run brief" button on your phone widget can fire the actual brief routine on your desktop.</p>
+
+      <hr/>
+
+      <h2 id="settings">Settings</h2>
+      <p>Settings is nine panels, all in one modal. Open it from the gear in the topbar.</p>
+
+      <h3 id="settings-overview">All nine panels</h3>
+      <table>
+        <thead><tr><th>Panel</th><th>What's in it</th></tr></thead>
+        <tbody>
+          <tr><td><strong>General</strong></td><td>Theme, accent colour, language, the global hotkey display.</td></tr>
+          <tr><td><strong>Models</strong></td><td>Backend (Claude / Codex / Pi), provider, model, API key.</td></tr>
+          <tr><td><strong>Permissions</strong></td><td>Trust level (Careful / Balanced / Yolo) and per-tool allow / ask / deny policies.</td></tr>
+          <tr><td><strong>Privacy</strong></td><td>OS-level permission probes — macOS Full Disk Access, Accessibility; Windows Run-at-Login; Linux notification daemon.</td></tr>
+          <tr><td><strong>Comms</strong></td><td>Tokens and secrets for Telegram, Signal, Slack — the channels that need keys here rather than via skill installers.</td></tr>
+          <tr><td><strong>Notifications</strong></td><td>Seven categories of notifications with a master switch — task completion, errors, scheduled fires, permissions, comms inbound, memory updates, KB edits.</td></tr>
+          <tr><td><strong>Usage</strong></td><td>Read-only analytics: session count, completion rate, total context tokens consumed.</td></tr>
+          <tr><td><strong>Advanced</strong></td><td>Hotkey presets, workspace path display, browser-use mode (headed / headless), voice dictation toggle, agent-MCP toggle, terminal debug toggle.</td></tr>
+          <tr><td><strong>About</strong></td><td>App version, runtime (Tauri 2.0), agent (Pi.dev RPC), DB (libSQL), secrets store (OS keychain), platform detection.</td></tr>
+        </tbody>
+      </table>
+      <p>Memory, Skills, Persona, Heartbeat, Widgets, and Scheduled tasks are <em>not</em> duplicated here — they live in their own sidebar entries so the deep config stays close to the feature it configures.</p>
+
+      <hr/>
+
+      <div class="grid-2">
+        <a class="link-card" href="/blog">
+          <span class="small-caps">Updates</span>
+          <h4>Read the field journal</h4>
+          <p>Release notes, design notes, the occasional reading list.</p>
+        </a>
+        <a class="link-card" href="/">
+          <span class="small-caps">Install</span>
+          <h4>Download Froots</h4>
+          <p>Native builds for macOS, Windows, and Linux. Free during open beta.</p>
+        </a>
+      </div>
+    </article>
+
+    <aside class="docs-toc">
+      <h5>On this page</h5>
+      <a href="#install" class="active">Getting started</a>
+      <a href="#memory">Memory</a>
+      <a href="#kb">KB Editor</a>
+      <a href="#chat">Conversations</a>
+      <a href="#routines">Routines</a>
+      <a href="#skills">Skills</a>
+      <a href="#heartbeat">Heartbeat</a>
+      <a href="#persona">Identity</a>
+      <a href="#contacts">Contacts</a>
+      <a href="#widgets">Widgets</a>
+      <a href="#settings">Settings</a>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom: 14px;"><span class="brand-mark sm"><svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M70 8 C 54 -4, 38 16, 56 30 C 58 30, 66 28, 70 30 C 74 28, 82 30, 84 30 C 102 16, 86 -4, 70 8 Z" fill="#6BBF3A" stroke="#1C1A16" stroke-width="3" stroke-linejoin="round"/><path d="M70 30 C 56 42, 44 52, 40 70" stroke="#1C1A16" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M70 30 C 84 42, 96 52, 100 70" stroke="#1C1A16" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="40" cy="100" r="34" fill="#E64B3F" stroke="#1C1A16" stroke-width="3.5"/><circle cx="100" cy="102" r="30" fill="#D43A2E" stroke="#1C1A16" stroke-width="3.5"/><ellipse cx="30" cy="86" rx="6" ry="3" fill="#fff" opacity=".7"/><ellipse cx="92" cy="90" rx="5" ry="2.5" fill="#fff" opacity=".6"/></svg></span><span>Froots</span></a>
+        <p class="foot-tagline">A small team building the notes app that actually does things. Made with more care than shrimp.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="index.html#editor">Editor</a></li>
+          <li><a href="index.html#routines">Routines</a></li>
+          <li><a href="index.html#channels">Channels</a></li>
+          <li><a href="index.html#memory">Memory</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="blog.html">Changelog</a></li>
+          <li><a href="#">Routine library</a></li>
+          <li><a href="#">Brand kit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="mailto:hello@froots.ai?subject=Careers">Careers</a></li>
+          <li><a href="mailto:hello@froots.ai">hello@froots.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Froots · Planted in the Pacific Northwest</span>
+      <span>Does things · Remembers things · Never reads your things</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+// Brand dropdown
+(function initBrandDropdown(){
+  const wrap = document.getElementById('brandDropdown');
+  if (!wrap) return;
+  const btn = wrap.querySelector('.brand-trigger');
+  const menu = document.getElementById('brandMenu');
+  function open() { btn.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false'); }
+  function close() { btn.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); }
+  btn.addEventListener('click', (e) => { e.stopPropagation(); btn.getAttribute('aria-expanded')==='true' ? close() : open(); });
+  document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+})();
+
+// Theme toggle
+(function initTheme(){
+  const root = document.documentElement;
+  const stored = (() => { try { return localStorage.getItem('froots-theme'); } catch(e) { return null; } })();
+  const initial = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', initial);
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  function setIcon(t) { btn.textContent = t === 'dark' ? '☀' : '☾'; btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+  setIcon(initial);
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    setIcon(next);
+    try { localStorage.setItem('froots-theme', next); } catch(e) {}
+  });
+})();
+
+// Scroll-spy: keeps both the left sidebar and the right TOC in sync with the section in view.
+(function scrollSpy(){
+  const sideLinks = Array.from(document.querySelectorAll('.docs-side a[href^="#"]'));
+  const tocLinks  = Array.from(document.querySelectorAll('.docs-toc a[href^="#"]'));
+  const allLinks  = sideLinks.concat(tocLinks);
+  if (!allLinks.length) return;
+
+  // Observe every <h2 id> and <h3 id> inside the article so we can spy on every level.
+  const article = document.querySelector('article');
+  if (!article) return;
+  const targets = Array.from(article.querySelectorAll('h2[id], h3[id]'));
+  if (!targets.length) return;
+
+  // Track which targets are currently visible; pick the topmost.
+  const visible = new Set();
+  function pickActive(){
+    if (!visible.size) return null;
+    return targets.find(t => visible.has(t.id));
+  }
+  function ancestorH2(el){
+    // Walk back through siblings to find the most recent <h2 id>.
+    let n = el;
+    while ((n = n.previousElementSibling)) {
+      if (n.tagName === 'H2' && n.id) return n.id;
+    }
+    return null;
+  }
+
+  function applyActive(links, activeId){
+    if (!links.some(a => a.getAttribute('href') === '#' + activeId)) return; // no match — leave previous state alone
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + activeId));
+  }
+
+  function setActive(id){
+    if (!id) return;
+    const target = targets.find(t => t.id === id);
+    // Left sidebar: prefer exact match; otherwise fall back to the parent h2.
+    const sideExact = sideLinks.find(a => a.getAttribute('href') === '#' + id);
+    if (sideExact) applyActive(sideLinks, id);
+    else if (target) applyActive(sideLinks, ancestorH2(target) || id);
+    // Right TOC tracks h2-level only.
+    const tocId = (target && target.tagName === 'H2') ? id : (target ? ancestorH2(target) : null) || id;
+    applyActive(tocLinks, tocId);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) visible.add(e.target.id);
+      else visible.delete(e.target.id);
+    });
+    const active = pickActive();
+    if (active) setActive(active.id);
+  }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+  targets.forEach(t => io.observe(t));
+})();
+</script>
+
+</body>
+</html>

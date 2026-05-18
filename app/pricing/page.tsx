@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import CardNav from "@/components/ui/card-nav";
 import { CTA } from "@/components/ui/cta";
 import { FAQ } from "@/components/ui/faq";
 import { Footer } from "@/components/ui/footer";
 import { PricingSection } from "@/components/ui/pricing-section";
 import { WorksWithStack } from "@/components/ui/works-with-stack";
+
+export const metadata: Metadata = {
+  title: "Pricing — bring your own keys, free forever",
+  description:
+    "Froots is free forever when you bring your own model API keys. $12/mo adds cross-device sync, memory snapshots, and publish. Cancel anytime. Beta pricing locked in for life.",
+  alternates: { canonical: "/pricing" },
+};
 
 export default function PricingPage() {
   return (

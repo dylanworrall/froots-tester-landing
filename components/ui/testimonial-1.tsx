@@ -62,7 +62,7 @@ export default function Testimonial1() {
                     <span className="block relative overflow-hidden sm:w-16 w-12 h-12 origin-center transition-all duration-300 md:hover:w-36 rounded-full border-2 border-white bg-white flex items-center justify-center">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src="/froots-mark.svg"
+                        src="/froots-logo.png"
                         alt="Froots"
                         className="w-3/4 h-3/4 object-contain"
                       />
