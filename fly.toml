@@ -1,4 +1,4 @@
-app = "froots-tester-landing"
+app = "froots-ab"
 primary_region = "iad"
 
 [build]

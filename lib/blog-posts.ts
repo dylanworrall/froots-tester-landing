@@ -8,9 +8,11 @@ export interface BlogPost {
   author: string;
   accent: string;
   body: string[];
+  html?: string;
+  sortDate?: string;
 }
 
-export const posts: BlogPost[] = [
+const newPosts: BlogPost[] = [
   {
     slug: "introducing-froots",
     title: "Introducing Froots — your AI playground",
@@ -155,6 +157,10 @@ export const posts: BlogPost[] = [
     ],
   },
 ];
+
+import { legacyPosts } from "./legacy-posts";
+
+export const posts: BlogPost[] = [...newPosts, ...legacyPosts];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return posts.find((p) => p.slug === slug);

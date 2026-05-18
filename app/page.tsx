@@ -9,73 +9,82 @@ import CardNav from "@/components/ui/card-nav";
 import { Footer } from "@/components/ui/footer";
 import { CTA } from "@/components/ui/cta";
 import { FeatureSplit } from "@/components/ui/feature-modern";
-import Testimonial1 from "@/components/ui/testimonial-1";
 import { FAQ } from "@/components/ui/faq";
 import { AiModelsList } from "@/components/ui/ai-models-preview";
 import { WorksWithStack } from "@/components/ui/works-with-stack";
 
 const aiModels = [
   {
-    id: "gpt-4o",
-    name: "GPT-4o",
-    provider: "OpenAI",
-    family: "GPT-4",
-    version: "2024-08-06",
-    description: "Multimodal flagship model with strong reasoning.",
-    contextWindowTokens: 128000,
-    inputPricePer1KTokensUSD: 0.005,
-    outputPricePer1KTokensUSD: 0.015,
-    supports: { vision: true, streaming: true, functionCalling: true },
-    tags: ["general", "multimodal"],
-    meta: { latencyMsP50: 320 },
-  },
-  {
-    id: "claude-3-opus",
-    name: "Claude 3 Opus",
+    id: "claude-opus-4-7",
+    name: "Claude Opus 4.7",
     provider: "Anthropic",
-    family: "Claude 3",
-    description: "High reasoning performance for complex tasks.",
-    contextWindowTokens: 200000,
+    family: "Claude 4",
+    description: "Top-tier reasoning for long agent runs and complex tool use.",
+    contextWindowTokens: 1000000,
     inputPricePer1KTokensUSD: 0.015,
     outputPricePer1KTokensUSD: 0.075,
-    supports: { streaming: true },
+    supports: { streaming: true, vision: true, functionCalling: true },
+    tags: ["frontier", "reasoning"],
   },
   {
-    id: "gemini-1.5-pro",
-    name: "Gemini 1.5 Pro",
-    provider: "Google",
-    family: "Gemini",
-    description: "State-of-the-art multimodal reasoning and search.",
+    id: "claude-sonnet-4-6",
+    name: "Claude Sonnet 4.6",
+    provider: "Anthropic",
+    family: "Claude 4",
+    description: "Balanced flagship — fast enough for chat, smart enough for agents.",
     contextWindowTokens: 1000000,
-    inputPricePer1KTokensUSD: 0.01,
-    outputPricePer1KTokensUSD: 0.03,
-    supports: { vision: true, toolUse: true },
+    inputPricePer1KTokensUSD: 0.003,
+    outputPricePer1KTokensUSD: 0.015,
+    supports: { streaming: true, vision: true, functionCalling: true },
+    tags: ["balanced", "agentic"],
   },
   {
-    id: "mistral-large",
-    name: "Mistral Large",
-    provider: "Mistral",
-    description: "Efficient and cost-effective model with open weights.",
-    inputPricePer1KTokensUSD: 0.002,
-    outputPricePer1KTokensUSD: 0.006,
-    tags: ["open-weight", "fast"],
+    id: "gpt-5",
+    name: "GPT-5",
+    provider: "OpenAI",
+    family: "GPT-5",
+    description: "Multimodal flagship with strong reasoning and structured tool use.",
+    contextWindowTokens: 400000,
+    inputPricePer1KTokensUSD: 0.005,
+    outputPricePer1KTokensUSD: 0.015,
+    supports: { streaming: true, vision: true, functionCalling: true },
+    tags: ["frontier", "multimodal"],
   },
   {
-    id: "llama-3.1-70b",
-    name: "LLaMA 3.1 70B",
+    id: "gemini-2-5-pro",
+    name: "Gemini 2.5 Pro",
+    provider: "Google",
+    family: "Gemini 2.5",
+    description: "Long-context multimodal model with search and code execution.",
+    contextWindowTokens: 2000000,
+    inputPricePer1KTokensUSD: 0.00125,
+    outputPricePer1KTokensUSD: 0.005,
+    supports: { streaming: true, vision: true, functionCalling: true },
+    tags: ["long-context", "multimodal"],
+  },
+  {
+    id: "llama-4-405b",
+    name: "Llama 4 405B",
     provider: "Meta",
-    family: "LLaMA",
-    description: "Open-weight with high accuracy across benchmarks.",
-    contextWindowTokens: 128000,
-    inputPricePer1KTokensUSD: 0.002,
-    outputPricePer1KTokensUSD: 0.004,
+    family: "Llama 4",
+    description: "Open-weight flagship — run hosted or on your own GPU. No vendor lock-in.",
+    contextWindowTokens: 256000,
+    inputPricePer1KTokensUSD: 0.0008,
+    outputPricePer1KTokensUSD: 0.0008,
+    supports: { streaming: true, functionCalling: true },
+    tags: ["open-weight", "self-host"],
   },
   {
-    id: "mixtral-8x7b",
-    name: "Mixtral 8x7B",
-    provider: "Mistral",
-    description: "Sparse mixture of experts, balanced speed and quality.",
-    tags: ["smol", "sparse"],
+    id: "deepseek-v3",
+    name: "DeepSeek V3",
+    provider: "DeepSeek",
+    family: "DeepSeek",
+    description: "Open-weight reasoning model — frontier benchmarks at a fraction of the price.",
+    contextWindowTokens: 128000,
+    inputPricePer1KTokensUSD: 0.0003,
+    outputPricePer1KTokensUSD: 0.0012,
+    supports: { streaming: true, functionCalling: true },
+    tags: ["open-weight", "cheap"],
   },
 ];
 
@@ -127,9 +136,60 @@ const galleryItems = [
   },
 ];
 
+const FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is Froots?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Froots is a local-first desktop app where you run AI agents — Claude Code, OpenAI Codex, Cursor, or your own harness — and watch every move they make. Tool calls, file diffs, browser sessions, memory updates, and reasoning all stream into one timeline you can pause, fork, and replay. You bring the model keys; your data stays on your machine.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How is Froots different from Notion or Obsidian?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Notion and Obsidian are places to write things down. Froots is a place where what you write down can run. It is local-first like Obsidian, agentic like a custom GPT, and replaces the gap that tools like Zapier filled — but inside your editor, not in a separate dashboard.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does Froots work offline?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. The vault, editor, and skills all run locally. The AI agent calls out to whatever model you connect — including local models running on your machine, so you can use Froots fully offline if you want to.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What AI models can I use with Froots?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Any. Froots is bring-your-own-key. Connect OpenAI, Anthropic Claude, Google Gemini, DeepSeek, Mistral, or run a local model through Ollama or LM Studio.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much does Froots cost?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Froots is free forever when you bring your own model API keys (Claude, GPT, Gemini, Ollama, local). Add Sync for $12/month to share your vault and memory across devices. Beta pricing locked in for life.",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
+      />
       <CardNav
         logo="/froots-logo.png"
         logoAlt="Froots"
@@ -168,11 +228,7 @@ export default function Home() {
           },
         ]}
       />
-      <HeroBerry
-        heading="Hours of work in minutes."
-        tagline="Froots is a playground for your AI — let it browse the web, build your digital brain, write notes, create widgets, and run automations."
-        buttonText="Join the waitlist"
-      />
+      <HeroBerry />
       <VideoShowcase imageUrl="/froots-app-preview.png" />
       <UseCasesGrid />
       <div className="flex items-center justify-center w-full py-24 bg-background px-4">
@@ -237,7 +293,6 @@ export default function Home() {
         imageAlt="Froots multi-agent panels"
         primaryCta="See the layout"
       />
-      <Testimonial1 />
       <ExpandOnHover />
       <WorksWithStack />
       <FAQ />

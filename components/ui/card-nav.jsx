@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
+import { DownloadCta } from "./download-cta";
 import "./card-nav.css";
 
 const CardNav = ({
@@ -162,15 +163,15 @@ const CardNav = ({
               <img src={logo} alt={logoAlt} className="logo" />
             ) : null}
             {logoText ? <span className="logo-text" style={menuColor ? { color: menuColor } : undefined}>{logoText}</span> : null}
+            <span
+              className="ml-2 inline-flex items-center rounded-full bg-foreground/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-foreground/70"
+              style={menuColor ? { color: menuColor, backgroundColor: `${menuColor}1a` } : undefined}
+            >
+              Beta
+            </span>
           </a>
 
-          <button
-            type="button"
-            className="card-nav-cta-button"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-          >
-            {ctaLabel}
-          </button>
+          <DownloadCta variant="nav" />
         </div>
 
         <div className="card-nav-content" aria-hidden={!isExpanded}>

@@ -9,7 +9,7 @@ type FaqItem = { q: string; a: string };
 const items: FaqItem[] = [
   {
     q: "What is Froots?",
-    a: "Froots is a playground for your AI — let it browse the web, build your digital brain, write notes, create widgets, and run automations. Bring any agent harness, give it the tools it needs, and watch every step from one UI.",
+    a: "Froots is a local-first desktop app where you run AI agents — Claude Code, OpenAI Codex, Cursor, or your own harness — and watch every move they make. Tool calls, file diffs, browser sessions, memory updates, and reasoning all stream into one timeline you can pause, fork, and replay. You bring the model keys; your data stays on your machine.",
   },
   {
     q: "Which agent harnesses does it support?",
@@ -37,7 +37,7 @@ const items: FaqItem[] = [
   },
   {
     q: "How much does it cost?",
-    a: "Free while you're kicking the tires. Paid plans kick in when you connect production tools or run heavy schedules. You bring your own model keys, so you're never locked in.",
+    a: "Free forever when you bring your own model API keys (Claude, GPT, Gemini, Ollama, local). $12/mo if you want to sync your vault and memory across devices. Beta pricing locked in for life. See /pricing for full details.",
   },
 ];
 
