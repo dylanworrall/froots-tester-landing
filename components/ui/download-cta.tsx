@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState, type ComponentType } from "react";
-import { Download } from "lucide-react";
+import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-const REL = "https://github.com/dylanworrall/froots/releases/download/v0.1.1";
+const REL = "https://github.com/dylanworrall/froots/releases/download/v0.1.11";
+const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases/tag/v0.1.11";
 
-type Platform = "mac" | "windows" | "linux" | "unknown";
+type Platform = "mac" | "windows" | "linux" | "mobile" | "unknown";
 
 interface Asset {
   label: string;
@@ -20,28 +21,37 @@ const PRIMARY: Record<Platform, Asset> = {
   mac: {
     label: "Download for Mac",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.0_aarch64.dmg`,
+    href: `${REL}/Froots_0.1.11_aarch64.dmg`,
     platform: "mac",
     icon: FaApple,
   },
   windows: {
     label: "Download for Windows",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.0_x64-setup.exe`,
+    href: `${REL}/Froots_0.1.11_x64-setup.exe`,
     platform: "windows",
     icon: FaWindows,
   },
   linux: {
     label: "Download for Linux",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.0_amd64.AppImage`,
+    href: `${REL}/Froots_0.1.11_amd64.AppImage`,
     platform: "linux",
     icon: FaLinux,
+  },
+  // Phones and tablets can't run the desktop app — link to the release
+  // page so they can email themselves a link or come back on a desktop.
+  mobile: {
+    label: "Desktop only — see all assets",
+    shortLabel: "Desktop only",
+    href: ALL_ASSETS,
+    platform: "mobile",
+    icon: Smartphone,
   },
   unknown: {
     label: "Download Froots",
     shortLabel: "Download",
-    href: "https://github.com/dylanworrall/froots/releases/latest",
+    href: ALL_ASSETS,
     platform: "unknown",
     icon: Download,
   },
@@ -51,9 +61,16 @@ function detectPlatform(): Platform {
   if (typeof navigator === "undefined") return "unknown";
   const ua = navigator.userAgent.toLowerCase();
   const platform = (navigator.platform || "").toLowerCase();
-  if (/mac|iphone|ipad|ipod|darwin/.test(ua + platform)) return "mac";
+  // iPadOS 13+ reports as "MacIntel" but has touch — distinguish via
+  // maxTouchPoints so iPad users don't get sent the desktop .dmg.
+  const isIpadOS =
+    platform === "macintel" &&
+    typeof navigator.maxTouchPoints === "number" &&
+    navigator.maxTouchPoints > 1;
+  if (/iphone|ipad|ipod|android/.test(ua) || isIpadOS) return "mobile";
   if (/win/.test(ua + platform)) return "windows";
   if (/linux|x11|cros/.test(ua + platform)) return "linux";
+  if (/mac|darwin/.test(ua + platform)) return "mac";
   return "unknown";
 }
 
@@ -90,21 +107,26 @@ export function DownloadCta({
   }
 
   const padX = size === "lg" ? "px-7 py-3.5" : "px-5 py-2.5";
+  const isMobile = asset.platform === "mobile";
 
   return (
     <div className="flex flex-col items-center gap-2">
       <a
         href={asset.href}
-        className={`group inline-flex items-center gap-2 rounded-full bg-foreground ${padX} text-sm font-medium text-background transition hover:opacity-90`}
+        className={`group inline-flex items-center gap-2 rounded-full ${
+          isMobile ? "bg-muted text-muted-foreground" : "bg-foreground text-background"
+        } ${padX} text-sm font-medium transition hover:opacity-90`}
       >
         <Icon className="h-4 w-4" aria-hidden="true" />
         {mounted ? asset.label : "Download Froots"}
       </a>
       <div className="text-xs text-muted-foreground">
         {asset.platform === "unknown" ? (
-          <a className="underline-offset-2 hover:underline" href="https://github.com/dylanworrall/froots/releases/latest">All platforms & assets</a>
+          <a className="underline-offset-2 hover:underline" href={ALL_ASSETS}>All platforms & assets</a>
+        ) : asset.platform === "mobile" ? (
+          <>open this page on your Mac, PC, or Linux box</>
         ) : (
-          <>or <a className="underline-offset-2 hover:underline" href="https://github.com/dylanworrall/froots/releases/latest">pick another platform</a></>
+          <>or <a className="underline-offset-2 hover:underline" href={ALL_ASSETS}>pick another platform</a></>
         )}
       </div>
     </div>
