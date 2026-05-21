@@ -4,8 +4,8 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-const REL = "https://github.com/dylanworrall/froots/releases/download/v0.1.12";
-const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases/tag/v0.1.12";
+const REL = "https://github.com/dylanworrall/froots/releases/download/v0.1.13";
+const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases/tag/v0.1.13";
 
 type Platform = "mac" | "windows" | "linux" | "mobile" | "unknown";
 
@@ -21,21 +21,21 @@ const PRIMARY: Record<Platform, Asset> = {
   mac: {
     label: "Download for Mac",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.12_aarch64.dmg`,
+    href: `${REL}/Froots_0.1.13_aarch64.dmg`,
     platform: "mac",
     icon: FaApple,
   },
   windows: {
     label: "Download for Windows",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.12_x64-setup.exe`,
+    href: `${REL}/Froots_0.1.13_x64-setup.exe`,
     platform: "windows",
     icon: FaWindows,
   },
   linux: {
     label: "Download for Linux",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.12_amd64.AppImage`,
+    href: `${REL}/Froots_0.1.13_amd64.AppImage`,
     platform: "linux",
     icon: FaLinux,
   },
