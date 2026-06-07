@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type BillingMode = "monthly" | "annual";
+type PlanId = "free" | "sync_monthly" | "sync_annual";
 
 interface Tier {
+  id: PlanId | "free";
+  annualId?: PlanId;
   name: string;
   priceMonthly: string;
   priceAnnualMonthly: string;
@@ -18,8 +21,13 @@ interface Tier {
   highlighted?: boolean;
 }
 
+const BILLING_BASE =
+  process.env.NEXT_PUBLIC_MOTIVEX_BILLING_BASE ??
+  "https://motivex-billing.cryptodedefi.workers.dev";
+
 const tiers: Tier[] = [
   {
+    id: "free",
     name: "Free",
     priceMonthly: "$0",
     priceAnnualMonthly: "$0",
@@ -34,6 +42,8 @@ const tiers: Tier[] = [
     ],
   },
   {
+    id: "sync_monthly",
+    annualId: "sync_annual",
     name: "Sync",
     priceMonthly: "$12",
     priceAnnualMonthly: "$9",
@@ -51,9 +61,28 @@ const tiers: Tier[] = [
   },
 ];
 
-function TierCard({ tier, mode }: { tier: Tier; mode: BillingMode }) {
+function TierCard({
+  tier,
+  mode,
+  email,
+  setEmail,
+  onCheckout,
+  busyPlan,
+}: {
+  tier: Tier;
+  mode: BillingMode;
+  email: string;
+  setEmail: (e: string) => void;
+  onCheckout: (plan: PlanId) => Promise<void>;
+  busyPlan: PlanId | null;
+}) {
   const price = mode === "annual" ? tier.priceAnnualMonthly : tier.priceMonthly;
   const cadence = mode === "annual" ? tier.cadenceAnnual ?? tier.cadence : tier.cadence;
+  const isFree = tier.id === "free";
+  const planForMode: PlanId =
+    isFree ? "free" : mode === "annual" ? (tier.annualId ?? tier.id as PlanId) : (tier.id as PlanId);
+  const busy = busyPlan === planForMode;
+  const disabled = !isFree && (!email.includes("@") || !!busyPlan);
 
   return (
     <div
@@ -76,16 +105,41 @@ function TierCard({ tier, mode }: { tier: Tier; mode: BillingMode }) {
         <span className="text-[11px] opacity-70">{cadence}</span>
       </div>
       <p className="mt-2 text-xs opacity-75 min-h-[2.5rem]">{tier.tagline}</p>
+
+      {!isFree && (
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@team.com"
+          className={cn(
+            "mt-3 h-10 w-full rounded-full border px-3 text-xs outline-none transition",
+            tier.highlighted
+              ? "border-neutral-900/30 bg-white/95 text-neutral-900 focus:border-neutral-900"
+              : "border-neutral-200 bg-white text-neutral-900 focus:border-neutral-900",
+          )}
+          autoComplete="email"
+        />
+      )}
+
       <button
         type="button"
+        onClick={() => {
+          if (isFree) {
+            window.location.assign("/");
+          } else {
+            void onCheckout(planForMode);
+          }
+        }}
+        disabled={disabled}
         className={cn(
-          "mt-4 inline-flex h-11 w-full items-center justify-center rounded-full text-sm font-medium transition",
+          "mt-3 inline-flex h-11 w-full items-center justify-center rounded-full text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed",
           tier.highlighted
             ? "bg-neutral-900 text-white hover:opacity-90"
             : "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-100",
         )}
       >
-        {tier.cta}
+        {busy ? "Opening Stripe…" : tier.cta}
       </button>
       <ul className="mt-5 space-y-2 text-xs">
         {tier.features.map((feature) => (
@@ -101,6 +155,43 @@ function TierCard({ tier, mode }: { tier: Tier; mode: BillingMode }) {
 
 export function PricingSection() {
   const [mode, setMode] = useState<BillingMode>("monthly");
+  const [email, setEmail] = useState("");
+  const [busyPlan, setBusyPlan] = useState<PlanId | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Prefill email when the desktop app sent the user here. The query
+  // param ?email=… lands them on /pricing with one less form field.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    const fromUrl = url.searchParams.get("email");
+    if (fromUrl && fromUrl.includes("@")) setEmail(fromUrl);
+  }, []);
+
+  async function startCheckout(plan: PlanId) {
+    if (!email.includes("@")) {
+      setError("Enter your email so we can attach the subscription to your workspace.");
+      return;
+    }
+    setBusyPlan(plan);
+    setError(null);
+    try {
+      const res = await fetch(`${BILLING_BASE}/checkout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, plan }),
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        throw new Error(`${res.status}: ${txt}`);
+      }
+      const json = (await res.json()) as { url: string };
+      window.location.assign(json.url);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+      setBusyPlan(null);
+    }
+  }
 
   return (
     <section className="w-full py-24">
@@ -149,9 +240,23 @@ export function PricingSection() {
 
         <div className="mx-auto mt-14 grid max-w-3xl gap-4 sm:grid-cols-2">
           {tiers.map((tier) => (
-            <TierCard key={tier.name} tier={tier} mode={mode} />
+            <TierCard
+              key={tier.name}
+              tier={tier}
+              mode={mode}
+              email={email}
+              setEmail={setEmail}
+              onCheckout={startCheckout}
+              busyPlan={busyPlan}
+            />
           ))}
         </div>
+
+        {error && (
+          <div className="mx-auto mt-6 max-w-xl rounded-lg border border-rose-200 bg-rose-50 px-4 py-2 text-center text-sm text-rose-700">
+            {error}
+          </div>
+        )}
 
         <p className="mt-10 text-center text-sm text-muted-foreground">
           Cancel anytime · No card on Free · 14-day refund on paid plans · Beta pricing locked in for life
