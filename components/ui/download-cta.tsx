@@ -4,8 +4,14 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-const REL = "https://github.com/dylanworrall/froots/releases/download/v0.1.13";
-const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases/tag/v0.1.13";
+// Per-platform release pins. macOS rides v0.1.15 (first properly
+// code-signed + notarized build — fixes the Gatekeeper "damaged" error);
+// Windows/Linux stay on v0.1.14 until CI cuts new builds for them.
+const DL = "https://github.com/dylanworrall/froots/releases/download";
+const MAC_DMG = `${DL}/v0.1.15/Froots_0.1.15_aarch64.dmg`;
+const WIN_EXE = `${DL}/v0.1.14/Froots_0.1.14_x64-setup.exe`;
+const LINUX_APPIMAGE = `${DL}/v0.1.14/Froots_0.1.14_amd64.AppImage`;
+const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
 
 type Platform = "mac" | "windows" | "linux" | "mobile" | "unknown";
 
@@ -21,21 +27,21 @@ const PRIMARY: Record<Platform, Asset> = {
   mac: {
     label: "Download for Mac",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.13_aarch64.dmg`,
+    href: MAC_DMG,
     platform: "mac",
     icon: FaApple,
   },
   windows: {
     label: "Download for Windows",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.13_x64-setup.exe`,
+    href: WIN_EXE,
     platform: "windows",
     icon: FaWindows,
   },
   linux: {
     label: "Download for Linux",
     shortLabel: "Download",
-    href: `${REL}/Froots_0.1.13_amd64.AppImage`,
+    href: LINUX_APPIMAGE,
     platform: "linux",
     icon: FaLinux,
   },
