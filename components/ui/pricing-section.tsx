@@ -12,7 +12,7 @@ interface Tier {
   annualId?: PlanId;
   name: string;
   priceMonthly: string;
-  priceAnnualMonthly: string;
+  priceAnnual: string;
   cadence: string;
   cadenceAnnual?: string;
   tagline: string;
@@ -30,7 +30,7 @@ const tiers: Tier[] = [
     id: "free",
     name: "Free",
     priceMonthly: "$0",
-    priceAnnualMonthly: "$0",
+    priceAnnual: "$0",
     cadence: "forever",
     tagline: "Plug in your own API keys and run Froots free.",
     cta: "Start free — no card",
@@ -46,9 +46,9 @@ const tiers: Tier[] = [
     annualId: "sync_annual",
     name: "Sync",
     priceMonthly: "$12",
-    priceAnnualMonthly: "$9",
+    priceAnnual: "$99",
     cadence: "/ mo",
-    cadenceAnnual: "/ mo · billed yearly",
+    cadenceAnnual: "/ yr",
     tagline: "Same as Free — now everywhere you work.",
     cta: "Add Sync",
     highlighted: true,
@@ -68,6 +68,7 @@ function TierCard({
   setEmail,
   onCheckout,
   busyPlan,
+  hideEmailInput,
 }: {
   tier: Tier;
   mode: BillingMode;
@@ -75,8 +76,11 @@ function TierCard({
   setEmail: (e: string) => void;
   onCheckout: (plan: PlanId) => Promise<void>;
   busyPlan: PlanId | null;
+  /** True when the email arrived from the app's ?email= handoff — we
+   *  hide the input and just show which account is being billed. */
+  hideEmailInput: boolean;
 }) {
-  const price = mode === "annual" ? tier.priceAnnualMonthly : tier.priceMonthly;
+  const price = mode === "annual" ? tier.priceAnnual : tier.priceMonthly;
   const cadence = mode === "annual" ? tier.cadenceAnnual ?? tier.cadence : tier.cadence;
   const isFree = tier.id === "free";
   const planForMode: PlanId =
@@ -106,7 +110,7 @@ function TierCard({
       </div>
       <p className="mt-2 text-xs opacity-75 min-h-[2.5rem]">{tier.tagline}</p>
 
-      {!isFree && (
+      {!isFree && !hideEmailInput && (
         <input
           type="email"
           value={email}
@@ -120,6 +124,15 @@ function TierCard({
           )}
           autoComplete="email"
         />
+      )}
+
+      {!isFree && hideEmailInput && (
+        <p className={cn(
+          "mt-3 truncate text-[11px]",
+          tier.highlighted ? "text-neutral-900/80" : "text-neutral-500",
+        )}>
+          Billed to <span className="font-medium">{email}</span>
+        </p>
       )}
 
       <button
@@ -156,16 +169,22 @@ function TierCard({
 export function PricingSection() {
   const [mode, setMode] = useState<BillingMode>("monthly");
   const [email, setEmail] = useState("");
+  const [emailFromApp, setEmailFromApp] = useState(false);
   const [busyPlan, setBusyPlan] = useState<PlanId | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // Prefill email when the desktop app sent the user here. The query
-  // param ?email=… lands them on /pricing with one less form field.
+  // param ?email=… lands them on /pricing with their account already
+  // chosen — so we hide the email field entirely and just show who's
+  // being billed (the app owns the identity; re-typing it is friction).
   useEffect(() => {
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
     const fromUrl = url.searchParams.get("email");
-    if (fromUrl && fromUrl.includes("@")) setEmail(fromUrl);
+    if (fromUrl && fromUrl.includes("@")) {
+      setEmail(fromUrl);
+      setEmailFromApp(true);
+    }
   }, []);
 
   async function startCheckout(plan: PlanId) {
@@ -232,7 +251,7 @@ export function PricingSection() {
                   mode === "annual" ? "bg-emerald-400/90 text-emerald-950" : "bg-emerald-100 text-emerald-700",
                 )}
               >
-                save 20%
+                save 31%
               </span>
             </button>
           </div>
@@ -248,6 +267,7 @@ export function PricingSection() {
               setEmail={setEmail}
               onCheckout={startCheckout}
               busyPlan={busyPlan}
+              hideEmailInput={emailFromApp}
             />
           ))}
         </div>
