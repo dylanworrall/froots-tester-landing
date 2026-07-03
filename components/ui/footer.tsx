@@ -81,6 +81,20 @@ export function Footer() {
             <br />
             All rights reserved.
           </p>
+          <div className="flex items-center gap-4 text-sm">
+            <Link
+              href="/privacy"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Terms
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-12 gap-y-8 text-sm">
