@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog-posts";
 import { getTotalPages } from "@/lib/blog-pagination";
+import { getAllDocSlugs } from "@/lib/docs";
 
 const SITE = "https://froots.ai";
 
@@ -31,5 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...paginationRoutes, ...blogRoutes];
+  const docRoutes: MetadataRoute.Sitemap = getAllDocSlugs().map((slug) => ({
+    url: `${SITE}/docs/${slug}`,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...paginationRoutes, ...docRoutes, ...blogRoutes];
 }
