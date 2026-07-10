@@ -1,4 +1,3 @@
-import ExpandOnHover from "@/components/ui/expand-cards";
 import CircularGallery from "@/components/ui/circular-gallery";
 import { HeroBerry } from "@/components/ui/hero-berry";
 import { VideoShowcase } from "@/components/ui/video-showcase";
@@ -221,8 +220,8 @@ export default function Home() {
             textColor: "#0a0a0a",
             links: [
               { label: "Blog", ariaLabel: "Blog", href: "/blog" },
-              { label: "Docs", ariaLabel: "Docs", href: "#" },
-              { label: "Changelog", ariaLabel: "Changelog", href: "#" },
+              { label: "Docs", ariaLabel: "Docs", href: "/docs" },
+              { label: "Changelog", ariaLabel: "Changelog", href: "https://github.com/dylanworrall/froots/releases" },
               { label: "Discord", ariaLabel: "Discord", href: "https://discord.gg/y7cq9A5bYu" },
             ],
           },
@@ -243,8 +242,8 @@ export default function Home() {
           }
           description="Tool calls, file edits, browser sessions, and reasoning — all streamed into one timeline. Spot a wrong turn early, hit pause, and steer it back without ever leaving the dashboard."
           buttonText="See it live"
-          imageUrl="https://froots.ai/assets/hero-home.png"
-          imageAlt="Froots dashboard"
+          imageUrl="/froots-watch-agent.png"
+          imageAlt="Froots dashboard — watch every tool call, file edit, and step"
         />
       </div>
       <section className="w-full py-24">
@@ -274,7 +273,7 @@ export default function Home() {
       <FeatureSplit
         title="Custom views for your internal ops"
         description="Spin up dashboards, widgets, and panels tailored to how your team actually works. Pin them to your desktop, share them with your agents, and stop tab-hopping between five different tools."
-        imageSrc="/froots-feature-widgets.png"
+        imageSrc="/onbw-magic.jpg"
         imageAlt="Froots custom widgets"
         primaryCta="Build a view"
       />
@@ -282,18 +281,17 @@ export default function Home() {
         reverse
         title="A browser, built in"
         description="Research, prospect, and pull data without ever leaving Froots. The built-in browser lives next to your agents, so what they see is what you see — and either of you can take the wheel."
-        imageSrc="/froots-feature-browser.png"
+        imageSrc="/onbw-dove.jpg"
         imageAlt="Froots built-in browser"
         primaryCta="Try the browser"
       />
       <FeatureSplit
         title="Multi-panel for multi-agent workflows"
         description="Run several agents side by side — one drafting, one researching, one shipping. Each gets its own panel, its own context, its own tools, while you orchestrate from a single canvas."
-        imageSrc="/froots-feature-multipanel.png"
+        imageSrc="/onbw-built.jpg"
         imageAlt="Froots multi-agent panels"
         primaryCta="See the layout"
       />
-      <ExpandOnHover />
       <WorksWithStack />
       <FAQ />
       <CTA />

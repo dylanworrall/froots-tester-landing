@@ -1,6 +1,7 @@
 ---
 title: "Best Obsidian alternatives in 2026: AI-native, local-first, open-source"
 slug: "obsidian-alternatives-2026"
+coverImage: "/froots-art-15.jpg"
 date: 2026-05-05
 author: "The Froots team"
 authorRole: "Froots"

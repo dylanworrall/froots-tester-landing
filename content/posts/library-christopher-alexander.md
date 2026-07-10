@@ -1,6 +1,7 @@
 ---
 title: "Why we keep re-reading Christopher Alexander"
 slug: "library-christopher-alexander"
+coverImage: "/froots-art-10.jpg"
 date: 2026-02-14
 author: "Priya Menon"
 authorRole: "Product Engineer · Froots"

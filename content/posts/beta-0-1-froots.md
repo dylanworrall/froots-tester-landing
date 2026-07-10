@@ -1,6 +1,7 @@
 ---
 title: "Froots 0.1 Beta — the first public build"
 slug: "beta-0-1-froots"
+coverImage: "/froots-art-6.jpg"
 date: 2026-04-24
 author: "The Froots team"
 authorRole: "Froots"

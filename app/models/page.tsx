@@ -163,8 +163,8 @@ export default function ModelsPage() {
             textColor: "#0a0a0a",
             links: [
               { label: "Blog", ariaLabel: "Blog", href: "/blog" },
-              { label: "Docs", ariaLabel: "Docs", href: "/" },
-              { label: "Changelog", ariaLabel: "Changelog", href: "/" },
+              { label: "Docs", ariaLabel: "Docs", href: "/docs" },
+              { label: "Changelog", ariaLabel: "Changelog", href: "https://github.com/dylanworrall/froots/releases" },
               { label: "Discord", ariaLabel: "Discord", href: "https://discord.gg/y7cq9A5bYu" },
             ],
           },

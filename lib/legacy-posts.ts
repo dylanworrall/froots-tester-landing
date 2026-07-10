@@ -41,6 +41,7 @@ function loadLegacyPosts(): BlogPost[] {
       tag: data.category || "Article",
       author: data.author || "Froots",
       accent: data.coverColor || DEFAULT_ACCENT,
+      coverImage: data.coverImage || null,
       body: [],
       html,
       sortDate: date.toISOString(),

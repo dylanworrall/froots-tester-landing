@@ -1,6 +1,7 @@
 ---
 title: "On naming agents after your pets (don't)"
 slug: "letter-naming-agents"
+coverImage: "/froots-art-8.jpg"
 date: 2026-03-12
 author: "The Froots editors"
 authorRole: "Froots"

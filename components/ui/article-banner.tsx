@@ -25,6 +25,15 @@ export function ArticleBanner({ accent, label, video, poster }: Props) {
     );
   }
 
+  if (poster) {
+    return (
+      <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-border bg-white">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={poster} alt={label} className="absolute inset-0 h-full w-full object-contain p-6" />
+      </div>
+    );
+  }
+
   return (
     <div
       className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-border"

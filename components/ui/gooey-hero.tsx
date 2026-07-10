@@ -11,7 +11,7 @@ export function GooeyHero() {
     <div className="relative w-full h-screen flex flex-col items-center justify-center bg-black text-center overflow-hidden">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/froot-hero-bg.jpg"
+        src="/froots-art-1.jpg"
         alt=""
         className="w-full h-full object-cover object-center absolute inset-0 opacity-70"
       />

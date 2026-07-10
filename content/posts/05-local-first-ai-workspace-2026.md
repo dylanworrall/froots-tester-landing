@@ -1,6 +1,7 @@
 ---
 title: "The local-first AI workspace stack, 2026"
 slug: "local-first-ai-workspace-2026"
+coverImage: "/froots-art-4.jpg"
 date: 2026-04-08
 author: "Jordan Reed"
 authorRole: "Head of Product · Froots"

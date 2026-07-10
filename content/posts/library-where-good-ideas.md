@@ -1,6 +1,7 @@
 ---
 title: "On 'Where Good Ideas Come From,' ten years later"
 slug: "library-where-good-ideas"
+coverImage: "/froots-art-12.jpg"
 date: 2026-03-22
 author: "Jordan Reed"
 authorRole: "Head of Product · Froots"

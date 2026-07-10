@@ -1,6 +1,7 @@
 ---
 title: "Keeping your graph view from becoming a hairball"
 slug: "letter-graph-hairball"
+coverImage: "/froots-art-7.jpg"
 date: 2026-03-20
 author: "The Froots editors"
 authorRole: "Froots"

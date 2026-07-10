@@ -81,8 +81,8 @@ export default async function BlogPostPage({
             textColor: "#0a0a0a",
             links: [
               { label: "Blog", ariaLabel: "Blog", href: "/blog" },
-              { label: "Docs", ariaLabel: "Docs", href: "/" },
-              { label: "Changelog", ariaLabel: "Changelog", href: "/" },
+              { label: "Docs", ariaLabel: "Docs", href: "/docs" },
+              { label: "Changelog", ariaLabel: "Changelog", href: "https://github.com/dylanworrall/froots/releases" },
               {
                 label: "Discord",
                 ariaLabel: "Discord",
@@ -130,11 +130,16 @@ export default async function BlogPostPage({
             className="relative aspect-[16/7] overflow-hidden rounded-3xl border border-border"
             style={{ backgroundColor: post.accent }}
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-7xl md:text-8xl font-semibold tracking-tight text-neutral-900/15 select-none">
-                Froots
-              </span>
-            </div>
+            {post.coverImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={post.coverImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-7xl md:text-8xl font-semibold tracking-tight text-neutral-900/15 select-none">
+                  Froots
+                </span>
+              </div>
+            )}
           </div>
         </div>
 

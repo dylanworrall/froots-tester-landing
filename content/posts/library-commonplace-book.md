@@ -1,6 +1,7 @@
 ---
 title: "Three essays on keeping a commonplace book"
 slug: "library-commonplace-book"
+coverImage: "/froots-art-11.jpg"
 date: 2026-03-09
 author: "The Froots editors"
 authorRole: "Froots"

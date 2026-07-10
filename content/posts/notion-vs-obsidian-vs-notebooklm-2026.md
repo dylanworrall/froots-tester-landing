@@ -1,6 +1,7 @@
 ---
 title: "Notion vs Obsidian vs NotebookLM in 2026: which one to pick"
 slug: "notion-vs-obsidian-vs-notebooklm-2026"
+coverImage: "/froots-art-14.jpg"
 date: 2026-05-06
 author: "The Froots team"
 authorRole: "Froots"

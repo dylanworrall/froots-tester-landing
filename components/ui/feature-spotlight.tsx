@@ -11,6 +11,8 @@ interface AnimatedFeatureSpotlightProps
   buttonText: string;
   buttonProps?: ButtonProps;
   imageUrl: string;
+  /** When set, plays a looping demo video; imageUrl becomes the poster frame. */
+  videoUrl?: string;
   imageAlt?: string;
 }
 
@@ -28,6 +30,7 @@ const AnimatedFeatureSpotlight = React.forwardRef<
       buttonText,
       buttonProps,
       imageUrl,
+      videoUrl,
       imageAlt = "Feature illustration",
       ...props
     },
@@ -66,12 +69,26 @@ const AnimatedFeatureSpotlight = React.forwardRef<
           </div>
 
           <div className="relative w-full min-h-[250px] md:min-h-[320px] flex items-center justify-center animate-in fade-in zoom-in-95 duration-700 delay-200">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={imageUrl}
-              alt={imageAlt}
-              className="w-full max-w-md object-contain animate-float"
-            />
+            {videoUrl ? (
+              <video
+                src={videoUrl}
+                poster={imageUrl}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label={imageAlt}
+                className="w-full rounded-2xl border border-border object-contain shadow-2xl shadow-black/20"
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={imageUrl}
+                alt={imageAlt}
+                className="w-full max-w-md object-contain animate-float"
+              />
+            )}
           </div>
         </div>
       </section>

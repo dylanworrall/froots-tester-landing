@@ -1,6 +1,7 @@
 ---
 title: "Best note-taking app for ADHD in 2026: capture speed, friction, and the AI that finds what you forgot"
 slug: "best-note-taking-app-for-adhd-2026"
+coverImage: "/froots-art-5.jpg"
 date: 2026-05-18
 author: "The Froots team"
 authorRole: "Froots"

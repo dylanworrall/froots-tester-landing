@@ -17,10 +17,15 @@ export function BlogList({ featured, posts }: Props) {
               href={`/blog/${featured.slug}`}
               className="group grid md:grid-cols-2 overflow-hidden rounded-3xl border border-border bg-white text-neutral-900 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/10"
             >
-              <div className="relative aspect-[16/10] md:aspect-auto" style={{ backgroundColor: featured.accent }}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-6xl md:text-7xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>
-                </div>
+              <div className="relative aspect-[16/10] md:aspect-auto overflow-hidden" style={{ backgroundColor: featured.accent }}>
+                {featured.coverImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={featured.coverImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-6xl md:text-7xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>
+                  </div>
+                )}
               </div>
               <div className="p-8 md:p-10 flex flex-col justify-center">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-500">
@@ -59,10 +64,15 @@ export function BlogList({ featured, posts }: Props) {
                 href={`/blog/${post.slug}`}
                 className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-white text-neutral-900 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10"
               >
-                <div className="relative aspect-[16/9]" style={{ backgroundColor: post.accent }}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-4xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>
-                  </div>
+                <div className="relative aspect-[16/9] overflow-hidden" style={{ backgroundColor: post.accent }}>
+                  {post.coverImage ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={post.coverImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-4xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>
+                    </div>
+                  )}
                 </div>
                 <div className="flex flex-col flex-1 p-6">
                   <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-500">

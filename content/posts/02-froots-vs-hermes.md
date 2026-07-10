@@ -1,6 +1,7 @@
 ---
 title: "Froots vs Hermes Agent: the honest 2026 comparison"
 slug: "froots-vs-hermes"
+coverImage: "/froots-art-2.jpg"
 date: 2026-04-14
 author: "Priya Menon"
 authorRole: "Product Engineer · Froots"

@@ -7,6 +7,8 @@ export interface BlogPost {
   tag: string;
   author: string;
   accent: string;
+  /** Stipple brand-art cover (from the app's Imagery set). Falls back to `accent`. */
+  coverImage?: string | null;
   body: string[];
   html?: string;
   sortDate?: string;
@@ -23,6 +25,7 @@ const newPosts: BlogPost[] = [
     tag: "Announcement",
     author: "The Froots team",
     accent: "#5191F8",
+    coverImage: "/froots-art-2.jpg",
     body: [
       "Today we&rsquo;re opening the doors to Froots — a desktop playground that lets your AI actually do things. Browse the web, take notes, draft code, run shell commands, schedule itself for tomorrow morning. The pieces have existed for a while. What hasn&rsquo;t existed is a place where they live together, share memory, and stay yours.",
       "Most AI products today force a tradeoff. Chat apps are great at talking but forget you the moment you close the tab. Agent frameworks can drive a browser but ship without a place to live. Note apps want to be your second brain but can&rsquo;t reason about what they hold. We kept running into the same wall: the interesting work is at the seams, and nobody owns the seams.",
@@ -46,6 +49,7 @@ const newPosts: BlogPost[] = [
     tag: "Engineering",
     author: "Dylan Worrall",
     accent: "#D7EFD3",
+    coverImage: "/froots-art-3.jpg",
     body: [
       "If you&rsquo;ve used a chat-based AI for more than a week, you&rsquo;ve felt the goldfish problem. Context windows have grown, but the *useful* context — the stuff from three weeks ago that matters today — keeps falling off the edge. Froots fixes this with a memory graph. Here&rsquo;s how it works under the hood.",
       "## The shape of the graph",
@@ -71,6 +75,7 @@ const newPosts: BlogPost[] = [
     tag: "Product",
     author: "The Froots team",
     accent: "#FBD9DA",
+    coverImage: "/froots-art-4.jpg",
     body: [
       "Pick the best model today and you&rsquo;ll be wrong in six months. That&rsquo;s not pessimism, that&rsquo;s the last three years of releases. We built Froots with the assumption that the frontier moves, often, and you shouldn&rsquo;t have to migrate your entire workflow every time it does.",
       "## The bet",
@@ -95,6 +100,7 @@ const newPosts: BlogPost[] = [
     tag: "Design",
     author: "The Froots team",
     accent: "#FBD9DA",
+    coverImage: "/froots-art-5.jpg",
     body: [
       "There&rsquo;s a quiet problem with most agent frameworks: the model has access to fifty tools and the prompt instructs it to &ldquo;use them when appropriate.&rdquo; That works for demos. It breaks the moment a user asks something ambiguous and the model picks the wrong tool with confidence.",
       "Skills are our answer. They&rsquo;re a unit between &ldquo;tool&rdquo; and &ldquo;app&rdquo; — a named, scoped capability that you toggle on for a session.",
@@ -119,6 +125,7 @@ const newPosts: BlogPost[] = [
     tag: "Product",
     author: "The Froots team",
     accent: "#D7EFD3",
+    coverImage: "/froots-art-6.jpg",
     body: [
       "Most agents are reactive. You ask, they respond. That&rsquo;s great for chat — and useless for the kinds of tasks that don&rsquo;t start with a question. Routines flip the loop. They&rsquo;re scheduled agent runs that fire on their own, with a goal, a set of tools, and a place to drop the output.",
       "## A morning routine",
@@ -140,6 +147,7 @@ const newPosts: BlogPost[] = [
     tag: "Tutorial",
     author: "Dylan Worrall",
     accent: "#5191F8",
+    coverImage: "/froots-art-7.jpg",
     body: [
       "I ran Froots fully offline for two weeks on a MacBook Pro M3 with Ollama as the only backend. No cloud calls, no API keys, no internet for the model layer. Here&rsquo;s what worked, what didn&rsquo;t, and the trade-offs you actually feel day to day.",
       "## The setup",

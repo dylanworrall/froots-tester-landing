@@ -17,6 +17,7 @@ export const features: Record<FeatureDoc["slug"], FeatureDoc> = {
       "A semantic search index over the notes your agent writes. Three living markdown files plus a vector store, all local to your machine.",
     tag: "Product · Memory",
     accent: "#D7EFD3",
+    poster: "/onbw-brain.jpg",
     body: [
       "## What it is",
       "Memory in Froots is two things working together: **three core markdown files** that hold the working state of the agent, and a **semantic vector index** over every other note the agent writes. Both live on your machine.",
@@ -48,6 +49,7 @@ export const features: Record<FeatureDoc["slug"], FeatureDoc> = {
       "A scheduler for your agent. Cron, daily, weekly, interval, or one-shot — running the same agent loop as chat, on a clock.",
     tag: "Product · Routines",
     accent: "#5191F8",
+    poster: "/onbw-built.jpg",
     body: [
       "## What it is",
       "A routine is a saved prompt plus a schedule. When the schedule fires, Froots spawns a new session, hands the prompt to your active backend (Claude, Codex, or Pi), and lets the agent run with the same tools, memory, and skills it would have in chat.",
@@ -86,6 +88,7 @@ export const features: Record<FeatureDoc["slug"], FeatureDoc> = {
       "Folders with a SKILL.md inside. Drop one in the skills directory and the model knows how to use it.",
     tag: "Product · Skills",
     accent: "#FBD9DA",
+    poster: "/onbw-jellyfish.jpg",
     body: [
       "## What it is",
       "A skill is a folder. Inside it, a `SKILL.md` file with YAML frontmatter (name, description, optional binary/env requirements) and markdown instructions. Optionally, a `scripts/`, `references/`, or `assets/` directory next to it.",

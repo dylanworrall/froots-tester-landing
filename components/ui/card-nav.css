@@ -236,3 +236,28 @@
     font-size: 15px;
   }
 }
+
+/* Brand-art thumbnail inside each nav card. White-background stipple art
+   blended (multiply) onto the card's pastel color so the white drops out
+   and only the artwork shows. Text stays above it via z-index. */
+.nav-card {
+  overflow: hidden;
+}
+.nav-card-image {
+  position: absolute;
+  right: -6%;
+  bottom: -8%;
+  width: 48%;
+  max-width: 210px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  opacity: 0.92;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+}
+.nav-card-label,
+.nav-card-links {
+  position: relative;
+  z-index: 2;
+}

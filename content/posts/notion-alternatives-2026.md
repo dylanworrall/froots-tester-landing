@@ -1,6 +1,7 @@
 ---
 title: "Best Notion alternatives in 2026: free, open-source, AI-native, and honest tradeoffs"
 slug: "notion-alternatives-2026"
+coverImage: "/froots-art-13.jpg"
 date: 2026-05-15
 author: "The Froots team"
 authorRole: "Froots"

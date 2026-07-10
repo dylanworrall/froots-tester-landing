@@ -1,6 +1,7 @@
 ---
 title: "What is an agent harness? (and why your AI workflow needs one in 2026)"
 slug: "what-is-an-agent-harness"
+coverImage: "/froots-art-17.jpg"
 date: 2026-05-07
 author: "The Froots team"
 authorRole: "Froots"

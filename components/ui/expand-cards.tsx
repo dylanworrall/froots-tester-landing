@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 
+// Froots brand art — the stipple "Imagery II" set from the app's own
+// image system (replaces the old fruit photos).
 const images = [
-  "/froot-strawberry.jpg",
-  "/froot-avocado.jpg",
-  "/froot-banana.jpg",
-  "/froot-cherry.jpg",
-  "/froot-grape.jpg",
-  "/froot-lemon.jpg",
-  "/froot-cantalope.jpg",
-  "/froot-grapefruit.jpg",
-  "/froot-pomegranete.jpg",
+  "/froots-art-1.jpg",
+  "/froots-art-2.jpg",
+  "/froots-art-3.jpg",
+  "/froots-art-4.jpg",
+  "/froots-art-5.jpg",
+  "/froots-art-6.jpg",
+  "/froots-art-7.jpg",
+  "/froots-art-8.jpg",
+  "/froots-art-9.jpg",
 ];
 
 const ExpandOnHover = () => {

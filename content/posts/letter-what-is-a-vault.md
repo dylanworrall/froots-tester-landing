@@ -1,6 +1,7 @@
 ---
 title: "What do you mean by 'vault,' exactly?"
 slug: "letter-what-is-a-vault"
+coverImage: "/froots-art-9.jpg"
 date: 2026-02-24
 author: "The Froots editors"
 authorRole: "Froots"

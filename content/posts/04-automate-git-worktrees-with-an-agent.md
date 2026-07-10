@@ -1,6 +1,7 @@
 ---
 title: "Automate git worktrees with an AI agent (full guide)"
 slug: "automate-git-worktrees-with-an-agent"
+coverImage: "/froots-art-3.jpg"
 date: 2026-04-10
 author: "Marcus Huang"
 authorRole: "Infra lead · Froots"

@@ -1,6 +1,7 @@
 ---
 title: "One app instead of six: replacing Notion, Obsidian, n8n, Zapier, OpenClaw, and Hermes with Froots"
 slug: "replace-notion-obsidian-zapier-with-one-app"
+coverImage: "/froots-art-16.jpg"
 date: 2026-04-24
 author: "The Froots team"
 authorRole: "Froots"

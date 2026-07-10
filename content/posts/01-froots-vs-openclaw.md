@@ -1,6 +1,7 @@
 ---
 title: "Froots vs OpenClaw: which local AI agent runtime is right for you?"
 slug: "froots-vs-openclaw"
+coverImage: "/froots-art-1.jpg"
 date: 2026-04-15
 author: "Jordan Reed"
 authorRole: "Head of Product · Froots"
