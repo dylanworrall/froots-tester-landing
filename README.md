@@ -29,8 +29,28 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploying (Fly.io — app `froots-ab`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Always deploy with:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run deploy
+```
+
+**Never run bare `fly deploy`.** The npm script runs `scripts/guard-clean.js` first, which
+refuses to deploy if the working tree is dirty or HEAD isn't pushed to `origin/main` — so
+production is always reproducible from the remote. (On 2026-07-09 prod was shipped from a
+dirty tree; 50 files existed in no commit until they were captured after the fact.)
+
+The script also stamps the build with the deployed commit via the `GIT_SHA` Docker build
+arg. Check what prod is running:
+
+```bash
+curl https://froots.ai/api/version   # → {"sha":"<commit>"}
+```
+
+A `-dirty` suffix on the SHA means someone used the emergency override:
+
+```bash
+npm run deploy:dirty   # real emergencies only — ships code not in git history
+```

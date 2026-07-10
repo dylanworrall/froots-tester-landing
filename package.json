@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "node scripts/guard-clean.js && fly deploy --build-arg GIT_SHA=\"$(git rev-parse HEAD)\"",
+    "deploy:dirty": "node scripts/guard-clean.js --allow-dirty && fly deploy --build-arg GIT_SHA=\"$(git rev-parse HEAD)-dirty\""
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
