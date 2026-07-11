@@ -4,12 +4,12 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-// macOS on v0.2.4 (updater-signed + Developer-ID-signed + notarized so it
+// macOS on v0.2.5 (updater-signed + Developer-ID-signed + notarized so it
 // opens without the Gatekeeper prompt). Windows/Linux still v0.2.1 until the
 // v0.2.4 CI artifacts are folded into the public release. Auto-update via
 // latest.json on the froots releases repo.
 const DL = "https://github.com/dylanworrall/froots/releases/download";
-const MAC_DMG = `${DL}/v0.2.4/Froots_0.2.4_aarch64.dmg`;
+const MAC_DMG = `${DL}/v0.2.5/Froots_0.2.5_aarch64.dmg`;
 const WIN_EXE = `${DL}/v0.2.1/Froots_0.2.1_x64-setup.exe`;
 const LINUX_APPIMAGE = `${DL}/v0.2.1/Froots_0.2.1_amd64.AppImage`;
 const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
