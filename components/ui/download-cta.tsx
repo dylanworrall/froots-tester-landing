@@ -4,14 +4,14 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-// All platforms on v0.2.6 (updater-signed; macOS also Developer-ID-signed +
+// All platforms on v0.2.7 (updater-signed; macOS also Developer-ID-signed +
 // notarized so it opens without the Gatekeeper prompt; Windows bundles the
 // WebView2 offline installer). Auto-update via latest.json on the froots
 // releases repo.
 const DL = "https://github.com/dylanworrall/froots/releases/download";
 const MAC_DMG = `${DL}/v0.2.7/Froots_0.2.7_aarch64.dmg`;
-const WIN_EXE = `${DL}/v0.2.6/Froots_0.2.6_x64-setup.exe`;
-const LINUX_APPIMAGE = `${DL}/v0.2.6/Froots_0.2.6_amd64.AppImage`;
+const WIN_EXE = `${DL}/v0.2.7/Froots_0.2.7_x64-setup.exe`;
+const LINUX_APPIMAGE = `${DL}/v0.2.7/Froots_0.2.7_amd64.AppImage`;
 const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
 
 type Platform = "mac" | "windows" | "linux" | "mobile" | "unknown";
