@@ -9,7 +9,7 @@ import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 // WebView2 offline installer). Auto-update via latest.json on the froots
 // releases repo.
 const DL = "https://github.com/dylanworrall/froots/releases/download";
-const MAC_DMG = `${DL}/v0.2.9/Froots_0.2.9_aarch64.dmg`;
+const MAC_DMG = `${DL}/v0.2.10/Froots_0.2.10_aarch64.dmg`;
 const WIN_EXE = `${DL}/v0.2.8/Froots_0.2.8_x64-setup.exe`;
 const LINUX_APPIMAGE = `${DL}/v0.2.8/Froots_0.2.8_amd64.AppImage`;
 const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
