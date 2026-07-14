@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description:
     "How Froots collects, uses, stores, and protects your data — including data accessed through Google APIs (Gmail and Google Calendar).",
   alternates: { canonical: "/privacy" },
+  openGraph: { url: "https://froots.ai/privacy" },
 };
 
 const UPDATED = "July 2, 2026";

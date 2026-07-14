@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Get started with Froots — the local-first desktop workspace for AI agents. Install, add a model key, and learn how Memory, Routines, and Skills work.",
   alternates: { canonical: "/docs" },
+  openGraph: { url: "https://froots.ai/docs" },
 };
 
 export default function DocsIndexPage() {

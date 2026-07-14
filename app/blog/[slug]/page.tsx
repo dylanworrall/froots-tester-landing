@@ -6,6 +6,7 @@ import CardNav from "@/components/ui/card-nav";
 import { Footer } from "@/components/ui/footer";
 import { MarkdownBody } from "@/components/ui/markdown-body";
 import { getAllSlugs, getPostBySlug, posts } from "@/lib/blog-posts";
+import { clampDescription, clampTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -16,21 +17,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug);
   if (!post) return {};
   const url = `https://froots.ai/blog/${post.slug}`;
+  // The <title> template appends " — Froots" (9 chars), so clamp the raw
+  // title to 51 to keep the rendered title <= 60. Description clamps to 155.
+  const metaTitle = clampTitle(post.title, 51);
+  const metaDescription = clampDescription(post.excerpt);
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: metaTitle,
+    description: metaDescription,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
-      title: post.title,
-      description: post.excerpt,
+      title: metaTitle,
+      description: metaDescription,
       url,
-      images: [{ url: "https://froots.ai/assets/froots-scene.jpeg", width: 1200, height: 630 }],
+      images: [{ url: "https://froots.ai/assets/froots-scene.jpeg", width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
+      title: metaTitle,
+      description: metaDescription,
       images: [{ url: "https://froots.ai/assets/froots-scene.jpeg", width: 1200, height: 630 }],
     },
   };
@@ -132,7 +137,7 @@ export default async function BlogPostPage({
           >
             {post.coverImage ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={post.coverImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+              <img src={post.coverImage} alt={`${post.title} — cover illustration`} className="absolute inset-0 h-full w-full object-cover" />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-7xl md:text-8xl font-semibold tracking-tight text-neutral-900/15 select-none">

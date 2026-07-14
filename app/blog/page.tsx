@@ -6,10 +6,11 @@ import { BlogPagination } from "@/components/ui/blog-pagination";
 import { getBlogPage } from "@/lib/blog-pagination";
 
 export const metadata: Metadata = {
-  title: "Blog — local-first AI, agents, vaults, and routines",
+  title: "Blog — local-first AI, agents, and routines",
   description:
     "Essays, release notes, and field reports from the Froots team on building a local-first AI workspace where notes become executable work.",
   alternates: { canonical: "/blog" },
+  openGraph: { url: "https://froots.ai/blog" },
 };
 
 export default function BlogPage() {

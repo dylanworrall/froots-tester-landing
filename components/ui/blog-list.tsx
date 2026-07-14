@@ -20,7 +20,7 @@ export function BlogList({ featured, posts }: Props) {
               <div className="relative aspect-[16/10] md:aspect-auto overflow-hidden" style={{ backgroundColor: featured.accent }}>
                 {featured.coverImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={featured.coverImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                  <img src={featured.coverImage} alt={`${featured.title} — cover illustration`} className="absolute inset-0 h-full w-full object-cover" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-6xl md:text-7xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>
@@ -67,7 +67,7 @@ export function BlogList({ featured, posts }: Props) {
                 <div className="relative aspect-[16/9] overflow-hidden" style={{ backgroundColor: post.accent }}>
                   {post.coverImage ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={post.coverImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                    <img src={post.coverImage} alt={`${post.title} — cover illustration`} className="absolute inset-0 h-full w-full object-cover" />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span className="text-4xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>

@@ -9,8 +9,9 @@ import { WorksWithStack } from "@/components/ui/works-with-stack";
 export const metadata: Metadata = {
   title: "Pricing — bring your own keys, free forever",
   description:
-    "Froots is free forever when you bring your own model API keys. $12/mo adds cross-device sync, memory snapshots, and publish. Cancel anytime. Beta pricing locked in for life.",
+    "Froots is free forever with your own model API keys. $12/mo adds cross-device sync, memory snapshots, and publish. Cancel anytime. Beta pricing for life.",
   alternates: { canonical: "/pricing" },
+  openGraph: { url: "https://froots.ai/pricing" },
 };
 
 export default function PricingPage() {

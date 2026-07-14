@@ -20,6 +20,7 @@ export async function generateMetadata({
     title: `${doc.title} — Docs`,
     description: doc.description,
     alternates: { canonical: `/docs/${doc.slug}` },
+    openGraph: { url: `https://froots.ai/docs/${doc.slug}` },
   };
 }
 

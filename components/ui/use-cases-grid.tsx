@@ -109,12 +109,15 @@ const cases: UseCase[] = [
 ];
 
 function BrandIcon({ domain }: { domain: string }) {
+  // Human-readable brand name from the domain, e.g. "anthropic.com" -> "Anthropic".
+  const brand = domain.replace(/\.[a-z.]+$/i, "");
+  const brandName = brand.charAt(0).toUpperCase() + brand.slice(1);
   return (
     <span className="size-9 rounded-full bg-white flex items-center justify-center ring-2 ring-background overflow-hidden">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
-        alt=""
+        alt={`${brandName} logo`}
         className="size-5"
         loading="lazy"
       />

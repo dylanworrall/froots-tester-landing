@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ page: str
     description:
       "Essays, release notes, and field reports from the Froots team on building a local-first AI workspace where notes become executable work.",
     alternates: { canonical: `/blog/page/${n}` },
+    openGraph: { url: `https://froots.ai/blog/page/${n}` },
   };
 }
 

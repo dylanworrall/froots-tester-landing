@@ -228,7 +228,7 @@ export default function Home() {
         ]}
       />
       <HeroBerry />
-      <VideoShowcase imageUrl="/froots-app-preview.png" />
+      <VideoShowcase imageUrl="/froots-app-preview.png" alt="Froots desktop app preview showing the agent workspace" />
       <UseCasesGrid />
       <div className="flex items-center justify-center w-full py-24 bg-background px-4">
         <AnimatedFeatureSpotlight

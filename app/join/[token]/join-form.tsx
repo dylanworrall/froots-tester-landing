@@ -86,7 +86,7 @@ export function JoinForm({
         </a>
         <p className="mt-4 text-xs text-emerald-700/80">
           Don&apos;t have the desktop app yet?{" "}
-          <a href="/download" className="underline">
+          <a href="/" className="underline">
             Download it here.
           </a>
         </p>

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description:
     "The terms that govern your use of the Froots desktop app and website, including subscriptions, bring-your-own-key model usage, and acceptable use.",
   alternates: { canonical: "/terms" },
+  openGraph: { url: "https://froots.ai/terms" },
 };
 
 const UPDATED = "July 2, 2026";

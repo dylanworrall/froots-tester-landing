@@ -6,12 +6,21 @@ import {
   SiMistralai,
   SiOllama,
 } from "react-icons/si";
+import type { Metadata } from "next";
 import type { IconType } from "react-icons";
 import type { ComponentType, SVGProps } from "react";
 import CardNav from "@/components/ui/card-nav";
 import { CTA } from "@/components/ui/cta";
 import { FAQ } from "@/components/ui/faq";
 import { Footer } from "@/components/ui/footer";
+
+export const metadata: Metadata = {
+  title: "Models — bring your own AI brain",
+  description:
+    "Every major model API, swappable per task — Claude, GPT, Gemini, Llama, Mistral, Grok, Groq, and local models via Ollama. Bring your own keys.",
+  alternates: { canonical: "/models" },
+  openGraph: { url: "https://froots.ai/models" },
+};
 
 interface AgentCard {
   label: string;

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog-posts";
-import { getTotalPages } from "@/lib/blog-pagination";
+import { useCaseOrder } from "@/lib/use-cases";
 import { getAllDocSlugs } from "@/lib/docs";
 
 const SITE = "https://froots.ai";
@@ -19,11 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/terms`, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const totalPages = getTotalPages();
-  const paginationRoutes: MetadataRoute.Sitemap = [];
-  for (let p = 2; p <= totalPages; p++) {
-    paginationRoutes.push({ url: `${SITE}/blog/page/${p}`, changeFrequency: "weekly", priority: 0.5 });
-  }
+  // Note: paginated blog list pages (/blog/page/N) are intentionally excluded.
+  // They are thin, non-canonical index pages; only canonical content URLs belong
+  // in the sitemap.
 
   const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${SITE}/blog/${p.slug}`,
@@ -38,5 +36,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...paginationRoutes, ...docRoutes, ...blogRoutes];
+  const useCaseRoutes: MetadataRoute.Sitemap = useCaseOrder.map((slug) => ({
+    url: `${SITE}/use-cases/${slug}`,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...docRoutes, ...useCaseRoutes, ...blogRoutes];
 }

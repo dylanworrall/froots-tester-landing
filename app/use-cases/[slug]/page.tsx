@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import CardNav from "@/components/ui/card-nav";
@@ -6,9 +7,29 @@ import { Footer } from "@/components/ui/footer";
 import { ArticleBanner } from "@/components/ui/article-banner";
 import { MarkdownBody } from "@/components/ui/markdown-body";
 import { getUseCase, useCaseOrder, useCases } from "@/lib/use-cases";
+import { clampDescription, clampTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
   return useCaseOrder.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const uc = getUseCase(slug);
+  if (!uc) return {};
+  const url = `https://froots.ai/use-cases/${uc.slug}`;
+  const metaTitle = clampTitle(uc.title, 51);
+  const metaDescription = clampDescription(uc.tagline);
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    alternates: { canonical: `/use-cases/${uc.slug}` },
+    openGraph: { type: "article", title: metaTitle, description: metaDescription, url },
+  };
 }
 
 export default async function UseCasePage({
