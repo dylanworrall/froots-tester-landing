@@ -273,7 +273,7 @@ export default function Home() {
       <FeatureSplit
         title="Custom views for your internal ops"
         description="Spin up dashboards, widgets, and panels tailored to how your team actually works. Pin them to your desktop, share them with your agents, and stop tab-hopping between five different tools."
-        imageSrc="/froot-cantalope.jpg"
+        imageSrc="/froots-feature-widgets.png"
         imageAlt="Froots custom widgets"
         primaryCta="Build a view"
       />
@@ -281,14 +281,14 @@ export default function Home() {
         reverse
         title="A browser, built in"
         description="Research, prospect, and pull data without ever leaving Froots. The built-in browser lives next to your agents, so what they see is what you see — and either of you can take the wheel."
-        imageSrc="/froot-grapefruit.jpg"
+        imageSrc="/froots-feature-browser.png"
         imageAlt="Froots built-in browser"
         primaryCta="Try the browser"
       />
       <FeatureSplit
         title="Multi-panel for multi-agent workflows"
         description="Run several agents side by side — one drafting, one researching, one shipping. Each gets its own panel, its own context, its own tools, while you orchestrate from a single canvas."
-        imageSrc="/froot-pomegranete.jpg"
+        imageSrc="/froots-feature-multipanel.png"
         imageAlt="Froots multi-agent panels"
         primaryCta="See the layout"
       />
