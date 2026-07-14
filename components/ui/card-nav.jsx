@@ -6,12 +6,12 @@ import { GoArrowUpRight } from "react-icons/go";
 import { DownloadCta } from "./download-cta";
 import "./card-nav.css";
 
-// Stipple brand art per nav category (white-bg pieces; blended onto the
-// card's pastel color). Explains the app at a glance in the nav cards.
+// Colorful fruit art per nav category (restored from the b/w stipple set),
+// blended onto the card's pastel color. Explains the app at a glance.
 const CARD_ART = {
-  Product: "/onbw-brain.jpg",
-  Harnesses: "/onbw-moth.jpg",
-  Resources: "/onbw-bloom.jpg",
+  Product: "/froot-cherry.jpg",
+  Harnesses: "/froot-grape.jpg",
+  Resources: "/froot-lemon.jpg",
 };
 
 const CardNav = ({
