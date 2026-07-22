@@ -4,14 +4,14 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-// macOS on v0.2.23 (updater-signed + Developer-ID-signed + notarized so it
-// opens without the Gatekeeper prompt). Windows/Linux stay pinned to v0.2.14
-// — the last release with those installers; the v0.2.23 CI legs for them
-// couldn't run (GitHub Actions billing), older installers auto-update via
-// latest.json on the froots releases repo anyway.
+// macOS + Windows on v0.2.24 (both built + updater-signed locally — CI is
+// still off on GitHub billing; mac is Developer-ID-signed + notarized, the
+// Windows NSIS installer is unsigned so SmartScreen shows "Run anyway").
+// Linux stays pinned to v0.2.14 — the last release with an AppImage; older
+// installs auto-update via latest.json on the froots releases repo anyway.
 const DL = "https://github.com/dylanworrall/froots/releases/download";
-const MAC_DMG = `${DL}/v0.2.23/Froots_0.2.23_aarch64.dmg`;
-const WIN_EXE = `${DL}/v0.2.14/Froots_0.2.14_x64-setup.exe`;
+const MAC_DMG = `${DL}/v0.2.24/Froots_0.2.24_aarch64.dmg`;
+const WIN_EXE = `${DL}/v0.2.24/Froots_0.2.24_x64-setup.exe`;
 const LINUX_APPIMAGE = `${DL}/v0.2.14/Froots_0.2.14_amd64.AppImage`;
 const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
 
