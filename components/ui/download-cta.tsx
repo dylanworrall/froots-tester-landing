@@ -4,14 +4,14 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-// macOS + Windows on v0.2.28 (both built + updater-signed locally — CI is
+// macOS + Windows on v0.2.29 (both built + updater-signed locally — CI is
 // still off on GitHub billing; mac is Developer-ID-signed + notarized, the
 // Windows NSIS installer is unsigned so SmartScreen shows "Run anyway").
 // Linux stays pinned to v0.2.14 — the last release with an AppImage; older
 // installs auto-update via latest.json on the froots releases repo anyway.
 const DL = "https://github.com/dylanworrall/froots/releases/download";
-const MAC_DMG = `${DL}/v0.2.28/Froots_0.2.28_aarch64.dmg`;
-const WIN_EXE = `${DL}/v0.2.28/Froots_0.2.28_x64-setup.exe`;
+const MAC_DMG = `${DL}/v0.2.29/Froots_0.2.29_aarch64.dmg`;
+const WIN_EXE = `${DL}/v0.2.29/Froots_0.2.29_x64-setup.exe`;
 const LINUX_APPIMAGE = `${DL}/v0.2.14/Froots_0.2.14_amd64.AppImage`;
 const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
 
