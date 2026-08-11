@@ -11,9 +11,9 @@ Froots is a desktop app. It runs on your machine, stores its data on your machin
 
 Grab the installer for your platform from [GitHub releases](https://github.com/dylanworrall/froots/releases):
 
-- **macOS (Apple silicon)** — [`Froots_0.2.0_aarch64.dmg`](https://github.com/dylanworrall/froots/releases/download/v0.2.0/Froots_0.2.0_aarch64.dmg). The build is Developer-ID signed and notarized, so it opens without a Gatekeeper warning.
-- **Windows** — [`Froots_0.2.0_x64-setup.exe`](https://github.com/dylanworrall/froots/releases/download/v0.2.0/Froots_0.2.0_x64-setup.exe)
-- **Linux** — [`Froots_0.2.0_amd64.AppImage`](https://github.com/dylanworrall/froots/releases/download/v0.2.0/Froots_0.2.0_amd64.AppImage)
+- **macOS (Apple silicon)** — [`Froots_0.3.6_aarch64.dmg`](https://github.com/dylanworrall/froots/releases/download/v0.3.6/Froots_0.3.6_aarch64.dmg). The build is Developer-ID signed and notarized, so it opens without a Gatekeeper warning.
+- **Windows** — [`Froots_0.3.6_x64-setup.exe`](https://github.com/dylanworrall/froots/releases/download/v0.3.6/Froots_0.3.6_x64-setup.exe). Unsigned, so SmartScreen warns once: More info → Run anyway.
+- **Linux** — [`Froots_0.3.6_amd64.AppImage`](https://github.com/dylanworrall/froots/releases/download/v0.3.6/Froots_0.3.6_amd64.AppImage), or the [`.deb`](https://github.com/dylanworrall/froots/releases/download/v0.3.6/Froots_0.3.6_amd64.deb) / [`.rpm`](https://github.com/dylanworrall/froots/releases/download/v0.3.6/Froots-0.3.6-1.x86_64.rpm).
 
 Froots checks for updates a few seconds after launch and updates itself from signed releases — you install once and stay current. macOS is the primary platform today; Windows and Linux builds ship from the same releases.
 

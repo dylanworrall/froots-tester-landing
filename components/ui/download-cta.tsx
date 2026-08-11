@@ -4,15 +4,15 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-// macOS + Windows on v0.2.32 (both built + updater-signed locally — CI is
-// still off on GitHub billing; mac is Developer-ID-signed + notarized, the
-// Windows NSIS installer is unsigned so SmartScreen shows "Run anyway").
-// Linux stays pinned to v0.2.14 — the last release with an AppImage; older
-// installs auto-update via latest.json on the froots releases repo anyway.
+// All three platforms on v0.3.6, the first release CI built end to end. Mac is
+// Developer-ID-signed by CI and notarized by hand afterwards; the Windows NSIS
+// installer is unsigned, so SmartScreen still shows "Run anyway". Linux was
+// stuck on v0.2.14 for a long stretch when nothing here could cross-build it —
+// CI does now, so it moves with the others.
 const DL = "https://github.com/dylanworrall/froots/releases/download";
-const MAC_DMG = `${DL}/v0.2.32/Froots_0.2.32_aarch64.dmg`;
-const WIN_EXE = `${DL}/v0.2.32/Froots_0.2.32_x64-setup.exe`;
-const LINUX_APPIMAGE = `${DL}/v0.2.14/Froots_0.2.14_amd64.AppImage`;
+const MAC_DMG = `${DL}/v0.3.6/Froots_0.3.6_aarch64.dmg`;
+const WIN_EXE = `${DL}/v0.3.6/Froots_0.3.6_x64-setup.exe`;
+const LINUX_APPIMAGE = `${DL}/v0.3.6/Froots_0.3.6_amd64.AppImage`;
 const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
 
 type Platform = "mac" | "windows" | "linux" | "mobile" | "unknown";
