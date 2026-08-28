@@ -4,15 +4,16 @@ import { useEffect, useState, type ComponentType } from "react";
 import { Download, Smartphone } from "lucide-react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 
-// All three platforms on v0.3.6, the first release CI built end to end. Mac is
-// Developer-ID-signed by CI and notarized by hand afterwards; the Windows NSIS
-// installer is unsigned, so SmartScreen still shows "Run anyway". Linux was
-// stuck on v0.2.14 for a long stretch when nothing here could cross-build it —
-// CI does now, so it moves with the others.
+// All three platforms ride the same release. Asset filenames carry the version,
+// so /releases/latest/download/... can't be used — bump VERSION after each
+// release and the three URLs follow. Mac is Developer-ID-signed by CI and
+// notarized by hand afterwards; the Windows NSIS installer is Authenticode-signed
+// as of v0.3.10, so SmartScreen no longer shows "Run anyway". Linux is unsigned.
+const VERSION = "0.3.10";
 const DL = "https://github.com/dylanworrall/froots/releases/download";
-const MAC_DMG = `${DL}/v0.3.6/Froots_0.3.6_aarch64.dmg`;
-const WIN_EXE = `${DL}/v0.3.6/Froots_0.3.6_x64-setup.exe`;
-const LINUX_APPIMAGE = `${DL}/v0.3.6/Froots_0.3.6_amd64.AppImage`;
+const MAC_DMG = `${DL}/v${VERSION}/Froots_${VERSION}_aarch64.dmg`;
+const WIN_EXE = `${DL}/v${VERSION}/Froots_${VERSION}_x64-setup.exe`;
+const LINUX_APPIMAGE = `${DL}/v${VERSION}/Froots_${VERSION}_amd64.AppImage`;
 const ALL_ASSETS = "https://github.com/dylanworrall/froots/releases";
 
 type Platform = "mac" | "windows" | "linux" | "mobile" | "unknown";
