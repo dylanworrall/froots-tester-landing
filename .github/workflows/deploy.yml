@@ -1,0 +1,16 @@
+# Deploy froots.ai (Fly app froots-ab) from GitHub's network. Run it from the Actions tab or with
+# `gh workflow run deploy.yml`. Added 2026-10-06: the office Mac's uplink stalls on big uploads,
+# so `fly deploy` from there never finished.
+name: Deploy
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only -a froots-ab
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
