@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+// Note: Link/ArrowRight imports removed alongside the commented-out "See how"
+// CTA below. Restore them when the use-case detail pages are republished.
 
 type UseCase = {
   slug: string;
@@ -167,13 +167,15 @@ export function UseCasesGrid() {
                   </span>
                 ))}
               </div>
-              <Link
+              {/* Per-use-case detail pages are unpublished for now — thin content.
+                  Restore this CTA (and the footer/sitemap entries) once they're rewritten. */}
+              {/* <Link
                 href={`/use-cases/${c.slug}`}
                 className="mt-5 inline-flex items-center gap-1.5 self-start rounded-full bg-white text-black text-sm px-4 py-2 hover:bg-white/90 transition-colors"
               >
                 See how
                 <ArrowRight className="size-3.5" />
-              </Link>
+              </Link> */}
             </div>
           ))}
         </div>

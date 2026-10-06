@@ -17,14 +17,16 @@ const columns: { title: string; items: Item[] }[] = [
       { name: "Pricing", href: "/pricing" },
     ],
   },
-  {
-    title: "Use cases",
-    items: [
-      { name: "Coding agents", href: "/use-cases/coding-agents" },
-      { name: "Browser automations", href: "/use-cases/browser-automations" },
-      { name: "Research agents", href: "/use-cases/research-agents" },
-    ],
-  },
+  // Use-case detail pages are unpublished for now — thin content. Restore this
+  // column when they're rewritten.
+  // {
+  //   title: "Use cases",
+  //   items: [
+  //     { name: "Coding agents", href: "/use-cases/coding-agents" },
+  //     { name: "Browser automations", href: "/use-cases/browser-automations" },
+  //     { name: "Research agents", href: "/use-cases/research-agents" },
+  //   ],
+  // },
   {
     title: "Resources",
     items: [

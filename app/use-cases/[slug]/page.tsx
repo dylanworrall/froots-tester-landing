@@ -29,6 +29,9 @@ export async function generateMetadata({
     description: metaDescription,
     alternates: { canonical: `/use-cases/${uc.slug}` },
     openGraph: { type: "article", title: metaTitle, description: metaDescription, url },
+    // Unpublished for now — thin content. Nothing links here and the pages are
+    // out of the sitemap; this keeps them out of search too. Remove once rewritten.
+    robots: { index: false, follow: false },
   };
 }
 

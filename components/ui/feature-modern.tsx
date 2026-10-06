@@ -51,7 +51,7 @@ export function FeatureSplit({
       <Container className="grid items-stretch md:grid-cols-2 md:gap-12">
         <div
           className={cn(
-            "relative h-96 w-full overflow-hidden rounded-2xl border border-border bg-white",
+            "relative h-96 w-full overflow-hidden rounded-2xl",
             reverse && "md:order-2",
           )}
         >
@@ -72,7 +72,7 @@ export function FeatureSplit({
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="absolute inset-0 w-full h-full object-contain p-6"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           )}
         </div>

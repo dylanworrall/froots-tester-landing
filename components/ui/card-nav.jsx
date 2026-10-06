@@ -6,14 +6,6 @@ import { GoArrowUpRight } from "react-icons/go";
 import { DownloadCta } from "./download-cta";
 import "./card-nav.css";
 
-// Colorful fruit art per nav category (restored from the b/w stipple set),
-// blended onto the card's pastel color. Explains the app at a glance.
-const CARD_ART = {
-  Product: "/froot-cherry.jpg",
-  Harnesses: "/froot-grape.jpg",
-  Resources: "/froot-lemon.jpg",
-};
-
 const CardNav = ({
   logo,
   logoAlt = "Logo",
@@ -190,15 +182,6 @@ const CardNav = ({
               ref={setCardRef(idx)}
               style={{ backgroundColor: item.bgColor, color: item.textColor }}
             >
-              {(item.image || CARD_ART[item.label]) && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  className="nav-card-image"
-                  src={item.image || CARD_ART[item.label]}
-                  alt=""
-                  aria-hidden="true"
-                />
-              )}
               <div className="nav-card-label">{item.label}</div>
               <div className="nav-card-links">
                 {item.links?.map((lnk, i) => (

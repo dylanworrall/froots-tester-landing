@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog-posts";
-import { useCaseOrder } from "@/lib/use-cases";
 import { getAllDocSlugs } from "@/lib/docs";
 
 const SITE = "https://froots.ai";
@@ -36,11 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const useCaseRoutes: MetadataRoute.Sitemap = useCaseOrder.map((slug) => ({
-    url: `${SITE}/use-cases/${slug}`,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  // Use-case detail pages are unpublished for now — thin content, and the route
+  // is noindexed. Restore these entries when they're rewritten.
+  // const useCaseRoutes: MetadataRoute.Sitemap = useCaseOrder.map((slug) => ({
+  //   url: `${SITE}/use-cases/${slug}`,
+  //   changeFrequency: "monthly",
+  //   priority: 0.6,
+  // }));
 
-  return [...staticRoutes, ...docRoutes, ...useCaseRoutes, ...blogRoutes];
+  return [...staticRoutes, ...docRoutes, ...blogRoutes];
 }
