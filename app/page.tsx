@@ -292,7 +292,7 @@ export default function Home() {
         ]}
       />
       <HeroBerry />
-      <VideoShowcase imageUrl="/froots-hero-poster.jpg" videoUrl="/froots-hero.mp4" alt="Froots: Studio inspects a product site in its own tab and sends back a launch video" />
+      <VideoShowcase imageUrl="/froots-explainer-poster.jpg" videoUrl="/froots-explainer.mp4" alt="Froots explainer: tabs, split view, contacts and accounts, then your team and your agents working together" />
       <UseCasesGrid />
       <div className="flex items-center justify-center w-full py-24 bg-background px-4">
         <AnimatedFeatureSpotlight
