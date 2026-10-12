@@ -2,13 +2,18 @@ import CircularGallery from "@/components/ui/circular-gallery";
 import { HeroBerry } from "@/components/ui/hero-berry";
 import { VideoShowcase } from "@/components/ui/video-showcase";
 import { UseCasesGrid } from "@/components/ui/use-cases-grid";
-import { AnimatedFeatureSpotlight } from "@/components/ui/feature-spotlight";
-import { Eye } from "lucide-react";
 import CardNav from "@/components/ui/card-nav";
 import { Footer } from "@/components/ui/footer";
-import { CTA } from "@/components/ui/cta";
-import { FeatureSplit } from "@/components/ui/feature-modern";
 import { FAQ } from "@/components/ui/faq";
+import { Reveal } from "@/components/home/motion";
+import {
+  AgentChatSection,
+  BrowserSection,
+  HomeCTA,
+  PlacementSection,
+  RuntimesSection,
+  TogetherSection,
+} from "@/components/home/sections";
 import { AiModelsList } from "@/components/ui/ai-models-preview";
 import { WorksWithStack } from "@/components/ui/works-with-stack";
 
@@ -293,25 +298,14 @@ export default function Home() {
       />
       <HeroBerry />
       <VideoShowcase imageUrl="/froots-explainer-poster.jpg" videoUrl="/froots-explainer.mp4" alt="Froots explainer: tabs, split view, contacts and accounts, then your team and your agents working together" />
-      <UseCasesGrid />
-      <div className="flex items-center justify-center w-full py-24 bg-background px-4">
-        <AnimatedFeatureSpotlight
-          preheaderIcon={<Eye className="h-4 w-4" />}
-          preheaderText="See every move your agent makes"
-          heading={
-            <>
-              <span className="text-primary">Watch</span> your agents{" "}
-              <span className="text-primary">work</span>
-            </>
-          }
-          description="Tool calls, file edits, browser sessions, and reasoning — all streamed into one timeline. Spot a wrong turn early, hit pause, and steer it back without ever leaving the dashboard."
-          buttonText="See it live"
-          imageUrl="/froots-watch-agent.png"
-          imageAlt="Froots dashboard — watch every tool call, file edit, and step"
-        />
-      </div>
-      <section className="w-full py-24">
-        <AiModelsList models={aiModels} />
+      {/* The product story, drawn: live widgets that animate as they scroll in (components/home). */}
+      <AgentChatSection />
+      <TogetherSection />
+      <RuntimesSection />
+      <section className="w-full pb-24 pt-8">
+        <Reveal>
+          <AiModelsList models={aiModels} title="The models behind them" />
+        </Reveal>
       </section>
       {false && <section className="w-full py-24">
         <div className="mx-auto max-w-3xl px-4 text-center">
@@ -334,31 +328,16 @@ export default function Home() {
           />
         </div>
       </section>}
-      <FeatureSplit
-        title="Custom views for your internal ops"
-        description="Spin up dashboards, widgets, and panels tailored to how your team actually works. Pin them to your desktop, share them with your agents, and stop tab-hopping between five different tools."
-        imageSrc="/froots-feature-widgets.png"
-        imageAlt="Froots custom widgets"
-        primaryCta="Build a view"
-      />
-      <FeatureSplit
-        reverse
-        title="A browser, built in"
-        description="Research, prospect, and pull data without ever leaving Froots. The built-in browser lives next to your agents, so what they see is what you see — and either of you can take the wheel."
-        imageSrc="/froots-feature-browser.png"
-        imageAlt="Froots built-in browser"
-        primaryCta="Try the browser"
-      />
-      <FeatureSplit
-        title="Multi-panel for multi-agent workflows"
-        description="Run several agents side by side — one drafting, one researching, one shipping. Each gets its own panel, its own context, its own tools, while you orchestrate from a single canvas."
-        imageSrc="/froots-feature-multipanel.png"
-        imageAlt="Froots multi-agent panels"
-        primaryCta="See the layout"
-      />
-      <WorksWithStack />
+      <BrowserSection />
+      <PlacementSection />
+      <Reveal>
+        <UseCasesGrid />
+      </Reveal>
+      <Reveal>
+        <WorksWithStack />
+      </Reveal>
       <FAQ />
-      <CTA />
+      <HomeCTA />
       <Footer />
     </main>
   );

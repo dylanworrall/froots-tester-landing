@@ -29,6 +29,8 @@ type AiModel = {
 type Props = {
   models: AiModel[];
   className?: string;
+  /** The list's heading. The home page sets its own "Any model. Any harness." above it. */
+  title?: string;
 };
 
 const Badge: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -37,7 +39,7 @@ const Badge: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </span>
 );
 
-export const AiModelsList: React.FC<Props> = ({ models, className = "" }) => {
+export const AiModelsList: React.FC<Props> = ({ models, className = "", title = "Any model. Any harness." }) => {
   const [selected, setSelected] = useState<AiModel | null>(null);
 
   const sorted = useMemo(
@@ -54,7 +56,7 @@ export const AiModelsList: React.FC<Props> = ({ models, className = "" }) => {
   return (
     <div className={`w-full max-w-5xl mx-auto px-6 ${className}`}>
       <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-2">
-        Any model. Any harness.
+        {title}
       </h2>
       <p className="text-foreground/60 mb-8">
         Froots is model-agnostic — pick the brain that fits the job. Click any

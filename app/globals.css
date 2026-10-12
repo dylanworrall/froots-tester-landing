@@ -84,6 +84,100 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* The Froots app's own surface tokens (froots app src/index.css), so the home page's product
+   widgets can use the app's exact class names: bg-shell, bg-panel, bg-card-2, text-ink/45,
+   bg-brand/[0.18]… Values are the app's dark theme with the Froots Blue accent, scoped to
+   `.froots-app` so nothing else on the site changes. */
+@theme inline {
+  --color-shell: var(--shell);
+  --color-panel: var(--panel);
+  --color-card-1: var(--card-1);
+  --color-card-2: var(--card-2);
+  --color-ink: var(--ink);
+  --color-brand: var(--brand);
+  --color-on-brand: var(--on-brand);
+}
+.froots-app {
+  --shell: #252525;
+  --panel: #1b1b1b;
+  --card-1: #232323;
+  --card-2: #202020;
+  --ink: #ffffff;
+  --brand: #3b6ef6;
+  --on-brand: #ffffff;
+  --background: var(--panel);
+  --foreground: var(--ink);
+  --card: var(--card-1);
+  --secondary: var(--card-2);
+  --secondary-foreground: var(--ink);
+  --muted-foreground: color-mix(in srgb, var(--ink) 70%, transparent);
+  --border: color-mix(in srgb, var(--ink) 10%, transparent);
+  --radius: 0.625rem;
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  color: color-mix(in srgb, var(--ink) 95%, transparent);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.froots-app .bg-brand.text-white,
+.froots-app .bg-brand .text-white {
+  color: var(--on-brand);
+}
+/* The app window (index.css .app-window-rounded). */
+.froots-window {
+  border-radius: 14px;
+  box-shadow: 0 30px 70px -24px rgba(23, 23, 23, 0.55), 0 16px 48px rgba(0, 0, 0, 0.18), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  isolation: isolate;
+}
+/* Chat rows rise into place (index.css .rise-in). */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+.rise-in {
+  animation: rise-in 150ms ease-out;
+}
+/* The "Thinking…" shimmer (ai-elements/shimmer.tsx). */
+@keyframes shimmer-sweep {
+  from { background-position: 100% center; }
+  to { background-position: 0% center; }
+}
+.shimmer-sweep {
+  background-position: 100% center;
+  animation: shimmer-sweep 2s linear infinite;
+}
+
+/* Home page motion (components/home). <Reveal/> marks itself data-reveal="pending" until it scrolls
+   into view. The hidden state only applies when scripting is on and the visitor hasn't asked for
+   reduced motion, so content is never left invisible. */
+[data-reveal] {
+  transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+    filter: blur(6px);
+  }
+}
+/* Drawn widgets: under reduced motion every widget sits in its end state with nothing moving. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .fw,
+  .fw * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+@keyframes fw-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.fw-caret {
+  animation: fw-blink 1s steps(1) infinite;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

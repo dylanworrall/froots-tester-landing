@@ -25,6 +25,12 @@ export function VideoShowcase({ imageUrl, videoUrl, alt = "Preview", volume = 0.
   useEffect(() => {
     const v = ref.current;
     if (!v || !videoUrl) return;
+    // Reduced motion: hold the poster frame and hand the visitor the controls instead of autoplaying.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      v.pause();
+      v.controls = true;
+      return;
+    }
     v.volume = volume;
     const unmute = () => {
       if (userMuted.current) return;
