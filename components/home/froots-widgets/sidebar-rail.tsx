@@ -6,7 +6,7 @@
 
 import { MessageSquare, MoreHorizontal, Settings as SettingsIcon, UsersRound } from "lucide-react";
 import { SETTLE } from "../motion";
-import { Face, type Who } from "./faces";
+import { Face, FACES, type Who } from "./faces";
 
 /** NewCount: "a red dot with the number in it, bottom corner, the way Discord does it". */
 export function NewCount({ count }: { count: number }) {
@@ -20,15 +20,24 @@ export function NewCount({ count }: { count: number }) {
   );
 }
 
-export type RailItem = { who: Who; kind: "agent" | "dm" | "group"; count?: number; here?: boolean };
+export type RailItem = { who: Who; kind: "agent" | "dm" | "group"; count?: number; here?: boolean; onClick?: () => void };
 
 /** RailButton + FaceBox + RowFace: a 48px button, the face at 32, the kind badge bottom-left (a
  *  chat bubble for a person, people for a group), the count bottom-right, the highlight behind. */
 function RailButton({ item }: { item: RailItem }) {
   const Kind = item.kind === "group" ? UsersRound : MessageSquare;
   return (
-    <span className="relative shrink-0 w-12 h-12 grid place-items-center rounded-2xl">
-      <span className={`absolute inset-0 rounded-2xl bg-ink/[0.09] transition-opacity duration-300 ${item.here ? "opacity-100" : "opacity-0"}`} />
+    <span
+      role={item.onClick ? "button" : undefined}
+      tabIndex={item.onClick ? 0 : undefined}
+      aria-label={item.onClick ? `Open ${item.kind === "group" ? "Launch crew" : FACES[item.who].name}` : undefined}
+      onClick={item.onClick}
+      onKeyDown={item.onClick ? (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), item.onClick?.()) : undefined}
+      className={`group relative shrink-0 w-12 h-12 grid place-items-center rounded-2xl ${item.onClick ? "cursor-pointer" : ""}`}
+    >
+      <span
+        className={`absolute inset-0 rounded-2xl bg-ink/[0.09] transition-opacity duration-300 ${item.here ? "opacity-100" : item.onClick ? "opacity-0 group-hover:opacity-60" : "opacity-0"}`}
+      />
       <span className="relative shrink-0 flex items-center justify-center" style={{ width: 32, height: 32 }}>
         {item.kind === "group" ? (
           // A group is two members' faces stacked.
@@ -54,7 +63,7 @@ function RailButton({ item }: { item: RailItem }) {
   );
 }
 
-export function Rail({ items }: { items: RailItem[] }) {
+export function Rail({ items, onProfiles, profilesHere = false }: { items: RailItem[]; onProfiles?: () => void; profilesHere?: boolean }) {
   return (
     <aside className="relative shrink-0 w-16 flex flex-col items-center pt-1 pb-1">
       <div className="flex-1 min-h-0 w-full flex flex-col items-center gap-1.5 overflow-hidden">
@@ -66,7 +75,14 @@ export function Rail({ items }: { items: RailItem[] }) {
         </span>
       </div>
       {/* Profiles, Settings, and the view dots under everything. */}
-      <span className="shrink-0 w-10 h-10 grid place-items-center rounded-xl text-ink/45">
+      <span
+        role={onProfiles ? "button" : undefined}
+        tabIndex={onProfiles ? 0 : undefined}
+        aria-label={onProfiles ? "Open Profiles" : undefined}
+        onClick={onProfiles}
+        onKeyDown={onProfiles ? (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onProfiles()) : undefined}
+        className={`shrink-0 w-10 h-10 grid place-items-center rounded-xl ${profilesHere ? "bg-ink/[0.09] text-ink/80" : "text-ink/45"} ${onProfiles ? "cursor-pointer hover:text-ink/80" : ""}`}
+      >
         <UsersRound size={17} />
       </span>
       <span className="shrink-0 w-10 h-10 grid place-items-center rounded-xl text-ink/45">

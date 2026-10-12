@@ -13,19 +13,46 @@ import type { ReactNode, Ref } from "react";
 import { ArrowLeft, ArrowRight, Plus, X } from "lucide-react";
 import { appFont } from "../font";
 
-export type Tab = { title: string; icon?: ReactNode; active?: boolean; driver?: boolean };
+export type Tab = {
+  title: string;
+  icon?: ReactNode;
+  active?: boolean;
+  driver?: boolean;
+  /** Set on the hero's live window: the pill switches to its tab, the × closes it. */
+  onClick?: () => void;
+  onClose?: () => void;
+};
 
 function TabPill({ tab }: { tab: Tab }) {
+  const live = !!tab.onClick;
   return (
     <span
+      role={live ? "tab" : undefined}
+      aria-selected={live ? !!tab.active : undefined}
+      tabIndex={live ? 0 : undefined}
+      onClick={tab.onClick}
+      onKeyDown={live ? (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), tab.onClick?.()) : undefined}
       className={`group relative shrink-0 h-8 flex items-center gap-2 rounded-[10px] max-w-[200px] min-w-0 pl-3 pr-1.5 ${
         tab.active ? "text-ink/95 bg-panel rounded-b-none h-[37px] pb-[5px]" : "text-ink/55"
-      } ${tab.driver ? "ring-1 ring-brand/70 ring-inset" : ""}`}
+      } ${live && !tab.active ? "cursor-pointer hover:bg-ink/[0.05] hover:text-ink/80" : ""} ${tab.driver ? "ring-1 ring-brand/70 ring-inset" : ""}`}
     >
       {tab.icon}
       <span className="flex-1 min-w-0 truncate text-[12.5px] leading-4">{tab.title}</span>
       {tab.driver && <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-brand" />}
-      <span className={`shrink-0 w-[18px] h-[18px] inline-grid place-items-center rounded-md text-ink/45 ${tab.active ? "" : "opacity-0"}`}>
+      <span
+        aria-label={tab.onClose ? `Close ${tab.title}` : undefined}
+        onClick={
+          tab.onClose
+            ? (e) => {
+                e.stopPropagation();
+                tab.onClose?.();
+              }
+            : undefined
+        }
+        className={`shrink-0 w-[18px] h-[18px] inline-grid place-items-center rounded-md text-ink/45 ${tab.active ? "" : "opacity-0"} ${
+          tab.onClose ? "cursor-pointer hover:bg-ink/10 hover:text-ink/80 group-hover:opacity-100" : ""
+        }`}
+      >
         <X size={12} />
       </span>
     </span>
