@@ -174,7 +174,7 @@ export function HomeCTA() {
             <div className="md:-ml-1 md:self-start">
               <DownloadCta size="lg" />
             </div>
-            <p className="text-xs text-muted-foreground">Free with your own keys · $12/mo to sync across devices · No card required</p>
+            <p className="text-xs text-muted-foreground">Free for individuals and teams · Your own keys · No card required</p>
           </div>
           <TerminalWidget />
         </div>

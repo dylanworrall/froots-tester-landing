@@ -41,7 +41,7 @@ const items: FaqItem[] = [
   },
   {
     q: "How much does it cost?",
-    a: "Free with your own keys. $12/mo to sync across devices. No card required. See /pricing for details.",
+    a: "Free for individuals and teams, with your own keys. No card required. Companies that want their own relay can get an Enterprise license. See /pricing for details.",
   },
 ];
 

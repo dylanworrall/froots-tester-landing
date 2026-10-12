@@ -7,9 +7,9 @@ import { PricingSection } from "@/components/ui/pricing-section";
 import { WorksWithStack } from "@/components/ui/works-with-stack";
 
 export const metadata: Metadata = {
-  title: "Pricing — free with your own keys",
+  title: "Pricing — free for individuals and teams",
   description:
-    "Froots is free with your own keys. $12/mo to sync across devices. No card required. Cancel anytime.",
+    "Froots is free for individuals and teams, with your own keys. Companies that want their own relay can get a multi-year Enterprise license.",
   alternates: { canonical: "/pricing" },
   openGraph: { url: "https://froots.ai/pricing" },
 };

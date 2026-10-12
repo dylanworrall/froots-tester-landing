@@ -104,7 +104,7 @@ const FAQ_JSONLD = {
       name: "How much does Froots cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Free with your own keys. $12/mo to sync across devices. No card required.",
+        text: "Free for individuals and teams, with your own keys. No card required. Companies that want their own relay can get an Enterprise license.",
       },
     },
   ],

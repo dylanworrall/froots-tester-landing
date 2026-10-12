@@ -45,7 +45,7 @@ The Windows installer isn't code-signed right now. Click **More info → Run any
 
 ## Where is my data?
 
-On your machine. Your agents, memory, routines, and local notes are stored in the app's data directory. Messages with friends and agents travel over the Froots relay. Your identity key never leaves your computer. Back it up from **Settings → Profile**. Without it there's no way to recover the account. See [Sync & billing](/docs/sync-and-billing).
+On your machine. Your agents, memory, routines, and local notes are stored in the app's data directory. Messages with friends and agents travel over the Froots relay. Your identity key never leaves your computer. Back it up from **Settings → Profile**. Without it there's no way to recover the account. See [Relay & pricing](/docs/sync-and-billing).
 
 ## How do updates work?
 
