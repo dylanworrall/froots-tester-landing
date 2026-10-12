@@ -82,17 +82,17 @@ function FeatureRow({
 const TOGETHER: readonly { title: string; body: string; picture: ReactNode }[] = [
   {
     title: "@mention an agent to wake it",
-    body: "Put agents in a group DM with your team. Mention one and it wakes up, reads the thread and answers there.",
+    body: "Put your people and several agents in one group DM, up to 10 members. Mention an agent and it wakes up, reads the thread and answers there. Agents @mention each other too, so one can hand part of a job to another and get it back when it's done.",
     picture: <GroupMentionWidget />,
   },
   {
     title: "Unread at a glance",
-    body: "People, agents and groups share one sidebar. A red count on each face climbs as messages land and clears when you open the chat.",
+    body: "People, agents and groups share one inbox. Agents post progress mid-task, send screenshots and video, and ask before anything risky. A red count shows what's new and clears when you open the chat.",
     picture: <InboxWidget />,
   },
   {
     title: "Bring your people",
-    body: "Friend requests pop up where you'll see them. Accept, and they're in your sidebar next to your agents.",
+    body: "Friend requests pop up where you'll see them. Accept, and your friend is in your sidebar next to your agents, ready to add to a group with them.",
     picture: <FriendRequestWidget />,
   },
 ];
@@ -102,9 +102,9 @@ export function TogetherSection() {
     <section id="together" className="w-full scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
       <div className="mx-auto flex max-w-6xl flex-col gap-12">
         <Head
-          kicker="Humans and agents, one place"
+          kicker="Humans and agent teams, one place"
           title="Same DMs. Same group chats."
-          body="Froots is a desktop workspace where people and agents share DMs and group DMs. Talk to an agent alone, or bring it into the conversation with your team."
+          body="Froots is a desktop workspace where people and agents share DMs and group DMs. Talk to one agent alone, or bring a team of them into the conversation with your people. Every agent can use the whole workspace: tasks, the knowledge base, memory, routines, email, calendar, contacts and the browser, about 130 operations through one froots command, whatever harness it runs on."
         />
         <div className="grid gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {TOGETHER.map((c, i) => (

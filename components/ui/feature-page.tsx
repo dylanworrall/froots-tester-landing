@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import CardNav from "@/components/ui/card-nav";
 import { Footer } from "@/components/ui/footer";
-import { ArticleBanner } from "@/components/ui/article-banner";
+import { MemoryBanner, RoutinesBanner, SkillsBanner } from "@/components/home/froots-widgets/feature-banners";
 import { MarkdownBody } from "@/components/ui/markdown-body";
 import { features, featureOrder, type FeatureDoc } from "@/lib/features";
 
@@ -12,7 +12,12 @@ const TOP_LINKS_PRODUCT = [
   { label: "Skills", ariaLabel: "Skills", href: "/skills" },
 ];
 
+/** Each page's banner is the app's own screen for that feature, on one of the site's pastels. */
+const BANNERS = { memory: MemoryBanner, routines: RoutinesBanner, skills: SkillsBanner };
+const BANNER_PASTEL: Record<FeatureDoc["slug"], string> = { memory: "#D7EFD3", routines: "#DCE7FD", skills: "#FBD9DA" };
+
 export function FeaturePage({ feature }: { feature: FeatureDoc }) {
+  const Banner = BANNERS[feature.slug];
   const i = featureOrder.indexOf(feature.slug);
   const next = features[featureOrder[(i + 1) % featureOrder.length]];
 
@@ -71,12 +76,9 @@ export function FeaturePage({ feature }: { feature: FeatureDoc }) {
         </div>
 
         <div className="mx-auto max-w-3xl mt-12">
-          <ArticleBanner
-            accent={feature.accent}
-            label={feature.title}
-            video={feature.video}
-            poster={feature.poster}
-          />
+          <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-border">
+            <Banner accent={BANNER_PASTEL[feature.slug]} />
+          </div>
         </div>
 
         <div className="mx-auto max-w-3xl mt-14">
