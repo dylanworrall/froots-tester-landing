@@ -9,35 +9,39 @@ type FaqItem = { q: string; a: string };
 const items: FaqItem[] = [
   {
     q: "What is Froots?",
-    a: "Froots is a local-first desktop app where you run AI agents — Claude Code, OpenAI Codex, Cursor, or your own harness — and watch every move they make. Tool calls, file diffs, browser sessions, memory updates, and reasoning all stream into one timeline you can pause, fork, and replay. You bring the model keys; your data stays on your machine.",
+    a: "Froots is a local-first desktop app for Mac, Windows and Linux where people and agents share DMs and group DMs. Message an agent like you'd message a friend: it reads the thread, runs its tools and answers there, and every step stays on the record.",
   },
   {
     q: "Which agent harnesses does it support?",
-    a: "Claude Code, OpenAI Codex, Cursor agents, and your own homegrown harness. We speak to each through a thin adapter so the interface and controls stay identical regardless of who's driving.",
+    a: "Claude Code, Codex, Gemini CLI, Cursor, Amp, Goose, Kilo Code, OpenCode, Hermes Agent, Kimi Code, Oh My Pi and Grok Build. Froots drives the CLI you already use instead of reimplementing one. Any other harness that speaks ACP can be added in Settings.",
   },
   {
     q: "What kinds of tools can my agents use?",
-    a: "Shell, browsers, MCP servers, your private APIs, and anything you can wrap in a function. Wire a tool into a run with a few lines of config — agents call it, you see exactly what they did.",
+    a: "Whatever their harness can use: shell, files, MCP servers. Froots adds a built-in browser they drive by numbered elements, plus a skills library for things like GitHub, Notion, Slack and Spotify.",
   },
   {
-    q: "Can I pause or interrupt a run?",
-    a: "Yes. Every run is fully interruptible. Pause anything risky before it touches prod, review the diff, and either approve, edit, or kill the run. You stay in the loop on the steps that matter.",
+    q: "Can I stop an agent or approve what it does?",
+    a: "Yes. Each agent has per-tool rules: allow, ask or deny. When it asks, you answer Allow or Deny in the chat. You can stop a turn at any time, and a failed turn shows a notice with Retry.",
   },
   {
     q: "Is my data private?",
-    a: "Your runs, memory, and knowledge base stay on your machine by default. Bring your own model keys; we never see your prompts or outputs unless you opt in to cloud features.",
+    a: "Your agents, keys and files stay on your machine. DMs go through one relay, relay.froots.ai, encrypted to the person you're messaging, so the relay can't read them. Your harness talks to its model provider with your own sign-in.",
   },
   {
     q: "How is this different from a chat UI?",
-    a: "Chat UIs show the conversation. Froots shows the work — tool calls, file diffs, browser sessions, memory updates, and reasoning all streamed into one timeline you can replay and fork.",
+    a: "A chat UI gives you one assistant in one window. In Froots, agents sit in your sidebar next to your friends. Add them to a group DM, @mention one to wake it, and pin it to a machine like a Mac mini or let it follow you.",
   },
   {
     q: "Do I need to be a developer?",
-    a: "No. The starter routines, widgets, and skills work out of the box. If you're a developer, you can write your own skills and harness adapters — but most teams ship without writing code.",
+    a: "No. You need one harness installed and signed in, and Froots shows which ones are ready. Most are coding agents, but they research, browse and write too.",
+  },
+  {
+    q: "Is there a mobile app?",
+    a: "Not yet. Froots runs on Mac, Windows and Linux.",
   },
   {
     q: "How much does it cost?",
-    a: "Free forever when you bring your own model API keys (Claude, GPT, Gemini, Ollama, local). $12/mo if you want to sync your vault and memory across devices. Beta pricing locked in for life. See /pricing for full details.",
+    a: "Free with your own keys. $12/mo to sync across devices. No card required. See /pricing for details.",
   },
 ];
 

@@ -7,6 +7,7 @@ import { Footer } from "@/components/ui/footer";
 import { MarkdownBody } from "@/components/ui/markdown-body";
 import { getAllSlugs, getPostBySlug, posts } from "@/lib/blog-posts";
 import { clampDescription, clampTitle } from "@/lib/seo";
+import { BlogCover } from "@/components/home/froots-widgets/blog-cover";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -133,18 +134,8 @@ export default async function BlogPostPage({
         <div className="mx-auto max-w-3xl mt-12">
           <div
             className="relative aspect-[16/7] overflow-hidden rounded-3xl border border-border"
-            style={{ backgroundColor: post.accent }}
           >
-            {post.coverImage ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={post.coverImage} alt={`${post.title} — cover illustration`} className="absolute inset-0 h-full w-full object-cover" />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-7xl md:text-8xl font-semibold tracking-tight text-neutral-900/15 select-none">
-                  Froots
-                </span>
-              </div>
-            )}
+            <BlogCover slug={post.slug} title={post.title} tag={post.tag} size="hero" />
           </div>
         </div>
 

@@ -6,7 +6,7 @@ import { getAllDocs, getDocsTree } from "@/lib/docs";
 export const metadata: Metadata = {
   title: "Documentation",
   description:
-    "Get started with Froots — the local-first desktop workspace for AI agents. Install, add a model key, and learn how Memory, Routines, and Skills work.",
+    "Get started with Froots — the local-first desktop app where you, your friends, and your agents share chats. Install, connect an agent CLI, and learn how Memory, Routines, and Skills work.",
   alternates: { canonical: "/docs" },
   openGraph: { url: "https://froots.ai/docs" },
 };
@@ -25,9 +25,9 @@ export default function DocsIndexPage() {
         Froots documentation
       </h1>
       <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-        Froots is a local-first desktop workspace for running AI agents with full visibility into
-        every step. These docs cover installing the app, connecting a model, and getting real work
-        out of Memory, Routines, and Skills.
+        Froots is a local-first desktop app where you, your friends, and your agents share DMs and
+        group chats. These docs cover installing the app, connecting an agent CLI, and getting real
+        work out of Memory, Routines, and Skills.
       </p>
 
       {first && (

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { BlogPost } from "@/lib/blog-posts";
+import { BlogCover } from "@/components/home/froots-widgets/blog-cover";
 
 interface Props {
   featured: BlogPost | null;
@@ -17,15 +18,8 @@ export function BlogList({ featured, posts }: Props) {
               href={`/blog/${featured.slug}`}
               className="group grid md:grid-cols-2 overflow-hidden rounded-3xl border border-border bg-white text-neutral-900 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/10"
             >
-              <div className="relative aspect-[16/10] md:aspect-auto overflow-hidden" style={{ backgroundColor: featured.accent }}>
-                {featured.coverImage ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={featured.coverImage} alt={`${featured.title} — cover illustration`} className="absolute inset-0 h-full w-full object-cover" />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-6xl md:text-7xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>
-                  </div>
-                )}
+              <div className="relative aspect-[16/10] md:aspect-auto overflow-hidden">
+                <BlogCover slug={featured.slug} title={featured.title} tag={featured.tag} size="feature" />
               </div>
               <div className="p-8 md:p-10 flex flex-col justify-center">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-500">
@@ -64,15 +58,8 @@ export function BlogList({ featured, posts }: Props) {
                 href={`/blog/${post.slug}`}
                 className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-white text-neutral-900 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10"
               >
-                <div className="relative aspect-[16/9] overflow-hidden" style={{ backgroundColor: post.accent }}>
-                  {post.coverImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={post.coverImage} alt={`${post.title} — cover illustration`} className="absolute inset-0 h-full w-full object-cover" />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-4xl font-semibold tracking-tight text-neutral-900/15 select-none">Froots</span>
-                    </div>
-                  )}
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <BlogCover slug={post.slug} title={post.title} tag={post.tag} />
                 </div>
                 <div className="flex flex-col flex-1 p-6">
                   <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-500">

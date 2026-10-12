@@ -5,13 +5,17 @@ section: Routines
 order: 1
 ---
 
-Routines flip the chat loop around: instead of you asking and the agent answering, a routine is an agent run that fires on a schedule with a goal, a set of tools, and a place to drop its output — a morning briefing at 7:30, a Friday retro, a nightly inbox sweep. A relevance check (the heartbeat) decides whether a run's result is worth surfacing or should just be filed quietly, so routines stay useful instead of becoming a notification firehose.
+Routines flip the chat loop around. Instead of you asking and the agent answering, a routine is a saved prompt that fires on a schedule: a morning briefing at 7:30, a Friday retro, an inbox sweep every half hour. Schedules can be one-off, every N minutes, daily, weekly, or a cron expression. Froots ships a library of about seventy-five presets to start from. Pick one, edit the prompt, set the schedule, and save.
+
+Separately, each agent has an optional **heartbeat**: a background check-in every 15 minutes to 2 hours that decides whether anything is worth telling you, and only notifies you when it is. It's off by default. Turn it on per agent under **Edit agent → Heartbeat**.
+
+To find routines, press **⌘K** and search for "routines", or "new routine" to make one.
 
 This page is an outline — the full guide is being written. It will cover:
 
-- Creating a routine: schedule, goal, tools, and output target
+- Creating a routine: schedule, prompt, and where its output goes
 - How the heartbeat decides what surfaces
 - Reading routine output and run history
 - Three routines worth setting up on day one
 
-For the thinking behind the design, see [Routines and the heartbeat loop](/blog/routines-and-heartbeat) on the blog, or the [Routines](/routines) overview.
+For how the scheduler works, see the [Routines](/routines) overview.

@@ -1,155 +1,19 @@
 import CircularGallery from "@/components/ui/circular-gallery";
 import { HeroBerry } from "@/components/ui/hero-berry";
-import { VideoShowcase } from "@/components/ui/video-showcase";
+import { HeroChatWidget } from "@/components/home/froots-widgets/hero-chat";
 import { UseCasesGrid } from "@/components/ui/use-cases-grid";
-import { AnimatedFeatureSpotlight } from "@/components/ui/feature-spotlight";
-import { Eye } from "lucide-react";
 import CardNav from "@/components/ui/card-nav";
 import { Footer } from "@/components/ui/footer";
-import { CTA } from "@/components/ui/cta";
-import { FeatureSplit } from "@/components/ui/feature-modern";
 import { FAQ } from "@/components/ui/faq";
-import { AiModelsList } from "@/components/ui/ai-models-preview";
+import { Reveal } from "@/components/home/motion";
+import {
+  BrowserSection,
+  HomeCTA,
+  PlacementSection,
+  RuntimesSection,
+  TogetherSection,
+} from "@/components/home/sections";
 import { WorksWithStack } from "@/components/ui/works-with-stack";
-
-const aiModels = [
-  {
-    id: "claude-fable-5",
-    name: "Claude Fable 5",
-    provider: "Anthropic",
-    family: "Claude 5",
-    description: "Anthropic's most capable model — built for long-horizon agent runs that go for hours.",
-    contextWindowTokens: 1000000,
-    inputPricePer1KTokensUSD: 0.01,
-    outputPricePer1KTokensUSD: 0.05,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["frontier", "long-horizon"],
-  },
-  {
-    id: "claude-opus-5",
-    name: "Claude Opus 5",
-    provider: "Anthropic",
-    family: "Claude 5",
-    description: "Top-tier reasoning and agentic coding, with thinking on by default.",
-    contextWindowTokens: 1000000,
-    inputPricePer1KTokensUSD: 0.005,
-    outputPricePer1KTokensUSD: 0.025,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["frontier", "reasoning"],
-  },
-  {
-    id: "claude-sonnet-5",
-    name: "Claude Sonnet 5",
-    provider: "Anthropic",
-    family: "Claude 5",
-    description: "Near-Opus quality on coding and agents, at Sonnet speed and price.",
-    contextWindowTokens: 1000000,
-    inputPricePer1KTokensUSD: 0.003,
-    outputPricePer1KTokensUSD: 0.015,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["balanced", "agentic"],
-  },
-  {
-    id: "claude-haiku-4-5",
-    name: "Claude Haiku 4.5",
-    provider: "Anthropic",
-    family: "Claude 4",
-    description: "The fast, cheap one — good for classification, routing, and high-volume steps.",
-    contextWindowTokens: 200000,
-    inputPricePer1KTokensUSD: 0.001,
-    outputPricePer1KTokensUSD: 0.005,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["fast", "cheap"],
-  },
-  {
-    id: "gpt-5-6-sol",
-    name: "GPT-5.6 Sol",
-    provider: "OpenAI",
-    family: "GPT-5.6",
-    description: "OpenAI's flagship with reasoning built in and a million-token window.",
-    contextWindowTokens: 1050000,
-    inputPricePer1KTokensUSD: 0.005,
-    outputPricePer1KTokensUSD: 0.03,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["frontier", "multimodal"],
-  },
-  {
-    id: "gpt-5-6-terra",
-    name: "GPT-5.6 Terra",
-    provider: "OpenAI",
-    family: "GPT-5.6",
-    description: "The mid-tier GPT-5.6 — most of the flagship's range for a fraction of the spend.",
-    contextWindowTokens: 1050000,
-    inputPricePer1KTokensUSD: 0.002,
-    outputPricePer1KTokensUSD: 0.012,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["balanced", "multimodal"],
-  },
-  {
-    id: "gemini-3-1-pro",
-    name: "Gemini 3.1 Pro",
-    provider: "Google",
-    family: "Gemini 3",
-    description: "Long-context multimodal model with native search and code execution.",
-    contextWindowTokens: 1000000,
-    inputPricePer1KTokensUSD: 0.002,
-    outputPricePer1KTokensUSD: 0.012,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["long-context", "multimodal"],
-  },
-  {
-    id: "gemini-3-6-flash",
-    name: "Gemini 3.6 Flash",
-    provider: "Google",
-    family: "Gemini 3",
-    description: "Fast and cheap without dropping to a toy model — strong on code for the price.",
-    contextWindowTokens: 1000000,
-    inputPricePer1KTokensUSD: 0.0015,
-    outputPricePer1KTokensUSD: 0.0075,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["fast", "cheap"],
-  },
-  {
-    id: "deepseek-v4",
-    name: "DeepSeek V4",
-    provider: "DeepSeek",
-    family: "DeepSeek V4",
-    description: "Open-weight all-rounder — top of the open leaderboards on reasoning and agentic coding.",
-    contextWindowTokens: 128000,
-    supports: { streaming: true, functionCalling: true },
-    tags: ["open-weight", "self-host"],
-  },
-  {
-    id: "kimi-k2-6",
-    name: "Kimi K2.6",
-    provider: "Moonshot AI",
-    family: "Kimi K2",
-    description: "Open-weight model tuned for autonomous coding agents that run unattended.",
-    contextWindowTokens: 256000,
-    supports: { streaming: true, functionCalling: true },
-    tags: ["open-weight", "agentic"],
-  },
-  {
-    id: "qwen-3-6-plus",
-    name: "Qwen 3.6 Plus",
-    provider: "Alibaba",
-    family: "Qwen 3.6",
-    description: "Open-weight coding model with a million-token window. No vendor lock-in.",
-    contextWindowTokens: 1000000,
-    supports: { streaming: true, vision: true, functionCalling: true },
-    tags: ["open-weight", "long-context"],
-  },
-  {
-    id: "llama-4-405b",
-    name: "Llama 4 405B",
-    provider: "Meta",
-    family: "Llama 4",
-    description: "Meta's open-weight flagship — run it hosted or on your own GPUs.",
-    contextWindowTokens: 256000,
-    supports: { streaming: true, functionCalling: true },
-    tags: ["open-weight", "self-host"],
-  },
-];
 
 const galleryItems = [
   {
@@ -208,23 +72,15 @@ const FAQ_JSONLD = {
       name: "What is Froots?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Froots is a local-first desktop app where you run AI agents — Claude Code, OpenAI Codex, Cursor, or your own harness — and watch every move they make. Tool calls, file diffs, browser sessions, memory updates, and reasoning all stream into one timeline you can pause, fork, and replay. You bring the model keys; your data stays on your machine.",
+        text: "Froots is a local-first desktop app for Mac, Windows and Linux where people and agents share DMs and group DMs. Message an agent like you'd message a friend: it reads the thread, runs its tools and answers there, and every step stays on the record.",
       },
     },
     {
       "@type": "Question",
-      name: "How is Froots different from Notion or Obsidian?",
+      name: "Which agent harnesses does Froots support?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Notion and Obsidian are places to write things down. Froots is a place where what you write down can run. It is local-first like Obsidian, agentic like a custom GPT, and replaces the gap that tools like Zapier filled — but inside your editor, not in a separate dashboard.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does Froots work offline?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. The vault, editor, and skills all run locally. The AI agent calls out to whatever model you connect — including local models running on your machine, so you can use Froots fully offline if you want to.",
+        text: "Claude Code, Codex, Gemini CLI, Cursor, Amp, Goose, Kilo Code, OpenCode, Hermes Agent, Kimi Code, Oh My Pi and Grok Build. Froots drives the CLI you already use instead of reimplementing one. Any other harness that speaks ACP can be added in Settings.",
       },
     },
     {
@@ -232,7 +88,15 @@ const FAQ_JSONLD = {
       name: "What AI models can I use with Froots?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Any. Froots is bring-your-own-key. Connect OpenAI, Anthropic Claude, Google Gemini, DeepSeek, Mistral, or run a local model through Ollama or LM Studio.",
+        text: "Whatever your harness offers: Claude through Claude Code, GPT through Codex, Gemini through Gemini CLI, and more. Froots reads each harness's model list, and you sign in with your own account or keys.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is there a Froots mobile app?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Not yet. Froots runs on Mac, Windows and Linux.",
       },
     },
     {
@@ -240,7 +104,7 @@ const FAQ_JSONLD = {
       name: "How much does Froots cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Froots is free forever when you bring your own model API keys (Claude, GPT, Gemini, Ollama, local). Add Sync for $12/month to share your vault and memory across devices. Beta pricing locked in for life.",
+        text: "Free with your own keys. $12/mo to sync across devices. No card required.",
       },
     },
   ],
@@ -291,28 +155,16 @@ export default function Home() {
           },
         ]}
       />
-      <HeroBerry />
-      <VideoShowcase imageUrl="/froots-explainer-poster.jpg" videoUrl="/froots-explainer.mp4" alt="Froots explainer: tabs, split view, contacts and accounts, then your team and your agents working together" />
-      <UseCasesGrid />
-      <div className="flex items-center justify-center w-full py-24 bg-background px-4">
-        <AnimatedFeatureSpotlight
-          preheaderIcon={<Eye className="h-4 w-4" />}
-          preheaderText="See every move your agent makes"
-          heading={
-            <>
-              <span className="text-primary">Watch</span> your agents{" "}
-              <span className="text-primary">work</span>
-            </>
-          }
-          description="Tool calls, file edits, browser sessions, and reasoning — all streamed into one timeline. Spot a wrong turn early, hit pause, and steer it back without ever leaving the dashboard."
-          buttonText="See it live"
-          imageUrl="/froots-watch-agent.png"
-          imageAlt="Froots dashboard — watch every tool call, file edit, and step"
-        />
-      </div>
-      <section className="w-full py-24">
-        <AiModelsList models={aiModels} />
-      </section>
+      {/* The hero is a chat with an agent: a demo plays until you take over (components/home). */}
+      <HeroBerry
+        heading="Message an agent like a person."
+        tagline="It reads, runs its tools and answers in the thread, and every step stays on the record."
+      >
+        <HeroChatWidget />
+      </HeroBerry>
+      {/* The rest of the product story, drawn: live widgets that animate as they scroll in. */}
+      <TogetherSection />
+      <RuntimesSection />
       {false && <section className="w-full py-24">
         <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
@@ -334,31 +186,16 @@ export default function Home() {
           />
         </div>
       </section>}
-      <FeatureSplit
-        title="Custom views for your internal ops"
-        description="Spin up dashboards, widgets, and panels tailored to how your team actually works. Pin them to your desktop, share them with your agents, and stop tab-hopping between five different tools."
-        imageSrc="/froots-feature-widgets.png"
-        imageAlt="Froots custom widgets"
-        primaryCta="Build a view"
-      />
-      <FeatureSplit
-        reverse
-        title="A browser, built in"
-        description="Research, prospect, and pull data without ever leaving Froots. The built-in browser lives next to your agents, so what they see is what you see — and either of you can take the wheel."
-        imageSrc="/froots-feature-browser.png"
-        imageAlt="Froots built-in browser"
-        primaryCta="Try the browser"
-      />
-      <FeatureSplit
-        title="Multi-panel for multi-agent workflows"
-        description="Run several agents side by side — one drafting, one researching, one shipping. Each gets its own panel, its own context, its own tools, while you orchestrate from a single canvas."
-        imageSrc="/froots-feature-multipanel.png"
-        imageAlt="Froots multi-agent panels"
-        primaryCta="See the layout"
-      />
-      <WorksWithStack />
+      <BrowserSection />
+      <PlacementSection />
+      <Reveal>
+        <UseCasesGrid />
+      </Reveal>
+      <Reveal>
+        <WorksWithStack />
+      </Reveal>
       <FAQ />
-      <CTA />
+      <HomeCTA />
       <Footer />
     </main>
   );
