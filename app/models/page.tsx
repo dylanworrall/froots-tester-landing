@@ -1,11 +1,4 @@
-import {
-  SiAnthropic,
-  SiOpenai,
-  SiGooglegemini,
-  SiMeta,
-  SiMistralai,
-  SiOllama,
-} from "react-icons/si";
+import { SiAnthropic, SiOpenai, SiGooglegemini, SiOllama } from "react-icons/si";
 import type { Metadata } from "next";
 import type { IconType } from "react-icons";
 import type { ComponentType, SVGProps } from "react";
@@ -15,9 +8,9 @@ import { FAQ } from "@/components/ui/faq";
 import { Footer } from "@/components/ui/footer";
 
 export const metadata: Metadata = {
-  title: "Models — bring your own AI brain",
+  title: "Models — whatever your harness runs",
   description:
-    "Every major model API, swappable per task — Claude, GPT, Gemini, Llama, Mistral, Grok, Groq, and local models via Ollama. Bring your own keys.",
+    "Froots runs the models your agent harness offers: Claude through Claude Code, GPT through Codex, Gemini through Gemini CLI, and more. Sign in with your own account or keys.",
   alternates: { canonical: "/models" },
   openGraph: { url: "https://froots.ai/models" },
 };
@@ -37,71 +30,111 @@ const models: AgentCard[] = [
     Icon: SiAnthropic,
     color: "#D97706",
     blurb:
-      "Anthropic's flagship for long-context reasoning and tool use — the default brain for agent loops.",
+      "Fable, Opus, Sonnet and Haiku, through Claude Code. Uses your Claude subscription or API key.",
   },
   {
     label: "GPT",
     Icon: SiOpenai,
     color: "#000",
     blurb:
-      "OpenAI's multimodal workhorse — broad ecosystem, vision, and fast function calling.",
+      "OpenAI's coding models through Codex, with effort levels where Codex offers them. Uses your ChatGPT sign-in.",
   },
   {
     label: "Gemini",
     Icon: SiGooglegemini,
     color: "#1F6FEB",
-    blurb:
-      "Google's million-token model — ideal when you need to drop in whole repos or hours of transcripts.",
-  },
-  {
-    label: "Llama",
-    Icon: SiMeta,
-    color: "#0866FF",
-    blurb:
-      "Meta's open weights — run it locally for privacy or fine-tune it for niche domains.",
-  },
-  {
-    label: "Mistral",
-    Icon: SiMistralai,
-    color: "#FA520F",
-    blurb:
-      "Lean European models with strong tool use — cheap, fast, and Apache-licensed.",
+    blurb: "Google's models through Gemini CLI.",
   },
   {
     label: "Grok",
-    glyph: "𝕏",
-    color: "#0a0a0a",
-    blurb:
-      "xAI's chatty model with real-time access to X — useful for news-aware agents and sharp tone.",
+    src: "/harness-logos/grok.svg",
+    blurb: "xAI's models through Grok Build.",
   },
   {
-    label: "Groq",
-    glyph: "G",
-    color: "#F55036",
-    blurb:
-      "Not a model — an inference provider. Runs Llama and Mixtral at hundreds of tokens per second.",
+    label: "Kimi",
+    src: "/harness-logos/kimi.png",
+    blurb: "Moonshot AI's models through Kimi Code.",
   },
   {
-    label: "Ollama",
+    label: "Local and open models",
     Icon: SiOllama,
     color: "#0a0a0a",
     blurb:
-      "Run any open model locally on your machine — fully offline, zero token costs, full privacy.",
+      "Harnesses like Goose, OpenCode and Kilo Code connect to many providers, including models on your own machine.",
   },
 ];
 
 const harnesses: AgentCard[] = [
   {
-    label: "OpenClaw",
-    src: "/logo-openclaw.svg",
-    blurb:
-      "Open-source agent harness built around tool authoring and durable memory.",
+    label: "Claude Code",
+    src: "/harness-logos/claude.svg",
+    blurb: "Anthropic's agentic coding tool that runs in the terminal.",
   },
   {
-    label: "Hermes",
-    src: "/logo-hermes.png",
-    blurb:
-      "Nous Research's fine-tunes — agentic behavior tuned for structured output and persona.",
+    label: "Codex",
+    Icon: SiOpenai,
+    color: "#000",
+    blurb: "OpenAI's coding agent.",
+  },
+  {
+    label: "Gemini CLI",
+    src: "/harness-logos/gemini.svg",
+    blurb: "Google's coding agent for the terminal.",
+  },
+  {
+    label: "Cursor",
+    glyph: "C",
+    color: "#0a0a0a",
+    blurb: "Cursor's coding agent, through the cursor-agent CLI.",
+  },
+  {
+    label: "Amp",
+    src: "/harness-logos/amp.png",
+    blurb: "A coding agent from Sourcegraph.",
+  },
+  {
+    label: "Goose",
+    glyph: "G",
+    color: "#0a0a0a",
+    blurb: "Block's open-source, extensible AI agent.",
+  },
+  {
+    label: "Kilo Code",
+    glyph: "K",
+    color: "#0a0a0a",
+    blurb: "An open-source coding agent with access to hundreds of models.",
+  },
+  {
+    label: "OpenCode",
+    src: "/harness-logos/opencode.svg",
+    blurb: "An open-source coding agent.",
+  },
+  {
+    label: "Hermes Agent",
+    src: "/harness-logos/hermes.png",
+    blurb: "A general-purpose AI agent from Nous Research.",
+  },
+  {
+    label: "Kimi Code",
+    src: "/harness-logos/kimi.png",
+    blurb: "A terminal coding agent from Moonshot AI.",
+  },
+  {
+    label: "Oh My Pi",
+    glyph: "π",
+    color: "#0a0a0a",
+    blurb: "A terminal coding agent with integrated development tools.",
+  },
+  {
+    label: "Grok Build",
+    src: "/harness-logos/grok.svg",
+    blurb: "xAI's coding agent.",
+  },
+  {
+    label: "Your own",
+    glyph: ">_",
+    color: "#0a0a0a",
+    blurb: "Any other CLI that speaks ACP. Add it in Settings with a command and its arguments.",
   },
 ];
 
@@ -186,8 +219,8 @@ export default function ModelsPage() {
               Bring your own brain.
             </h1>
             <p className="mt-5 text-lg text-muted-foreground">
-              Every major model API, swappable per task. Pick the agent that
-              fits the job.
+              Froots runs the models your harness offers. Pick a harness and a
+              model for each agent, signed in with your own account or keys.
             </p>
           </div>
           <div className="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">

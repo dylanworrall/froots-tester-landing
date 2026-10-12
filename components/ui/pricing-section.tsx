@@ -32,13 +32,13 @@ const tiers: Tier[] = [
     priceMonthly: "$0",
     priceAnnual: "$0",
     cadence: "forever",
-    tagline: "Plug in your own API keys and run Froots free.",
+    tagline: "Use your own keys and CLI sign-ins. Run Froots free.",
     cta: "Start free — no card",
     features: [
-      "Bring any model — Claude, GPT, Gemini, Ollama, local",
-      "Local memory vault, your machine",
-      "All built-in skills (browser, shell, files, MCP)",
-      "1 device",
+      "Every harness — Claude Code, Codex, Gemini CLI and more",
+      "DMs and group DMs with friends and agents",
+      "Built-in browser and skills",
+      "Your agents, keys and files stay on your machine",
     ],
   },
   {
@@ -54,9 +54,9 @@ const tiers: Tier[] = [
     highlighted: true,
     features: [
       "Everything in Free",
-      "Sync across all your devices",
-      "Memory snapshots & restore",
-      "Publish memory snippets",
+      "Sync across your devices",
+      "Your workspace hosted on the Froots relay",
+      "Per-device data (chat history, logs) stays local",
     ],
   },
 ];
@@ -115,7 +115,7 @@ function TierCard({
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@team.com"
+          placeholder="you@example.com"
           className={cn(
             "mt-3 h-10 w-full rounded-full border px-3 text-xs outline-none transition",
             tier.highlighted
@@ -279,7 +279,7 @@ export function PricingSection() {
         )}
 
         <p className="mt-10 text-center text-sm text-muted-foreground">
-          Cancel anytime · No card on Free · 14-day refund on paid plans · Beta pricing locked in for life
+          Cancel anytime · No card on Free
         </p>
       </div>
     </section>

@@ -131,7 +131,7 @@ export function RuntimesSection() {
       reverse
       kicker="Bring your own harness"
       title="Any model. Any harness."
-      body="Froots drives the agent CLIs you already use instead of reimplementing one: Claude Code, Codex, Gemini CLI, Cursor, Amp, Goose, Kilo Code, OpenCode, Hermes Agent, Kimi Code, OpenClaw and Grok Build. Pick one per agent, with your own keys or subscription."
+      body="Froots drives the agent CLIs you already use instead of reimplementing one: Claude Code, Codex, Gemini CLI, Cursor, Amp, Goose, Kilo Code, OpenCode, Hermes Agent, Kimi Code, Oh My Pi and Grok Build. Pick one per agent, with your own keys or subscription."
       picture={<RuntimesWidget />}
     />
   );

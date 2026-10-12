@@ -72,23 +72,15 @@ const FAQ_JSONLD = {
       name: "What is Froots?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Froots is a local-first desktop app where you run AI agents — Claude Code, OpenAI Codex, Cursor, or your own harness — and watch every move they make. Tool calls, file diffs, browser sessions, memory updates, and reasoning all stream into one timeline you can pause, fork, and replay. You bring the model keys; your data stays on your machine.",
+        text: "Froots is a local-first desktop app for Mac, Windows and Linux where people and agents share DMs and group DMs. Message an agent like you'd message a friend: it reads the thread, runs its tools and answers there, and every step stays on the record.",
       },
     },
     {
       "@type": "Question",
-      name: "How is Froots different from Notion or Obsidian?",
+      name: "Which agent harnesses does Froots support?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Notion and Obsidian are places to write things down. Froots is a place where what you write down can run. It is local-first like Obsidian, agentic like a custom GPT, and replaces the gap that tools like Zapier filled — but inside your editor, not in a separate dashboard.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does Froots work offline?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. The vault, editor, and skills all run locally. The AI agent calls out to whatever model you connect — including local models running on your machine, so you can use Froots fully offline if you want to.",
+        text: "Claude Code, Codex, Gemini CLI, Cursor, Amp, Goose, Kilo Code, OpenCode, Hermes Agent, Kimi Code, Oh My Pi and Grok Build. Froots drives the CLI you already use instead of reimplementing one. Any other harness that speaks ACP can be added in Settings.",
       },
     },
     {
@@ -96,7 +88,15 @@ const FAQ_JSONLD = {
       name: "What AI models can I use with Froots?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Any. Froots is bring-your-own-key. Connect OpenAI, Anthropic Claude, Google Gemini, DeepSeek, Mistral, or run a local model through Ollama or LM Studio.",
+        text: "Whatever your harness offers: Claude through Claude Code, GPT through Codex, Gemini through Gemini CLI, and more. Froots reads each harness's model list, and you sign in with your own account or keys.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is there a Froots mobile app?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Not yet. Froots runs on Mac, Windows and Linux.",
       },
     },
     {
@@ -104,7 +104,7 @@ const FAQ_JSONLD = {
       name: "How much does Froots cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Froots is free forever when you bring your own model API keys (Claude, GPT, Gemini, Ollama, local). Add Sync for $12/month to share your vault and memory across devices. Beta pricing locked in for life.",
+        text: "Free with your own keys. $12/mo to sync across devices. No card required.",
       },
     },
   ],

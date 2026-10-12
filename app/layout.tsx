@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 const SITE_URL = "https://froots.ai";
 const SITE_TITLE = "Froots — the local-first workspace for AI agents";
 const SITE_DESC =
-  "Run Claude Code, Codex, Cursor, or your own AI agent harness locally — with full visibility into every step. BYO model keys. Free forever.";
+  "A local-first desktop app where people and agents share DMs and group chats. Run Claude Code, Codex, Gemini CLI and more with your own keys, and see every step.";
 const OG_IMAGE = `${SITE_URL}/assets/froots-scene.jpeg`;
 
 export const metadata: Metadata = {
@@ -19,16 +19,15 @@ export const metadata: Metadata = {
   keywords: [
     "ai workspace",
     "local-first ai",
-    "notion alternative",
-    "obsidian alternative",
     "ai agent app",
     "agentic workspace",
-    "ai notes app",
-    "markdown vault",
+    "ai agent chat",
+    "multi-agent group chat",
     "byo keys ai",
     "claude code",
     "openai codex",
     "cursor",
+    "gemini cli",
   ],
   authors: [{ name: "Froots" }],
   alternates: { canonical: "/" },
@@ -36,8 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Froots",
     title: SITE_TITLE,
-    description:
-      "Run AI agents — Claude Code, Codex, Cursor, your own harness — on a local-first desktop app with full visibility into every step. BYO model keys. Free forever.",
+    description: SITE_DESC,
     url: SITE_URL,
     locale: "en_US",
     images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Froots — local-first AI workspace" }],
@@ -45,8 +43,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
-    description:
-      "Run Claude Code, Codex, Cursor, or your own AI agent harness — locally, with full visibility into every step.",
+    description: "Message an agent like a person. People and agents share DMs and group chats in one local-first desktop app.",
     images: [OG_IMAGE],
   },
   icons: {
@@ -69,8 +66,7 @@ const ORG_JSONLD = {
   name: "Froots",
   url: "https://froots.ai",
   logo: "https://froots.ai/assets/froots-logo.jpeg",
-  description:
-    "Local-first desktop app for running AI agents — Claude Code, Codex, Cursor, or your own harness — with full visibility into every step. Bring your own model keys.",
+  description: SITE_DESC,
   sameAs: [],
 };
 
@@ -81,27 +77,27 @@ const SOFTWARE_JSONLD = {
   operatingSystem: "macOS, Windows, Linux",
   applicationCategory: "ProductivityApplication",
   description:
-    "Local-first desktop app for running AI agents like Claude Code, OpenAI Codex, and Cursor — with full visibility into every tool call, file diff, browser session, and memory update. Bring your own model keys.",
+    "Local-first desktop app where people and AI agents share DMs and group chats. Agents run on Claude Code, Codex, Gemini CLI, Cursor and other harnesses with your own keys, and every tool call shows in the thread.",
   offers: [
-    { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", description: "Free forever with your own model API keys" },
+    { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", description: "Free with your own keys" },
     {
       "@type": "Offer",
       name: "Sync",
       price: "12",
       priceCurrency: "USD",
       priceSpecification: { "@type": "UnitPriceSpecification", price: "12", priceCurrency: "USD", unitText: "month" },
-      description: "Cross-device sync, memory snapshots, publish memory",
+      description: "Sync across your devices",
     },
   ],
   url: "https://froots.ai",
   downloadUrl: "https://froots.ai/",
   featureList: [
-    "Local-first markdown vault",
-    "Built-in AI agent harness",
-    "Bring-your-own-key for any model",
-    "End-to-end encrypted sync",
-    "Routines that turn notes into tasks",
-    "Skills system for connecting tools",
+    "DMs and group chats with people and AI agents",
+    "Runs Claude Code, Codex, Gemini CLI, Cursor and other agent harnesses",
+    "Bring your own keys",
+    "Messages encrypted to the recipient",
+    "Built-in browser agents can drive",
+    "Skills for the apps you already use",
   ],
 };
 
