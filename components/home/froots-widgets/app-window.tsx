@@ -73,6 +73,7 @@ export function AppWindow({
   label,
   panelRef,
   compact = false,
+  interactive = false,
   className = "",
 }: {
   children: ReactNode;
@@ -82,11 +83,18 @@ export function AppWindow({
   compact?: boolean;
   label: string;
   panelRef?: Ref<HTMLDivElement>;
+  /** Something a visitor can use (the hero chat): a labelled region, not a picture. */
+  interactive?: boolean;
   className?: string;
 }) {
   return (
-    <div ref={panelRef} role="img" aria-label={label} className={`fw froots-app froots-window ${appFont.className} relative flex flex-col overflow-hidden bg-shell text-left ${className}`}>
-      <div aria-hidden className="contents">
+    <div
+      ref={panelRef}
+      role={interactive ? "region" : "img"}
+      aria-label={label}
+      className={`fw froots-app froots-window ${appFont.className} relative flex flex-col overflow-hidden bg-shell text-left ${className}`}
+    >
+      <div aria-hidden={!interactive} className="contents">
         <TopBar tabs={tabs} compact={compact} />
         <div className="flex min-h-0 flex-1 pb-1.5 pr-1.5">
           {rail ?? <span className="w-1.5 shrink-0" />}

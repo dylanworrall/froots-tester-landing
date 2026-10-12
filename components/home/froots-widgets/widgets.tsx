@@ -12,10 +12,10 @@
 // the shipped app.
 
 import type { CSSProperties } from "react";
-import { FileText, Search, Terminal, Plus } from "lucide-react";
+import { FileText, Terminal, Plus } from "lucide-react";
 import { useWidget } from "../motion";
 import { AppPanel, AppWindow, type Tab } from "./app-window";
-import { AssistantBubble, Caret, ChainBubble, Composer, ThinkingVerb, UserBubble, suggestionPlaceholder, type Step } from "./chat-surface";
+import { AssistantBubble, Caret, ChainBubble, Composer, type Step } from "./chat-surface";
 import { DayDivider, DmBubble, InlineMentionPicker, MentionPill, PendingIndicator, ThreadHeader } from "./dm-thread";
 import { Face } from "./faces";
 import { FriendRequestPopup, FriendsToast } from "./friend-request-popup";
@@ -31,75 +31,6 @@ function loopFade(p: number, loop: number, fadeAt: number): CSSProperties {
 }
 
 const PROFILES_TAB: Tab = { title: "Profiles", icon: <FileText size={14} className="shrink-0 text-ink/45" /> };
-
-/* ── 1. a chat with an agent: tool calls fold into a card, the reply streams, Tab takes a reply ── */
-
-const ASK = "What's left before Friday's release?";
-const TOOLS: Step[] = [
-  { icon: FileText, label: "Read file", desc: "CHANGELOG.md", at: 16 },
-  { icon: Search, label: "Searched", desc: "release", at: 23 },
-  { icon: FileText, label: "Read file", desc: "release-checklist.md", at: 30 },
-];
-const REPLY =
-  "Two things. The Windows installer still needs signing, and the onboarding copy is waiting on your review. Everything else is merged. Want me to start on the installer?";
-const SUGGESTIONS = ["yes, sign it and cut the build", "show me the copy first"] as const;
-const CHAT = { loop: 150, ask: 4, think: 8, fold: 42, stream: 44, cps: 4, suggest: 92, tab1: 104, tab2: 118, fade: 141, end: 100 };
-const VERBS = ["Pondering", "Tinkering", "Brewing"];
-
-export function AgentChatWidget() {
-  const { ref, t } = useWidget<HTMLDivElement>(90);
-  const p = t === null ? CHAT.end : t % CHAT.loop;
-  const streamed = Math.max(0, Math.min(REPLY.length, (p - CHAT.stream) * CHAT.cps));
-  const thinking = p >= CHAT.think && p < TOOLS[0].at;
-  const filled = p >= CHAT.tab2 ? 1 : p >= CHAT.tab1 ? 0 : -1;
-  const placeholder = p >= CHAT.suggest ? suggestionPlaceholder(SUGGESTIONS[0], SUGGESTIONS.length) : "Message Pip";
-  const rail: RailItem[] = [
-    { who: "pip", kind: "agent", here: true },
-    { who: "scout", kind: "agent" },
-    { who: "maya", kind: "dm", count: 2 },
-    { who: "leo", kind: "group", count: 5 },
-  ];
-  return (
-    <AppWindow
-      panelRef={ref}
-      label="A chat with an agent in Froots: it reads three files, folds them into a '3 tool calls' card, streams its reply and offers suggested replies you fill in with Tab."
-      className="h-[520px] w-full"
-      tabs={[PROFILES_TAB, { title: "Pip", icon: <Face who="pip" size={16} />, active: true }]}
-      rail={<Rail items={rail} />}
-    >
-      <ThreadHeader who="pip" title="Pip" sub={<span className="text-[11px] text-ink/30 truncate">Follows you</span>} />
-      <div className="relative flex min-h-0 flex-1 flex-col justify-end overflow-hidden px-3 py-3">
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-7 bg-gradient-to-b from-panel to-transparent" />
-        <div className="space-y-3">
-          <UserBubble>Can you tidy up the release checklist?</UserBubble>
-          <AssistantBubble>Done. It&apos;s grouped by platform now.</AssistantBubble>
-          <div className="space-y-3" style={loopFade(p, CHAT.loop, CHAT.fade)}>
-            {p >= CHAT.ask && <UserBubble>{ASK}</UserBubble>}
-            <ChainBubble steps={TOOLS} p={p} foldAt={CHAT.fold} doneAfter={6} />
-            {streamed > 0 && (
-              <AssistantBubble>
-                {REPLY.slice(0, streamed)}
-                {streamed < REPLY.length && <Caret />}
-              </AssistantBubble>
-            )}
-            {thinking && <ThinkingVerb verb={VERBS[Math.floor(p / 14) % VERBS.length]} />}
-          </div>
-        </div>
-      </div>
-      <Composer
-        placeholder={placeholder}
-        draft={
-          filled >= 0 ? (
-            <>
-              {SUGGESTIONS[Math.max(0, filled)]}
-              <Caret />
-            </>
-          ) : null
-        }
-      />
-    </AppWindow>
-  );
-}
 
 /* ── 2. a group DM: an @mention wakes the agent ────────────────────────────────────────────── */
 

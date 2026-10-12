@@ -108,9 +108,24 @@ export function suggestionPlaceholder(suggestion: string, count: number): string
   return count > 1 ? `${suggestion}   ⇥ Tab (1 of ${count})` : `${suggestion}   ⇥ Tab`;
 }
 
-/** MessageComposer: the bar. `draft` is what's in the box; empty shows the placeholder. */
-export function Composer({ draft, placeholder, above, below }: { draft: ReactNode; placeholder: string; above?: ReactNode; below?: ReactNode }) {
-  const canSend = !!draft;
+/** MessageComposer: the bar. `draft` is what's in the box; empty shows the placeholder. Pass
+ *  `input` (a real <input>) instead of a draft and the box is live; `canSend` lights the button. */
+export function Composer({
+  draft,
+  placeholder,
+  above,
+  below,
+  input,
+  canSend: canSendProp,
+}: {
+  draft: ReactNode;
+  placeholder: string;
+  above?: ReactNode;
+  below?: ReactNode;
+  input?: ReactNode;
+  canSend?: boolean;
+}) {
+  const canSend = canSendProp ?? !!draft;
   return (
     <div className="shrink-0 px-3 py-3">
       <div className="relative flex items-end gap-1.5 rounded-xl bg-ink/[0.05] px-2 py-1.5 transition-colors">
@@ -118,9 +133,11 @@ export function Composer({ draft, placeholder, above, below }: { draft: ReactNod
         <span className="shrink-0 p-1.5 rounded-lg text-ink/45">
           <Paperclip size={16} />
         </span>
-        <span className="flex-1 min-w-0 truncate whitespace-pre text-[13px] leading-[1.5] py-1">
-          {draft ? <span className="text-ink/90">{draft}</span> : <span className="text-ink/30">{placeholder}</span>}
-        </span>
+        {input ?? (
+          <span className="flex-1 min-w-0 truncate whitespace-pre text-[13px] leading-[1.5] py-1">
+            {draft ? <span className="text-ink/90">{draft}</span> : <span className="text-ink/30">{placeholder}</span>}
+          </span>
+        )}
         <span className="shrink-0 p-1.5 rounded-lg text-ink/45">
           <AtSign size={16} />
         </span>

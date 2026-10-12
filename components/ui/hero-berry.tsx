@@ -1,15 +1,19 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { DownloadCta } from "./download-cta";
 
 interface Props {
   heading?: string;
   tagline?: string;
+  /** The picture under the call to action (the live chat on the home page). */
+  children?: ReactNode;
 }
 
 export function HeroBerry({
   heading = "Multiply yourself.",
   tagline = "A local-first desktop app for running AI agents — Claude Code, Codex, Cursor, or your own — with full visibility into every step. Bring your own keys. Free forever.",
+  children,
 }: Props) {
   return (
     <section className="relative w-full">
@@ -24,6 +28,7 @@ export function HeroBerry({
           <DownloadCta size="lg" />
         </div>
       </div>
+      {children && <div className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6">{children}</div>}
     </section>
   );
 }

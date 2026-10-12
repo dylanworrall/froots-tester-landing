@@ -1,13 +1,12 @@
 import CircularGallery from "@/components/ui/circular-gallery";
 import { HeroBerry } from "@/components/ui/hero-berry";
-import { VideoShowcase } from "@/components/ui/video-showcase";
+import { HeroChatWidget } from "@/components/home/froots-widgets/hero-chat";
 import { UseCasesGrid } from "@/components/ui/use-cases-grid";
 import CardNav from "@/components/ui/card-nav";
 import { Footer } from "@/components/ui/footer";
 import { FAQ } from "@/components/ui/faq";
 import { Reveal } from "@/components/home/motion";
 import {
-  AgentChatSection,
   BrowserSection,
   HomeCTA,
   PlacementSection,
@@ -156,10 +155,14 @@ export default function Home() {
           },
         ]}
       />
-      <HeroBerry />
-      <VideoShowcase imageUrl="/froots-explainer-poster.jpg" videoUrl="/froots-explainer.mp4" alt="Froots explainer: tabs, split view, contacts and accounts, then your team and your agents working together" />
-      {/* The product story, drawn: live widgets that animate as they scroll in (components/home). */}
-      <AgentChatSection />
+      {/* The hero is a chat with an agent: a demo plays until you take over (components/home). */}
+      <HeroBerry
+        heading="Message an agent like a person."
+        tagline="It reads, runs its tools and answers in the thread, and every step stays on the record."
+      >
+        <HeroChatWidget />
+      </HeroBerry>
+      {/* The rest of the product story, drawn: live widgets that animate as they scroll in. */}
       <TogetherSection />
       <RuntimesSection />
       {false && <section className="w-full py-24">

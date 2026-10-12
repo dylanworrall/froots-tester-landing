@@ -1,5 +1,5 @@
 // The home page's product story, told with the app's own components (./widgets) instead of
-// screenshots. The hero (heading + film) stays the one hero; every band below it is a plain feature
+// screenshots. The hero (heading + the live chat, ./froots-widgets/hero-chat) stays the one hero; every band below it is a plain feature
 // row or a row of cards, so nothing competes with it. Everything rises in on scroll via <Reveal/>.
 //
 // Every claim here is a shipped feature. Copy inside the widgets is illustration.
@@ -8,7 +8,6 @@ import type { ReactNode } from "react";
 import { DownloadCta } from "@/components/ui/download-cta";
 import { Reveal } from "./motion";
 import {
-  AgentChatWidget,
   BrowserDriveWidget,
   FriendRequestWidget,
   GroupMentionWidget,
@@ -75,25 +74,6 @@ function FeatureRow({
         </Reveal>
       </div>
     </section>
-  );
-}
-
-/* ── a chat with an agent ─────────────────────────────────────────────────────────────────── */
-
-export function AgentChatSection() {
-  return (
-    <FeatureRow
-      id="chat"
-      kicker="See every move your agent makes"
-      title="Message an agent like a person"
-      body="It reads, runs its tools and answers in the thread, and every step stays on the record."
-      points={[
-        "Tool calls stream into a card while they run, then fold into one line you can open.",
-        "The reply streams in as it's written.",
-        "When an agent asks you something it offers replies: Tab fills one in, Tab again cycles, Enter sends.",
-      ]}
-      picture={<AgentChatWidget />}
-    />
   );
 }
 
