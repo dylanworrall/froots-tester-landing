@@ -79,15 +79,7 @@ const SOFTWARE_JSONLD = {
   description:
     "Local-first desktop app where people and AI agents share DMs and group chats. Agents run on Claude Code, Codex, Gemini CLI, Cursor and other harnesses with your own keys, and every tool call shows in the thread.",
   offers: [
-    { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", description: "Free with your own keys" },
-    {
-      "@type": "Offer",
-      name: "Sync",
-      price: "12",
-      priceCurrency: "USD",
-      priceSpecification: { "@type": "UnitPriceSpecification", price: "12", priceCurrency: "USD", unitText: "month" },
-      description: "Sync across your devices",
-    },
+    { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", description: "Free for individuals and teams, with your own keys" },
   ],
   url: "https://froots.ai",
   downloadUrl: "https://froots.ai/",

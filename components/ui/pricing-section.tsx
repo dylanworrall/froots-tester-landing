@@ -1,93 +1,57 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-type BillingMode = "monthly" | "annual";
-type PlanId = "free" | "sync_monthly" | "sync_annual";
+import { ENTERPRISE_CONTACT_URL } from "@/lib/contact";
 
 interface Tier {
-  id: PlanId | "free";
-  annualId?: PlanId;
+  id: "free" | "enterprise";
   name: string;
-  priceMonthly: string;
-  priceAnnual: string;
+  price: string;
   cadence: string;
-  cadenceAnnual?: string;
   tagline: string;
   cta: string;
+  href: string;
   features: string[];
   highlighted?: boolean;
 }
-
-const BILLING_BASE =
-  process.env.NEXT_PUBLIC_MOTIVEX_BILLING_BASE ??
-  "https://motivex-billing.cryptodedefi.workers.dev";
 
 const tiers: Tier[] = [
   {
     id: "free",
     name: "Free",
-    priceMonthly: "$0",
-    priceAnnual: "$0",
+    price: "$0",
     cadence: "forever",
-    tagline: "Use your own keys and CLI sign-ins. Run Froots free.",
+    tagline: "Everything in the app, for individuals and teams. Use your own keys and CLI sign-ins.",
     cta: "Start free — no card",
+    href: "/",
     features: [
-      "Every harness — Claude Code, Codex, Gemini CLI and more",
-      "DMs and group DMs with friends and agents",
-      "Built-in browser and skills",
+      "DMs and group DMs with people and agents",
+      "Friends, right next to your agents",
+      "12 agent harnesses — Claude Code, Codex, Gemini CLI and more — with your own keys or subscriptions",
+      "Built-in browser your agents can drive",
+      "Memory, routines and skills",
+      "The shared Froots relay, relay.froots.ai",
       "Your agents, keys and files stay on your machine",
     ],
   },
   {
-    id: "sync_monthly",
-    annualId: "sync_annual",
-    name: "Sync",
-    priceMonthly: "$12",
-    priceAnnual: "$99",
-    cadence: "/ mo",
-    cadenceAnnual: "/ yr",
-    tagline: "Same as Free — now everywhere you work.",
-    cta: "Add Sync",
+    id: "enterprise",
+    name: "Enterprise",
+    price: "Custom",
+    cadence: "multi-year license",
+    tagline: "For companies that want Froots on their own relay.",
+    cta: "Talk to us",
+    href: ENTERPRISE_CONTACT_URL,
     highlighted: true,
     features: [
       "Everything in Free",
-      "Sync across your devices",
-      "Your workspace hosted on the Froots relay",
-      "Per-device data (chat history, logs) stays local",
+      "A multi-year license for your company",
+      "A dedicated relay for your company, run by us or on your own servers",
+      "Onboarding and direct support from the team",
     ],
   },
 ];
 
-function TierCard({
-  tier,
-  mode,
-  email,
-  setEmail,
-  onCheckout,
-  busyPlan,
-  hideEmailInput,
-}: {
-  tier: Tier;
-  mode: BillingMode;
-  email: string;
-  setEmail: (e: string) => void;
-  onCheckout: (plan: PlanId) => Promise<void>;
-  busyPlan: PlanId | null;
-  /** True when the email arrived from the app's ?email= handoff — we
-   *  hide the input and just show which account is being billed. */
-  hideEmailInput: boolean;
-}) {
-  const price = mode === "annual" ? tier.priceAnnual : tier.priceMonthly;
-  const cadence = mode === "annual" ? tier.cadenceAnnual ?? tier.cadence : tier.cadence;
-  const isFree = tier.id === "free";
-  const planForMode: PlanId =
-    isFree ? "free" : mode === "annual" ? (tier.annualId ?? tier.id as PlanId) : (tier.id as PlanId);
-  const busy = busyPlan === planForMode;
-  const disabled = !isFree && (!email.includes("@") || !!busyPlan);
-
+function TierCard({ tier }: { tier: Tier }) {
   return (
     <div
       className={cn(
@@ -98,62 +62,24 @@ function TierCard({
       )}
       style={tier.highlighted ? { backgroundColor: "#5191F8" } : undefined}
     >
-      {tier.highlighted ? (
-        <span className="absolute -top-3 left-6 inline-flex w-fit rounded-full bg-neutral-900 px-3 py-1 text-[10px] font-medium uppercase tracking-wide text-white">
-          Most popular
-        </span>
-      ) : null}
       <h3 className="text-lg font-semibold">{tier.name}</h3>
       <div className="mt-2 flex items-baseline gap-1">
-        <span className="text-4xl font-semibold tracking-tight">{price}</span>
-        <span className="text-[11px] opacity-70">{cadence}</span>
+        <span className="text-4xl font-semibold tracking-tight">{tier.price}</span>
+        <span className="text-[11px] opacity-70">{tier.cadence}</span>
       </div>
       <p className="mt-2 text-xs opacity-75 min-h-[2.5rem]">{tier.tagline}</p>
 
-      {!isFree && !hideEmailInput && (
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          className={cn(
-            "mt-3 h-10 w-full rounded-full border px-3 text-xs outline-none transition",
-            tier.highlighted
-              ? "border-neutral-900/30 bg-white/95 text-neutral-900 focus:border-neutral-900"
-              : "border-neutral-200 bg-white text-neutral-900 focus:border-neutral-900",
-          )}
-          autoComplete="email"
-        />
-      )}
-
-      {!isFree && hideEmailInput && (
-        <p className={cn(
-          "mt-3 truncate text-[11px]",
-          tier.highlighted ? "text-neutral-900/80" : "text-neutral-500",
-        )}>
-          Billed to <span className="font-medium">{email}</span>
-        </p>
-      )}
-
-      <button
-        type="button"
-        onClick={() => {
-          if (isFree) {
-            window.location.assign("/");
-          } else {
-            void onCheckout(planForMode);
-          }
-        }}
-        disabled={disabled}
+      <a
+        href={tier.href}
         className={cn(
-          "mt-3 inline-flex h-11 w-full items-center justify-center rounded-full text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed",
+          "mt-3 inline-flex h-11 w-full items-center justify-center rounded-full text-sm font-medium transition",
           tier.highlighted
             ? "bg-neutral-900 text-white hover:opacity-90"
             : "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-100",
         )}
       >
-        {busy ? "Opening Stripe…" : tier.cta}
-      </button>
+        {tier.cta}
+      </a>
       <ul className="mt-5 space-y-2 text-xs">
         {tier.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2">
@@ -167,51 +93,6 @@ function TierCard({
 }
 
 export function PricingSection() {
-  const [mode, setMode] = useState<BillingMode>("monthly");
-  const [email, setEmail] = useState("");
-  const [emailFromApp, setEmailFromApp] = useState(false);
-  const [busyPlan, setBusyPlan] = useState<PlanId | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  // Prefill email when the desktop app sent the user here. The query
-  // param ?email=… lands them on /pricing with their account already
-  // chosen — so we hide the email field entirely and just show who's
-  // being billed (the app owns the identity; re-typing it is friction).
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const url = new URL(window.location.href);
-    const fromUrl = url.searchParams.get("email");
-    if (fromUrl && fromUrl.includes("@")) {
-      setEmail(fromUrl);
-      setEmailFromApp(true);
-    }
-  }, []);
-
-  async function startCheckout(plan: PlanId) {
-    if (!email.includes("@")) {
-      setError("Enter your email so we can attach the subscription to your workspace.");
-      return;
-    }
-    setBusyPlan(plan);
-    setError(null);
-    try {
-      const res = await fetch(`${BILLING_BASE}/checkout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, plan }),
-      });
-      if (!res.ok) {
-        const txt = await res.text();
-        throw new Error(`${res.status}: ${txt}`);
-      }
-      const json = (await res.json()) as { url: string };
-      window.location.assign(json.url);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
-      setBusyPlan(null);
-    }
-  }
-
   return (
     <section className="w-full py-24">
       <div className="mx-auto max-w-6xl px-6">
@@ -220,66 +101,18 @@ export function PricingSection() {
             Simple pricing.
           </h1>
           <p className="mt-3 mx-auto max-w-xl text-base sm:text-lg text-muted-foreground">
-            Free with your own keys. $12 to sync across devices.
+            Free for individuals and teams. An Enterprise license for companies that want their own relay.
           </p>
-
-          <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-white p-1 text-xs">
-            <button
-              type="button"
-              onClick={() => setMode("monthly")}
-              className={cn(
-                "rounded-full px-4 py-1.5 transition",
-                mode === "monthly" ? "bg-neutral-900 text-white" : "text-neutral-600 hover:text-neutral-900",
-              )}
-              aria-pressed={mode === "monthly"}
-            >
-              Monthly
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode("annual")}
-              className={cn(
-                "inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 transition",
-                mode === "annual" ? "bg-neutral-900 text-white" : "text-neutral-600 hover:text-neutral-900",
-              )}
-              aria-pressed={mode === "annual"}
-            >
-              Annual
-              <span
-                className={cn(
-                  "rounded-full px-1.5 py-0.5 text-[10px] font-semibold",
-                  mode === "annual" ? "bg-emerald-400/90 text-emerald-950" : "bg-emerald-100 text-emerald-700",
-                )}
-              >
-                save 31%
-              </span>
-            </button>
-          </div>
         </div>
 
         <div className="mx-auto mt-14 grid max-w-3xl gap-4 sm:grid-cols-2">
           {tiers.map((tier) => (
-            <TierCard
-              key={tier.name}
-              tier={tier}
-              mode={mode}
-              email={email}
-              setEmail={setEmail}
-              onCheckout={startCheckout}
-              busyPlan={busyPlan}
-              hideEmailInput={emailFromApp}
-            />
+            <TierCard key={tier.id} tier={tier} />
           ))}
         </div>
 
-        {error && (
-          <div className="mx-auto mt-6 max-w-xl rounded-lg border border-rose-200 bg-rose-50 px-4 py-2 text-center text-sm text-rose-700">
-            {error}
-          </div>
-        )}
-
         <p className="mt-10 text-center text-sm text-muted-foreground">
-          Cancel anytime · No card on Free
+          No card required
         </p>
       </div>
     </section>

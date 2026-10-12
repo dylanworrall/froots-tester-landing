@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: { url: "https://froots.ai/privacy" },
 };
 
-const UPDATED = "July 2, 2026";
+const UPDATED = "October 12, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -24,15 +24,15 @@ export default function PrivacyPage() {
       <p>
         Froots is <strong>local-first</strong>: your workspace and the data you
         connect are stored and processed on your own device by default. We
-        operate only the limited cloud services described below (optional sync,
-        payments, and real-time coordination).
+        operate only the limited cloud services described below (the Froots relay
+        and, for Enterprise licenses, payments).
       </p>
 
       <h2>Information we handle</h2>
       <ul>
         <li>
-          <strong>Account &amp; billing information.</strong> If you subscribe to
-          cloud sync, we process your email address and manage your subscription
+          <strong>Account &amp; billing information.</strong> If you purchase an
+          Enterprise license, we process your email address and manage billing
           through our payment processor, Stripe. We do not receive or store your
           full card number.
         </li>
@@ -46,7 +46,8 @@ export default function PrivacyPage() {
         <li>
           <strong>Workspace content.</strong> Notes, tasks, contacts, agent
           configurations, and memory files you create in the app. This lives on
-          your device and, if you enable sync, in your private cloud database.
+          your device. Messages and files you share go through the Froots relay,
+          described below.
         </li>
         <li>
           <strong>Model provider keys.</strong> API keys you supply for AI
@@ -115,23 +116,23 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
-      <h2>Optional cloud sync</h2>
+      <h2>The Froots relay</h2>
       <p>
-        Cloud sync is off by default. If you turn it on, your workspace content is
-        replicated to a private database provisioned for your account (hosted on
-        Turso) so it stays consistent across your devices. Data is transmitted over
+        Messages with people and agents travel through the Froots relay
+        (relay.froots.ai). Direct messages are encrypted to their recipients, so
+        the relay cannot read them. Files you share are stored on the relay. We do
+        not keep a cloud database of your workspace. Data is transmitted over
         encrypted connections (TLS). Gmail message bodies are fetched on demand and
-        are not stored in the synced database; however, if you or an agent save
-        email-derived content into your notes or memory, that saved content syncs
-        like any other workspace content you create.
+        are not sent to the relay; however, if you or an agent share email-derived
+        content in a message, it travels through the relay like any other message.
       </p>
 
       <h2>How we store and protect data</h2>
       <ul>
         <li>Google OAuth tokens are stored in your device&rsquo;s secure OS keystore.</li>
         <li>Local workspace data resides in your user application-support directory.</li>
-        <li>Synced data is transmitted over TLS to your private database.</li>
-        <li>We retain synced data for as long as your account is active.</li>
+        <li>Data sent to the relay is transmitted over TLS.</li>
+        <li>We retain data stored on the relay for as long as your account is active.</li>
       </ul>
 
       <h2>Your choices and controls</h2>
@@ -154,8 +155,8 @@ export default function PrivacyPage() {
           .
         </li>
         <li>
-          <strong>Delete your data.</strong> Turn off sync to keep data only on your
-          device, or contact us to delete your account and synced data.
+          <strong>Delete your data.</strong> Contact us to delete your account and
+          the data stored on the relay.
         </li>
       </ul>
 
@@ -163,7 +164,7 @@ export default function PrivacyPage() {
       <p>
         Froots relies on a small number of third parties to operate: Google (for the
         Gmail and Calendar features you connect), the AI providers you configure with
-        your own keys, Stripe (payments), and Turso (sync database). Each processes
+        your own keys, and Stripe (payments for Enterprise licenses). Each processes
         data under its own privacy terms.
       </p>
 

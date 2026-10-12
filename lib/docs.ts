@@ -12,7 +12,7 @@ const SECTION_ORDER = [
   "Memory",
   "Routines",
   "Skills",
-  "Sync & Billing",
+  "Relay & Pricing",
   "Troubleshooting",
 ];
 

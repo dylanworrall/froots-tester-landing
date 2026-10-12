@@ -4,12 +4,12 @@ import { LegalLayout } from "@/components/ui/legal-layout";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "The terms that govern your use of the Froots desktop app and website, including subscriptions, bring-your-own-key model usage, and acceptable use.",
+    "The terms that govern your use of the Froots desktop app and website, including Enterprise licenses, bring-your-own-key model usage, and acceptable use.",
   alternates: { canonical: "/terms" },
   openGraph: { url: "https://froots.ai/terms" },
 };
 
-const UPDATED = "July 2, 2026";
+const UPDATED = "October 12, 2026";
 
 export default function TermsPage() {
   return (
@@ -35,30 +35,28 @@ export default function TermsPage() {
       <p>
         Froots works with third-party services you choose to connect, including AI
         model providers (via API keys you supply), Google (Gmail and Calendar),
-        Stripe (payments), and Turso (sync). Your use of those services is governed
+        and Stripe (payments). Your use of those services is governed
         by their respective terms and privacy policies. You are responsible for any
         usage, fees, or limits associated with keys and accounts you provide, and
         for complying with those providers&rsquo; terms.
       </p>
 
-      <h2>Accounts and subscriptions</h2>
+      <h2>Accounts and Enterprise licenses</h2>
       <ul>
         <li>
           The core app is free to use when you bring your own model API keys.
         </li>
         <li>
-          Optional paid plans (such as cross-device sync) are billed through Stripe
-          on a recurring basis at the price shown at checkout. Subscriptions renew
-          automatically until cancelled.
+          The only paid offering is an Enterprise license for companies, billed
+          through Stripe under the terms agreed in that license.
         </li>
         <li>
-          You may cancel at any time; your paid features remain active through the
-          end of the current billing period, after which sync access ends. Except
-          where required by law, payments are non-refundable.
+          Except where required by law or set out in your license, payments are
+          non-refundable.
         </li>
         <li>
-          We may change plan pricing prospectively; changes will not affect the
-          current paid period.
+          We may change Enterprise pricing prospectively; changes will not affect a
+          license already in effect.
         </li>
       </ul>
 
@@ -66,8 +64,8 @@ export default function TermsPage() {
       <p>
         You retain all rights to the content you create in Froots. You grant us only
         the limited permission necessary to operate the Service for you — for
-        example, to store and replicate your content to your private sync database
-        when you enable sync. We do not claim ownership of your content and do not
+        example, to carry your messages and store the files you share on the
+        Froots relay. We do not claim ownership of your content and do not
         use it to train AI models.
       </p>
 
