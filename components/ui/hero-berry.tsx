@@ -23,9 +23,6 @@ export function HeroBerry({
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <DownloadCta size="lg" />
         </div>
-        <p className="mt-6 text-xs text-muted-foreground">
-          Free with your own keys · $12/mo to sync across devices · No card required
-        </p>
       </div>
     </section>
   );
